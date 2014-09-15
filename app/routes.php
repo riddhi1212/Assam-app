@@ -35,6 +35,12 @@ Route::get('/tabs', function()
 	return View::make('tabbedhome');
 });
 
+Route::get('/updates', function()
+{
+	$army_updates_list = ArmyUpdates::orderBy('s-no','asc')->get();
+	return View::make('armyupdates',[ 'army_updates_list' => $army_updates_list ]);
+});
+
 // debugging helpers
 
 Route::get('/laravel', function()

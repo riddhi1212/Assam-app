@@ -80,6 +80,15 @@ Todo:
 		DONE @ 5:40pm
 10) Make tabbed home a master layout and add sections
 	Note: Master pages are usually used for reusing the layout. I'll use them for breaking a really large file into smaller manageable chunks
+		FAIL: This did not work. 
+11) Create migration and seed from csv file using Packalyst csv-seeder package. Also download composer Faker and way/generator
+	1) Migration DONE @12:38am
+	2) Manual seed from csv DONE @ 12:38am
+
+---
+Todo random later
+
+1) Find out if there is a Laravel bootstrap theme
 
 
 ---
@@ -87,6 +96,10 @@ What is / Learn
 
 1) routes.resource?
 2) DB migrations
+	  seeds
+3) facade
+4) Eloquent guarded property 
+
 
 ----
 Todo Features
@@ -96,6 +109,7 @@ Todo Features
 3) Add 'found' functionality to Find people display list (upload happy pic or something or add as 'success story')
 4) Add leaderboard for most founds (will need some kind of user auth) (auth by mob num is fine)
 5) Indian ARMY Updates Display
+	Basic - DONE @ 1:02 am
 6) Indian ARMY Updates Search
 7) Add 'How can I contribute' tab in nav-bar. And list names of contributors who help translate the update files commending them.
 
