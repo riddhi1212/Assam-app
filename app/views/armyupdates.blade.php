@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>ARMY Updates</title>
-		{{ HTML::style('http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'); }}
-		{{ HTML::style('css/style.css'); }}
-	</head>
-	<body>
+@extends('layouts/navhome')
+
+@section('content')
 		<div id="wrap">
 			<div class="header">
 				<div class="container">
@@ -83,15 +77,4 @@
 			</div>
 		</div>
 
-		<div id="footer">
-      		<div class="container">
-        		<p>PLEASE NOTE: All data entered will be available to the public and viewable and usable by anyone. We do not review or verify the accuracy of this data.</p>
-      		</div>
-    	</div>
-
-
-		<!--<script type="text/javascript" url="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>-->
-		{{ HTML::script('js/jquery-1.8.3.js'); }}
-		{{ HTML::script('js/bootstrap.js'); }}
-	</body>
-</html>
+@stop

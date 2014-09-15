@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Kashmiri Floods 2014 Person Finder</title>
-		{{ HTML::style('http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'); }}
-		{{ HTML::style('css/style.css'); }}
-	</head>
-	<body>
+@extends('layouts/navhome')
+
+@section('head')
+        {{ HTML::style('css/home-style.css'); }}
+@stop
+
+@section('content')
+
 		<div id="wrap">
 			<div class="header">
 				<div class="container">
@@ -109,16 +108,10 @@
 			</div>
 		</div>
 
-		<div id="footer">
-      		<div class="container">
-        		<p>PLEASE NOTE: All data entered will be available to the public and viewable and usable by anyone. We do not review or verify the accuracy of this data.</p>
-      		</div>
-    	</div>
+@stop
+
+@section('jsinclude')
+        {{ HTML::script('js/app.js'); }}
+@stop
 
 
-		<!--<script type="text/javascript" url="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>-->
-		{{ HTML::script('js/jquery-1.8.3.js'); }}
-		{{ HTML::script('js/bootstrap.js'); }}
-		{{ HTML::script('js/app.js'); }}
-	</body>
-</html>

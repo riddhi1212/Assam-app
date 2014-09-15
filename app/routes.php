@@ -11,37 +11,66 @@
 |
 */
 
-Route::get('/', function()
-{
-	$found_people_list = FoundPeople::orderBy('created_at','dsc')->get();
-	$find_people_list = FindPeople::orderBy('created_at','dsc')->get();
-	return View::make('home',[ 'found_people_list' => $found_people_list, 
-							   'find_people_list' => $find_people_list  
-							 ]);
-});
+// Route::get('/', function()
+// {
+// 	$found_people_list = FoundPeople::orderBy('created_at','dsc')->get();
+// 	$find_people_list = FindPeople::orderBy('created_at','dsc')->get();
+// 	return View::make('home',[ 'found_people_list' => $found_people_list, 
+// 							   'find_people_list' => $find_people_list  
+// 							 ]);
+// });
 
-Route::post('/', array(
+Route::get('/', array(
+    'as' => 'home',
+    'uses' => function()
+				{
+					$found_people_list = FoundPeople::orderBy('created_at','dsc')->get();
+					$find_people_list = FindPeople::orderBy('created_at','dsc')->get();
+					return View::make('home',[ 'found_people_list' => $found_people_list, 
+											   'find_people_list' => $find_people_list  
+											 ]);
+				}
+) );
+
+Route::post('/find', array(
     'as' => 'find.people.create',
     'uses' => 'FindPeopleController@create'
 ) );
 
-Route::post('/', array(
+Route::post('/found', array(
     'as' => 'found.people.create',
     'uses' => 'FoundPeopleController@create'
 ) );
+
+Route::get('/updates', array(
+    'as' => 'updates',
+    'uses' => function()
+				{
+					$army_updates_list = ArmyUpdates::orderBy('s-no','asc')->get();
+					return View::make('armyupdates',[ 'army_updates_list' => $army_updates_list ]);
+				}
+) );
+
+
+// Route::get('/updates', function()
+// {
+// 	$army_updates_list = ArmyUpdates::orderBy('s-no','asc')->get();
+// 	return View::make('armyupdates',[ 'army_updates_list' => $army_updates_list ]);
+// });
+
+// ================= playing with code =================
+
+// Route::get('/nav', function()
+// {
+// 	return View::make('navhome');
+// });
 
 Route::get('/tabs', function()
 {
 	return View::make('tabbedhome');
 });
 
-Route::get('/updates', function()
-{
-	$army_updates_list = ArmyUpdates::orderBy('s-no','asc')->get();
-	return View::make('armyupdates',[ 'army_updates_list' => $army_updates_list ]);
-});
-
-// debugging helpers
+// ================= debugging helpers =================
 
 Route::get('/laravel', function()
 {
