@@ -111,6 +111,10 @@ Todo Features
 5) Indian ARMY Updates Display
 	Basic - DONE @ 1:02 am
 6) Indian ARMY Updates Search
+	Basic Form: 'Name' ONLY and Table: 'first-name' ONLY search (case insensitive) enabled
+		DONE @ 3:48am
+	DO : 1) age search
+		 2) Name compared to 'first-name' AND 'last-name' (I think I'll have to use query builder for this)
 7) Add 'How can I contribute' tab in nav-bar. And list names of contributors who help translate the update files commending them.
 
 --todo
@@ -126,4 +130,6 @@ Timeline
 Sat, Sep 13 2014 : Basic HTML, CSS, Bootstrap, jQuery skeleton up on Git
 Sun, Sep 14 2014 : Vagrant vm homestead config and deployment
 Mon, Sep 15 2014 : Hookup Laravel and Front-end. Hookup DB
-
+                   Basic Indian ARMY Updates Display
+                   Fixed-to-top nav bar with home and updates links working
+				   Bought domain kashmirfloods2014.com

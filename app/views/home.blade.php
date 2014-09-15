@@ -111,7 +111,7 @@
 @stop
 
 @section('jsinclude')
-        {{ HTML::script('js/app.js'); }}
+        {{ HTML::script('js/home.js'); }}
 @stop
 
 

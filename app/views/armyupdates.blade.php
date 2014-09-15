@@ -4,55 +4,35 @@
 		<div id="wrap">
 			<div class="header">
 				<div class="container">
-					<h1>ARMY Updates</h1>
+					<p class="pull-left">ARMY Updates</p>
+					<p class="pull-right">Number of Records Uploaded So far : {{ count($army_updates_list) }} Records</p>
 				</div>
 			</div>
 
 			<div class="row">
 			  <div class="col-md-9">
-			    <div class="found-people">
-			   	  <p>Tracking {{ count($army_updates_list) }} Records</p>
-			   	  <!--
-			      <form class="form-horizontal" id="found-people-form" method="post" action={{ route('found.people.create') }}>
+			    <div class="army_updates">
+			   	  
+			   	  
+			      <form class="form-horizontal" id="army-updates-search-form" method="post" action={{ route('army.updates.search') }}>
 			        <div class="form-group">
-    					<label for="found-name" class="control-label col-sm-2">Name</label>
+    					<label for="updates-name" class="control-label col-sm-2">Name</label>
     					<div class="col-sm-10">
-      						<input type="text" class="form-control" id="found-name" name="found-name" placeholder="Enter Name">
+      						<input type="text" class="form-control" id="updates-name" name="updates-name" placeholder="Enter Name">
     					</div>
   					</div>
   					<div class="form-group">
-    					<label for="found-age" class="control-label col-sm-2">Age</label>
+    					<label for="updates-age" class="control-label col-sm-2">Age</label>
     					<div class="col-sm-10">
-      						<input type="text" class="form-control" id="found-age" name="found-age" placeholder="Enter Age">
+      						<input type="text" class="form-control" id="updates-age" name="updates-age" placeholder="Enter Age">
     					</div>
   					</div>
-  					<div class="form-group">
-  						<div class="col-sm-4">
-	  						<select class="form-control">
-						  		<option>Father name</option>
-						  		<option>Spouse name</option>
-							</select>
-						</div>
-						<div class="col-sm-8">
-      						<input type="text" class="form-control" id="found-father" name="found-father" placeholder="Enter Father name">
-    					</div>
-					</div>
-  					<div class="form-group">
-    					<label for="found-tel" class="control-label col-sm-2">Tel#</label>
-    					<div class="col-sm-10">
-      						<input type="text" class="form-control" id="found-tel" name="found-tel" placeholder="Enter Telephone Number">
-    					</div>
-  					</div>
-  					<div class="form-group">
-    					<label for="found-by" class="control-label col-sm-2">Found By</label>
-    					<div class="col-sm-10">
-      						<input type="text" class="form-control" id="found-by" name="found-by" placeholder="ARMY / NRDF / Reporter / Medical team / Person">
-    					</div>
-  					</div>
-			        <button type="button" class="btn btn-primary btn-block" id="found-post-btn">Post</button>
+  					
+			        <button type="button" class="btn btn-primary btn-block" id="army-updates-search-btn">Search</button>
 			      </form>
-			      -->
+			      <br/>
 			      <div class="army-updates-display">
+			      	  <p class="search-text"></p>
 			      	  <li class="list-group-item list-group-item-info">
 			      	  	<div class="row">
 	      	  				<h4 class="col-md-4">S.no.</h4>
@@ -77,4 +57,8 @@
 			</div>
 		</div>
 
+@stop
+
+@section('jsinclude')
+        {{ HTML::script('js/army-updates-search.js'); }}
 @stop

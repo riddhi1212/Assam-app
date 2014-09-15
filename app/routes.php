@@ -51,6 +51,10 @@ Route::get('/updates', array(
 				}
 ) );
 
+Route::post('/updates', array(
+    'as' => 'army.updates.search',
+    'uses' => 'ArmyUpdatesController@search'
+) );
 
 // Route::get('/updates', function()
 // {
