@@ -30,6 +30,13 @@ Route::post('/', array(
     'uses' => 'FoundPeopleController@create'
 ) );
 
+Route::get('/tabs', function()
+{
+	return View::make('tabbedhome');
+});
+
+// debugging helpers
+
 Route::get('/laravel', function()
 {
 	return View::make('hello');
