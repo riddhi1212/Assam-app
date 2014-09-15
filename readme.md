@@ -25,6 +25,7 @@ My Comments:
 		QQQ: does 'vagrant suspend' destroy the DB?
 6) Check for difference in name vs id for form elements
 	A1: HTML form elements operate on name attr not on id attr. which means .serialize (jQuery method) will only work on name attr not on id attr
+7) Can you embed php in a .js or jquery file?
 
 
 Ah!
@@ -77,6 +78,9 @@ Todo:
 9) Do all of the above for Found-people-DB
 	First pass: only Name and age storage and retrieval
 		DONE @ 5:40pm
+10) Make tabbed home a master layout and add sections
+	Note: Master pages are usually used for reusing the layout. I'll use them for breaking a really large file into smaller manageable chunks
+
 
 ---
 What is / Learn
