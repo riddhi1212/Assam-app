@@ -1,6 +1,6 @@
 <?php
 
-class FindPeopleController extends BaseController {   
+class FoundPeopleController extends BaseController {   
 
     // public function add() {
     //     return View::make( 'options/new' );
@@ -15,20 +15,20 @@ class FindPeopleController extends BaseController {
         //     ) );
         // }
  
-        $find_name = Input::get( 'find-name' );
-        $find_age = Input::get( 'find-age' );
+        $found_name = Input::get( 'found-name' );
+        $found_age = Input::get( 'found-age' );
 
-        Log::info("===========================in FindPeopleController create [start]");
-        Log::info($find_name);
+        Log::info("===========================in FoundPeopleController create [start]");
+        Log::info($found_name);
 
-        FindPeople::create([
-            'name' => $find_name,
-            'age' => $find_age
-        ]);    
+        FoundPeople::create([
+            'name' => $found_name,
+            'age' => $found_age
+        ]);
  
         $response = array(
             'status' => 'success',
-            'msg' => 'Person inserted in Find-People Table successfully', // figure out how to use this future-TODO
+            'msg' => 'Person inserted in Found-People Table successfully', // figure out how to use this future-TODO
         );
  
         return Response::json( $response );

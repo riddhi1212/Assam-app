@@ -13,14 +13,21 @@
 
 Route::get('/', function()
 {
-	//$find_people_list = FindPeople::all();
+	$found_people_list = FoundPeople::orderBy('created_at','dsc')->get();
 	$find_people_list = FindPeople::orderBy('created_at','dsc')->get();
-	return View::make('home',['find_people_list' => $find_people_list]);
+	return View::make('home',[ 'found_people_list' => $found_people_list, 
+							   'find_people_list' => $find_people_list  
+							 ]);
 });
 
 Route::post('/', array(
     'as' => 'find.people.create',
     'uses' => 'FindPeopleController@create'
+) );
+
+Route::post('/', array(
+    'as' => 'found.people.create',
+    'uses' => 'FoundPeopleController@create'
 ) );
 
 Route::get('/laravel', function()
