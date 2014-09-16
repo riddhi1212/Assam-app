@@ -13,20 +13,15 @@ class CreateFindPeopleTable extends Migration {
 	public function up()
 	{
 		// TODO : add drop if exists
-
+		Schema::dropIfExists('find-people');
 		Schema::create('find-people', function(Blueprint $table)
 		{
 		    $table->increments('id');
 		    $table->timestamps();
 
-		    $table->integer('s-no')->unsigned();
 			$table->string('first-name');
 			$table->string('last-name')->nullable();
 			$table->integer('age')->unsigned();
-			$table->string('address')->nullable();
-			$table->string('fb-url')->nullable();
-			$table->date('update-fb-date')->nullable();
-			$table->integer('child')->unsigned()->default('0');
 		});
 	}
 
