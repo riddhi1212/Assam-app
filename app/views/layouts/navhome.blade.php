@@ -65,8 +65,8 @@
         </div>
 
         <br/>
-        {{ HTML::script('js/jquery-1.8.3.js'); }}
-        {{ HTML::script('js/bootstrap.js'); }}
+        {{ HTML::script('https://code.jquery.com/jquery-1.11.1.min.js'); }}
+        {{ HTML::script('http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.js'); }}
         @yield('jsinclude')
     </body>
 </html>
