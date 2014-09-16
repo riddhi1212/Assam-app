@@ -21,8 +21,10 @@ class FoundPeopleController extends BaseController {
         Log::info("===========================in FoundPeopleController create [start]");
         Log::info($found_name);
 
+        // TODO: change to adding to first-name and last-name
+
         FoundPeople::create([
-            'name' => $found_name,
+            'first-name' => $found_name,
             'age' => $found_age
         ]);
  

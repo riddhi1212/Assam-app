@@ -52,6 +52,8 @@ Ah!
    vagrant reload --provision -> will force provisioners to re-run as well. this will reload changes to serve.sh AND Homestead.yaml
 8) If blade isn't working for you, make sure the extension of your file is '.blade.php' instead of '.php'
 9) CHECK: <input name="email" ...> helps on mobile by determining which symbols on the keyboard are provided to you
+10) the Users::where('name','=', 'Test-Name-Input') matches 'Test-Name-Input' case insensitivally with the names in the 'name' col of Users table
+11) the log file is at app/storage/logs/laravel.log
 
 
 ----
