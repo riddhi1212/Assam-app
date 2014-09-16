@@ -98,8 +98,24 @@ Route::get('/hostname', function()
 	var_dump( gethostname() );
 });
 
+Route::get('/findpeople', function()
+{
+	return Schema::hasTable('find-people');
+});
+
+Route::get('/foundpeople', function()
+{
+	return Schema::hasTable('find-people');
+});
+
+Route::get('/armyupdates', function()
+{
+	return Schema::hasTable('ARMY-Updates');
+});
+
 Route::get('/dbtest', function()
 {
-	$findPeople = DB::table('find-people')->get();
-	return $findPeople;
+	//TODO: create table then test then del
+	//$result = DB::table('created-table')->get();
+	return "need to write";
 });
