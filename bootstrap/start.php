@@ -23,28 +23,28 @@ $app = new Illuminate\Foundation\Application;
 | given environment, then we will automatically detect it for you.
 |
 */
-/* // associative array WAY
+// associative array WAY
 $env = $app->detectEnvironment(array(
 
-	//'local' => array('homestead'), // homestead is the machine name of the homestead vagrant vm. specified in homestead.rb
-	'local' => array('localhost'), // with this it defaulted to env = production because this was not being hit when running in vagrant vm
-
+	// homestead is the machine name of the homestead vagrant vm. specified in homestead.rb
+	'local' => array('homestead','.local'), 
+    'production' => array('riddhi-first-server')
 ));
-*/
 
-// Closure WAY
-$env = $app->detectEnvironment(function() {
-    if (getenv('APP_ENV')) {
-        return getenv('APP_ENV');
-    } else {
-    	var_dump('No APP_ENV lassy!');
-        return 'local';
-    }
-    /*
-    else {
-        return 'local'; // Default
-    }*/
-});
+
+// // Closure WAY
+// $env = $app->detectEnvironment(function() {
+//     if (getenv('APP_ENV')) {
+//         return getenv('APP_ENV');
+//     } else {
+//     	var_dump('No APP_ENV lassy!');
+//         return 'local';
+//     }
+//     /*
+//     else {
+//         return 'local'; // Default
+//     }*/
+// });
 
 /*
 |--------------------------------------------------------------------------
