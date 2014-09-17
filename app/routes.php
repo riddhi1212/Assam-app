@@ -56,12 +56,13 @@ Route::post('/updates', array(
     'uses' => 'ArmyUpdatesController@search'
 ) );
 
-Route::get('/volunteers', array(
-    'as' => 'all.volunteers',
+Route::get('/contributors', array(
+    'as' => 'contributors',
     'uses' => function()
 				{
 					// $army_updates_list = ArmyUpdates::orderBy('s-no','asc')->get();
-					// return View::make('armyupdates',[ 'army_updates_list' => $army_updates_list ]);
+					$cu_list = User::where('contributor',true)->get();
+					return View::make('contributors',[ 'contributor_users_list' => $cu_list ]);
 				}
 ) );
 
@@ -106,7 +107,7 @@ Route::get('dashboard', array(
 							$fp_list = Auth::user()->findPeople()->orderBy('created_at','dsc')->get();
 						}
 						if ( Auth::user()->contributor ) {
-							$au_count = count(Auth::user()->contributedArmyUpdates()->get());
+							$au_count = Auth::user()->numContributed();
 						}
 						
 						return View::make('dashboard',[ 'find_people_list' => $fp_list,

@@ -49,6 +49,16 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return NULL;
 	}
 
+	// each User of type Looker can try to register find requests for many people
+	public function numContributed() {
+		if ($this->contributor) {
+			// specifying second param because default foreign key will be 'user_id'
+			return count($this->contributedArmyUpdates()->get());  
+		}
+		
+		return 0;
+	}
+
 	// make looker
 	public function makeLooker() {
 		$this->looker = true;

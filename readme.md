@@ -163,7 +163,8 @@ Tue, Sep 16 2014 : 4:50pm	-	Vagrant up working again! Phew!
 				   3:13am	-	Basic find-person post-btn Auto-auth detection and html changes, fip creation,
 				   				dashboard show fip list, Log In, Log Out buttons situational display tested
 				   3:43am	-	Contributor->hasMany(ArmyUpdates). Migration and Seeders changed accordingly.
-
+				   4:17am	-	Contributor->hasMany(ArmyUpdates). shows on dashboard.
+				   4:35am	-	List of contributors done.
 
 
 -----
