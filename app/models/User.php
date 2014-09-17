@@ -39,9 +39,24 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return NULL;
 	}
 
+	// each User of type Looker can try to register find requests for many people
+	public function contributedArmyUpdates() {
+		if ($this->contributor) {
+			// specifying second param because default foreign key will be 'user_id'
+			return $this->hasMany('ArmyUpdates', 'contributor-id');  
+		}
+		
+		return NULL;
+	}
+
 	// make looker
 	public function makeLooker() {
 		$this->looker = true;
+	}
+
+	// make contributor
+	public function makeContributor() {
+		$this->contributor = true;
 	}
 
 	// ===============================================================
@@ -60,7 +75,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         $user->fname = $fname;
         $user->lname = $lname;
         $user->mobile = $mobile;
-        $user->looker = true;
+        $user->makeLooker();
         // $mobile is str
         $user->password = Hash::make($mobile);  //TODO : add mix of first name and mob num
         $user->save();

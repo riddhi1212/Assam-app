@@ -7,7 +7,12 @@ class SessionController extends BaseController {
 	public function showLogin()
 	{
 		if (Auth::check()) { // check if there is some user already authenticated
-			return Redirect::to('laravel');
+			return Redirect::route('dashboardname');
+
+			//return Redirect::to('dashboard')->with(......)
+
+
+
 			// Example of passing parameters with Redirect::to
 			// These can be accessed by Session::get('username')
 			//	->with('username', Auth::user()->fname)

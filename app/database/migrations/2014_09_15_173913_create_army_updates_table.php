@@ -26,6 +26,10 @@ class CreateArmyUpdatesTable extends Migration {
 			$table->date('update-fb-date')->nullable();
 			$table->string('fb-url')->nullable();
 			$table->integer('child')->unsigned()->default('0');
+
+			// Relationships
+			// Each army-updates row has a Contributor user
+			$table->integer('contributor-id')->unsigned();
 		});
 	}
 

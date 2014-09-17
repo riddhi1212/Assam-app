@@ -19,4 +19,8 @@ class ArmyUpdates extends Eloquent {
 	 */
 	//protected $hidden = array('password', 'remember_token');
 
+	public function setContributorID($id) {
+		$this->setAttribute('contributor-id', $id);
+	}
+
 }

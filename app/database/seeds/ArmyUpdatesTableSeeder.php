@@ -14,9 +14,14 @@ class ArmyUpdatesTableSeeder extends Seeder {
 
         	//Log::info($listings);
  
+            // HAVE-TODO: Create contributor user for each contributor name in seedCSV file and use that id below
+            $contributor_user = User::where('fname','Riddhi')->get()->first();
+            $contributor_user->makeContributor();
+            $contributor_user->save(); // TODO: can this go into makeContributor function ? and makeLooker function?
+
  			// TODO: add col update-fb-date
             $update = ArmyUpdates::create([ // add contributor
-                'contributor'=> $listings[0],
+                'contributor'=> $contributor_user->fname,
             	's-no' 		 => $listings[1],
             	'first-name' => $listings[2],
             	'last-name'	 =>	$listings[3],
@@ -25,6 +30,8 @@ class ArmyUpdatesTableSeeder extends Seeder {
             	'fb-url'     => $listings[7],
             	'child'		 => $listings[8]
             ]);
+            $update->setContributorID($contributor_user->id);
+            $update->save();
             
             //echo $listings[0] . 'recorded added <br />';
         }

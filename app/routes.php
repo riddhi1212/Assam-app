@@ -97,11 +97,21 @@ Route::get('logout', array(
 
 
 Route::get('dashboard', array(
-	    'as' => 'dashboard',
+	    'as' => 'dashboardname',
 	    'uses' => function()
 					{
-						$fp_list = User::find(Auth::user()->id)->findPeople()->orderBy('created_at','dsc')->get();
-						return View::make('dashboard',[ 'find_people_list' => $fp_list ]);
+						$fp_list = NULL;
+						$au_count = NULL;
+						if ( Auth::user()->looker ) {
+							$fp_list = Auth::user()->findPeople()->orderBy('created_at','dsc')->get();
+						}
+						if ( Auth::user()->contributor ) {
+							$au_count = count(Auth::user()->contributedArmyUpdates()->get());
+						}
+						
+						return View::make('dashboard',[ 'find_people_list' => $fp_list,
+														'army_updates_count' => $au_count
+													  ]);
 					}
 	)
 )->before('auth');

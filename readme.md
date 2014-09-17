@@ -67,6 +67,8 @@ Ah!
 	-	The rememberToken col in Users table is used to provide "Remember Me" functionality by Auth class
 	-	always say 'return Redirect::to()'
 	-	Redirect::to('') can use path or name of route as argument
+	-	A foreign-key id col name HAS to be specified as fillable to mass fill it.
+
 ----
 Todo:
 
@@ -146,7 +148,7 @@ Todo Features
 ---
 Timeline
 
-Sat, Sep 13 2014 : Basic HTML, CSS, Bootstrap, jQuery skeleton up on Git
+Sat, Sep 13 2014 : Basic HTML, CSS, Bootstrap, jQuery skeleton up on Git kafl
 Sun, Sep 14 2014 : Vagrant vm homestead config and deployment
 Mon, Sep 15 2014 : Hookup Laravel and Front-end. Hookup DB
                    Basic Indian ARMY Updates Display
@@ -160,6 +162,7 @@ Tue, Sep 16 2014 : 4:50pm	-	Vagrant up working again! Phew!
 				   1:59am	-	Basic dashboard with Name display and Logout and Auth protection done
 				   3:13am	-	Basic find-person post-btn Auto-auth detection and html changes, fip creation,
 				   				dashboard show fip list, Log In, Log Out buttons situational display tested
+				   3:43am	-	Contributor->hasMany(ArmyUpdates). Migration and Seeders changed accordingly.
 
 
 
