@@ -2,6 +2,8 @@
 
 class ArmyUpdatesTableSeeder extends Seeder {
 
+    // CSV format
+    // |  contributor | s-no |  first-name  | last-name |  age  |  address |  fb-date | fb-url  |  child  |
 	private function loadCSV() {
  
         $csvFile = app_path() . '/database/seedWithCSV/418-443.csv';
@@ -10,22 +12,23 @@ class ArmyUpdatesTableSeeder extends Seeder {
  
         foreach ($csv as $listings) {
 
-        	Log::info($listings);
+        	//Log::info($listings);
  
  			// TODO: add col update-fb-date
-            $update = ArmyUpdates::create([
+            $update = ArmyUpdates::create([ // add contributor
+                'contributor'=> $listings[0],
             	's-no' 		 => $listings[1],
             	'first-name' => $listings[2],
             	'last-name'	 =>	$listings[3],
             	'age'		 => $listings[4],
-            	'address' 	 => $listings[5],
+            	'address' 	 => $listings[5], // add fb-date
             	'fb-url'     => $listings[7],
             	'child'		 => $listings[8]
             ]);
             
-            echo $listings[0] . 'recorded added <br />';
+            //echo $listings[0] . 'recorded added <br />';
         }
-        echo 'done';
+        //echo 'done';
     }
  
     private function readCSV($csvFile) {
@@ -44,7 +47,7 @@ class ArmyUpdatesTableSeeder extends Seeder {
 	 */
 	public function run()
 	{
-		var_dump("======== in A-U-Seeder");
+		//var_dump("======== in A-U-Seeder");
 		$this->loadCSV();
 	}
 

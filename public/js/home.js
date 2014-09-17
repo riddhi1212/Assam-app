@@ -44,7 +44,8 @@ var main = function() {
 					$('#found-tel').val('');
 					$('#found-by').val('');
 
-					// TODO: increment tracker
+					// increment tracker
+					$("#found-count").text(parseInt($("#found-count").text()) + 1);
 				},
 				error:function() {
 					alert("Error");
@@ -61,7 +62,7 @@ var main = function() {
 				type:"post",
 				url:$("#find-people-form").prop('action'),
 				data:$("#find-people-form").serialize(),
-				success:function() {
+				success:function(json) {
 				   // Display it on screen now that it has been POSTed to the DB
 				   // TODO: change to reloading from DB
 					$('<li>').text(name).addClass('list-group-item').prependTo('.find-people-list');
@@ -70,7 +71,18 @@ var main = function() {
 					$('#find-age').val('');
 					$('#find-tel').val('');
 
-					// TODO: increment tracker
+					// increment tracker
+					$("#find-count").text(parseInt($("#find-count").text()) + 1);
+
+					// change text of right header
+					var pelem = $('<p>').text('Welcome back ' + json.username);
+
+					//<a href={{ route('logout') }}>Log Out</a>
+					pelem.append($('<a>').attr("href", "/logout").text('Log Out'));
+					$('.header .pull-right').empty().append(pelem);
+
+					// hide guest-user div tags
+					$('.guest-user').empty();
 				},
 				error:function() {
 					alert("Error");

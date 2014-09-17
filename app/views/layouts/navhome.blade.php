@@ -26,7 +26,7 @@
               <ul class="nav navbar-nav">
                 <li><a href={{ route('updates') }}>ARMY Updates</a></li>
                 <li><a href="#">Volunteer</a></li>
-                <li><a href="#">Donate</a></li>
+                <li><a href={{ route('donate') }}>Donate</a></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Leaderboards<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">

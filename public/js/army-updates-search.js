@@ -2,14 +2,6 @@ var main = function() {
 	console.log("in main");
 
 	// ------------------
-	// Load data from DB
-	// ------------------
-
-	// DB: find-people
-
-
-
-	// ------------------
 	// Form Button Clicks
 	// ------------------
 
@@ -42,8 +34,9 @@ var main = function() {
 					     	var div = $('<div>').addClass('row');
 							$('<p>').addClass('col-md-4').text(update["s-no"]).appendTo(div);
 							$('<p>').addClass('col-md-4').text(update["first-name"]+" "+update["last-name"]).appendTo(div);
-							$('<p>').addClass('col-md-4').text(update["age"]).appendTo(div); // NOTE: by not saved to DB yet
-							$('<li>').append(div).addClass('list-group-item').prependTo('.army-updates-list'); 	
+							$('<p>').addClass('col-md-4').text(update["age"]).appendTo(div); 
+							//$('<li>').append(div).addClass('list-group-item').prependTo('.army-updates-list'); 	
+							$('<a>').attr("href", update["fb-url"]).append(div).addClass('list-group-item').prependTo('.army-updates-list'); 
 					   });
 				},
 				error:function() {

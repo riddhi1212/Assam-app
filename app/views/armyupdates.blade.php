@@ -10,7 +10,7 @@
 			</div>
 
 			<div class="row">
-			  <div class="col-md-9">
+			  <div class="col-md-8">
 			    <div class="army_updates">
 			   	  
 			   	  
@@ -40,17 +40,19 @@
 							<h4 class="col-md-4">Age</h4>
 			      	  	</div>
 			      	  </li>
-			          <ul class="army-updates-list list-group">
+			          <div class="army-updates-list list-group">
 					  	@foreach ($army_updates_list as $update)
-			          		<li class="list-group-item">
-				           		<div class="row">
-				           			<p class="col-md-4">{{ $update->getAttribute('s-no') }}</p>
-									<p class="col-md-4">{{ $update->getAttribute('first-name') .' '. $update->getAttribute('last-name') }}</p>
-									<p class="col-md-4">{{ $update->age }}</p>
-								</div>
-							</li>
+					  	  	<a href={{ $update->getAttribute('fb-url') }} target="_blank" class="list-group-item">
+				          		<!--<li class="list-group-item">-->
+					           		<div class="row">
+					           			<p class="col-md-4">{{ $update->getAttribute('s-no') }}</p>
+										<p class="col-md-4">{{ $update->getAttribute('first-name') .' '. $update->getAttribute('last-name') }}</p>
+										<p class="col-md-4">{{ $update->age }}</p>
+									</div>
+							<!--	</li>-->
+							</a>
 			          	@endforeach
-			          </ul>
+			          </div>
 			      </div>
 			    </div>
 			  </div>

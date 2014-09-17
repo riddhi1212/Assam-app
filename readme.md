@@ -26,6 +26,11 @@ My Comments:
 6) Check for difference in name vs id for form elements
 	A1: HTML form elements operate on name attr not on id attr. which means .serialize (jQuery method) will only work on name attr not on id attr
 7) Can you embed php in a .js or jquery file?
+8) How to create DB automatically in Laravel ? (then use same name in forge)
+9) I want to call one controller method from another controller method. That is apparently against MVC principles. How do I do it instead?
+10) HasMany vs BelongsToMany
+11) looker_id NOT looker-id as default foreign key
+12) where does var_dump(output go)
 
 
 Ah!
@@ -54,8 +59,14 @@ Ah!
 9) CHECK: <input name="email" ...> helps on mobile by determining which symbols on the keyboard are provided to you
 10) the Users::where('name','=', 'Test-Name-Input') matches 'Test-Name-Input' case insensitivally with the names in the 'name' col of Users table
 11) the log file is at app/storage/logs/laravel.log
-
-
+12) when creating a migration using php artisan migrate:make <name> --create, the auto generated file still says Schema::table instead of Schema::create. change it manually to run it properly
+13) for Log::info an array is fine but an obj is not
+14) HasMany returns a freaking class. SO use ->get(). i.e. User::find(1)->findPeople()->get();
+	-	using Hash::make('a') and Hash::make('a') 2 times will give 2 different results
+	-	Auth::attempt() will check the !!!plaintext!!! password against the !!!hashed password!!! we saved in our database
+	-	The rememberToken col in Users table is used to provide "Remember Me" functionality by Auth class
+	-	always say 'return Redirect::to()'
+	-	Redirect::to('') can use path or name of route as argument
 ----
 Todo:
 
@@ -75,7 +86,7 @@ Todo:
 8) Make Tracking __ records functional
 	1) Works when we re-load from DB and display count 
 		DONE @ 5:03pm
-	2) Needs to increment when the user hits the POST button in jquery
+	2) Needs to increment when the user hits the POST button in jquery   *** TODO ***
 
 9) Do all of the above for Found-people-DB
 	First pass: only Name and age storage and retrieval
@@ -86,6 +97,8 @@ Todo:
 11) Create migration and seed from csv file using Packalyst csv-seeder package. Also download composer Faker and way/generator
 	1) Migration DONE @12:38am
 	2) Manual seed from csv DONE @ 12:38am
+12) change 'looker-id' to User::lookeridcolname. So it can be referenced everywhere but changed only ONCE
+	ALso figure out if this static const can be referenced from the migration and seeder
 
 ---
 Todo random later
@@ -96,11 +109,15 @@ Todo random later
 ---
 What is / Learn
 
-1) routes.resource?
-2) DB migrations
-	  seeds
-3) facade
-4) Eloquent guarded property 
+	-	routes.resource? B-DONE
+	-	DB migrations B-DONE
+	  	   seeds B-DONE
+	-	facade
+	-	Eloquent guarded property 
+	-	route.group
+			for applying filters to a bunch of routes
+	-	Validator http://laravel.com/docs/validation
+	-	Session::flash ?
 
 
 ----
@@ -120,9 +137,9 @@ Todo Features
 7) Add 'How can I contribute' tab in nav-bar. And list names of contributors who help translate the update files commending them.
 
 --todo
-1) Deploy
-2) Get domain name
-3) Point deployment to domain name
+1) Deploy DONE
+2) Get domain name DONE
+3) Point deployment to domain name (know how to DO)
 4) Add google analytics
 
 
@@ -135,3 +152,80 @@ Mon, Sep 15 2014 : Hookup Laravel and Front-end. Hookup DB
                    Basic Indian ARMY Updates Display
                    Fixed-to-top nav bar with home and updates links working
 				   Bought domain kashmirfloods2014.com
+Tue, Sep 16 2014 : 4:50pm	-	Vagrant up working again! Phew!
+				   8:50pm	-	User (Looker) and FindPeople one-to-many relationship works
+				   				BUT : it currently makes a new User everytime the find-post form is submitted
+				   12:32am	-	Basic Auth works and tested
+				   1:32am	-	Basic Auth of find-person post-btn User done and redirect tested
+				   1:59am	-	Basic dashboard with Name display and Logout and Auth protection done
+				   3:13am	-	Basic find-person post-btn Auto-auth detection and html changes, fip creation,
+				   				dashboard show fip list, Log In, Log Out buttons situational display tested
+
+
+
+-----
+Wed, Sep 17
+
+TODO:
+
+	-	Add validation (jquery, client)
+			-	age is integer
+	-	Handle validation error showing and hiding (jquery?)
+	-	Do for all fields in find-people and found-people DB storage and retrieval (front, back)
+	-	Search name against 
+			-	firstname and lastname
+			-	substr of firstname and lastname too
+	-	List of all Contributors to ARMY-Updates-translation (DB show)
+			-	List
+			-	Make graph by rows-contributed
+	-	Make it easy for people to contribute
+	-	Show Details section for every army-update-list view
+	-	Pagination for army updates view
+
+
+Importance of features
+
+	-	Army Updates searchable
+	-	Army Updates contribute in transcribing
+			-	Also direct enter and submit
+	-	Find people DB
+	-	Summary view
+
+---------
+TODO Add SiteStats page:
+
+	-	ARMYUPdates
+			-	Num of searches run
+					-	which returned results
+					-	which didn't return results
+			-	Num contributors
+	-	Number of Matches happened
+			-	Num successful
+---------
+Add donor pages:
+
+	-	HelpAgeIndia
+		http://www.helpageindia.org/jammu-kashmir.html
+	-	GiveIndia
+		http://www.giveindia.org/t-jammu-kashmir-flood-victim-relief.aspx
+	-	Uday Foundation
+		http://www.udayfoundationindia.org/jammu-and-kashmir-flood-relief-work/
+	-	Hike
+		http://get.hike.in/donate/
+	-	PMRF
+		Payment may be made by cheque/draft/cash in the name of "Prime Minister's National Relief Fund" and sent to the PMO in South Block, the statement said, adding as per directions on the subject, the nationalised banks will not charge any commission on preparation of drafts favouring the PMNRF.
+	-	Sewa International
+		http://sewainternational.org//Encyc/2014/9/10/Jammu-Kashmir-Appeal.aspx
+	-	
+
+---------
+Updates:
+	-	Sep 12
+		<>
+		In the worst-ever floods to hit the state in 109 years, over 250 people have lost their lives while more than 1.25 lakh people have been evacuated from the affected areas by the armed forces. Authorities fear that the number of dead could be higher
+	- 	AAP MLAs donated 20 lac each
+	-	BJP MLAs donated __ lac each
+
+
+
+

@@ -12,8 +12,6 @@ class CreateFoundPeopleTable extends Migration {
 	 */
 	public function up()
 	{
-		// TODO : add drop if exists
-		Schema::dropIfExists('found-people');
 		Schema::create('found-people', function(Blueprint $table)
 		{
 		    $table->increments('id');

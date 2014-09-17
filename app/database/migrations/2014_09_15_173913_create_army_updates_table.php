@@ -17,13 +17,14 @@ class CreateArmyUpdatesTable extends Migration {
 		    $table->increments('id');
 		    $table->timestamps();
 
+			$table->string('contributor');
 		    $table->integer('s-no')->unsigned();
 			$table->string('first-name');
 			$table->string('last-name')->nullable();
 			$table->integer('age')->unsigned();
 			$table->string('address')->nullable();
-			$table->string('fb-url')->nullable();
 			$table->date('update-fb-date')->nullable();
+			$table->string('fb-url')->nullable();
 			$table->integer('child')->unsigned()->default('0');
 		});
 	}

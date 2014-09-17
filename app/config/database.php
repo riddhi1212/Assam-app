@@ -54,10 +54,10 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'riddhi-first-server',
+			'host'      => '128.199.164.158',
 			'database'  => 'forge',
 			'username'  => 'forge',
-			'password'  => 'dfNFbJ1kFaOpoRNkkVwS',
+			'password'  => 'zC7DYd7Y2Y87q6QaY8Rx',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

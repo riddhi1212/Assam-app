@@ -12,8 +12,6 @@ class CreateFindPeopleTable extends Migration {
 	 */
 	public function up()
 	{
-		// TODO : add drop if exists
-		Schema::dropIfExists('find-people');
 		Schema::create('find-people', function(Blueprint $table)
 		{
 		    $table->increments('id');
@@ -22,6 +20,10 @@ class CreateFindPeopleTable extends Migration {
 			$table->string('first-name');
 			$table->string('last-name')->nullable();
 			$table->integer('age')->unsigned();
+
+			// Relationships
+			// Each find-people row has a Looker user
+			$table->integer('looker-id')->unsigned();
 		});
 	}
 

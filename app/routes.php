@@ -56,13 +56,59 @@ Route::post('/updates', array(
     'uses' => 'ArmyUpdatesController@search'
 ) );
 
-// Route::get('/updates', function()
-// {
-// 	$army_updates_list = ArmyUpdates::orderBy('s-no','asc')->get();
-// 	return View::make('armyupdates',[ 'army_updates_list' => $army_updates_list ]);
-// });
+Route::get('/volunteers', array(
+    'as' => 'all.volunteers',
+    'uses' => function()
+				{
+					// $army_updates_list = ArmyUpdates::orderBy('s-no','asc')->get();
+					// return View::make('armyupdates',[ 'army_updates_list' => $army_updates_list ]);
+				}
+) );
 
-// ================= playing with code =================
+Route::get('/donate', array(
+    'as' => 'donate',
+    'uses' => function()
+				{
+					return View::make('donate');
+				}
+) );
+
+// ===============================================================
+//			User Authentication
+// ===============================================================
+
+// route to show the login form
+Route::get('login', array(
+	'as'   => 'login',
+	'uses' => 'SessionController@showLogin'
+) );
+
+// route to process the form
+Route::post('login', array('uses' => 'SessionController@doLogin'));
+
+Route::get('logout', array(
+	'as'   => 'logout',
+	'uses' => 'SessionController@doLogout'
+) );
+
+// ===============================================================
+//			Authenticated User -> dashboard
+// ===============================================================
+
+
+Route::get('dashboard', array(
+	    'as' => 'dashboard',
+	    'uses' => function()
+					{
+						$fp_list = User::find(Auth::user()->id)->findPeople()->orderBy('created_at','dsc')->get();
+						return View::make('dashboard',[ 'find_people_list' => $fp_list ]);
+					}
+	)
+)->before('auth');
+
+// ===============================================================
+//			Playing w code
+// ===============================================================
 
 // Route::get('/nav', function()
 // {
@@ -74,9 +120,11 @@ Route::get('/tabs', function()
 	return View::make('tabbedhome');
 });
 
-// ================= debugging helpers =================
+// ===============================================================
+//			Debugging Helpers
+// ===============================================================
 
-Route::get('/laravel', function()
+Route::get('laravel', function()
 {
 	return View::make('hello');
 });
