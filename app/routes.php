@@ -24,6 +24,34 @@ Route::get('/', array(
     'as' => 'home',
     'uses' => function()
 				{
+					if ( Auth::check() ) {
+						return Redirect::route('dashboard');
+					}
+
+					return Redirect::route('howto');
+				}
+) );
+
+Route::get('/howto', array(
+    'as' => 'howto',
+    'uses' => function()
+				{
+					return View::make('howto');
+				}
+) );
+
+Route::get('/about', array(
+    'as' => 'about',
+    'uses' => function()
+				{
+					return View::make('about');
+				}
+) );
+
+Route::get('/findandfound', array(
+    'as' => 'find.and.found',
+    'uses' => function()
+				{
 					$found_people_list = FoundPeople::orderBy('created_at','dsc')->get();
 					$find_people_list = FindPeople::orderBy('created_at','dsc')->get();
 					return View::make('home',[ 'found_people_list' => $found_people_list, 
@@ -78,7 +106,7 @@ Route::get('siteimpact', array(
 	'as'   => 'siteimpact',
 	'uses' => function()
 				{
-					return Redirect::to('laravel');
+					return View::make('siteimpact');
 				}
 ) );
 

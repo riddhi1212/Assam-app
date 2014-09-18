@@ -18,14 +18,18 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href={{ route('dashboard') }}>Dashboard</a>
+              @if ( Auth::check() )
+                <a class="navbar-brand" href={{ route('dashboard') }}>Dashboard</a>
+              @else
+                <a class="navbar-brand" href={{ route('howto') }}>Home</a>
+              @endif
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
                 <li><a href={{ route('updates') }}>ARMY Updates</a></li>
-                <li><a href={{ route('home') }}>Find & Found</a></li>
+                <li><a href={{ route('find.and.found') }}>Find & Found</a></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Volunteer<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
@@ -57,7 +61,7 @@
                 @else
                   <li id="log-text"><a href={{ route('login') }}>Log In</a></li>
                 @endif
-                <li><a href="#">About Us</a></li>
+                <li><a href={{ route('about') }}>About Us</a></li>
               </ul>
             </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->

@@ -2,17 +2,6 @@
 
 @section('content')
 		<div id="wrap">
-			<!-- TODO : move to navtabbed -->
-			@if ( Auth::check() )
-			<div class="header">
-				<div class="container">
-					<p class="pull-left">Hi
-						<span>{{ Auth::user()->fname }}</span>					
-					</p>
-					<a href={{ route('logout') }} class="pull-right">Log Out</a>
-				</div>
-			</div>
-			@endif
 
 			<div class="info">
 				<div class="container">

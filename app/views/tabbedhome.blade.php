@@ -7,7 +7,7 @@
     </head>
     <body>
         <div class="container">
-            <div class="page-header">
+            <div class="stripe">
                 <h1>Panels with nav tabs.<span class="pull-right label label-default">:)</span></h1>
             </div>
         </div>

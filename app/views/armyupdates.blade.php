@@ -2,7 +2,7 @@
 
 @section('content')
 		<div id="wrap">
-			<div class="header">
+			<div class="stripe">
 				<div class="container">
 					<p class="pull-left">ARMY Updates</p>
 					<p class="pull-right">Number of Records Uploaded So far : {{ count($army_updates_list) }} Records</p>

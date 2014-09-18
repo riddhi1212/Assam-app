@@ -166,6 +166,10 @@ Tue, Sep 16 2014 : 4:50pm	-	Vagrant up working again! Phew!
 				   3:43am	-	Contributor->hasMany(ArmyUpdates). Migration and Seeders changed accordingly.
 				   4:17am	-	Contributor->hasMany(ArmyUpdates). shows on dashboard.
 				   4:35am	-	List of contributors done.
+				   5:50am	-	Dashboard refactoring basic done
+				   				DO : Home = Auth? Dashboard : ShowSummary
+				   				DO : get('/') => Home
+				   				DO : 'home' != 'fandf'. give fandf their own name.
 
 
 -----

@@ -2,7 +2,7 @@
 
 @section('content')
 		<div id="wrap">
-			<div class="header">
+			<div class="stripe">
 				<div class="container">
 					<p class="pull-left">Hi
 					@if ( Auth::check() )

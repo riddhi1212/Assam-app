@@ -1,33 +1,40 @@
-<!-- app/views/showlogin.blade.php -->
+@extends('layouts/navhome')
 
-<!doctype html>
-<html>
-<head>
-	<title>Look at me Login</title>
-</head>
-<body>
+@section('content')
+		<div id="wrap">
 
-	{{ Form::open(array('url' => 'login')) }}
-		<h1>Login</h1>
+			<div class="stripe">
+				<div class="container">
+					<p>Please log in below. </p>
+				</div>
+			</div>
 
-		<!-- if there are login errors, show them here -->
-		<p>
-			{{ $errors->first('fname') }}
-			{{ $errors->first('mobile') }}
-		</p>
+			<div class="login-form">
+				<div class="container">
+					{{ Form::open(array('url' => 'login')) }}
+						<h1>Login</h1>
 
-		<p>
-			{{ Form::label('fname', 'First Name') }}
-			{{ Form::text('fname', Input::old('fname'), array('placeholder' => 'First name')) }}
-		</p>
+						<!-- if there are login errors, show them here -->
+						<p>
+							{{ $errors->first('fname') }}
+							{{ $errors->first('mobile') }}
+						</p>
 
-		<p>
-			{{ Form::label('mobile', 'Mobile') }}
-			{{ Form::text('mobile') }}
-		</p>
+						<p>
+							{{ Form::label('fname', 'First Name') }}
+							{{ Form::text('fname', Input::old('fname'), array('placeholder' => 'First name')) }}
+						</p>
 
-		<p>{{ Form::submit('Submit!') }}</p>
-	{{ Form::close() }}
+						<p>
+							{{ Form::label('mobile', 'Mobile') }}
+							{{ Form::text('mobile') }}
+						</p>
 
-</body>
-</html>
+						<p>{{ Form::submit('Submit!') }}</p>
+					{{ Form::close() }}
+				</div>
+			</div>
+
+		</div>
+
+@stop
