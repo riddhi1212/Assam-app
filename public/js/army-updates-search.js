@@ -7,10 +7,12 @@ var main = function() {
 
 	$('#army-updates-search-btn').click(function(){
 		var name = $('#updates-name').val();
-
-		if (name.length === 0) return;
-
 		var age = $('#updates-age').val();
+		var sno = $('#updates-sno').val();
+
+		// Validate that atleast one is filled
+		if (name.length === 0 && age.length === 0 && sno.length === 0) return;
+
 
 		// now POST to server
 		$.ajax({
@@ -27,8 +29,9 @@ var main = function() {
 					$(".army-updates-list").html('');
 
 					var search_text = results.length + ' Matching Search Results Returned';
-					console.log(search_text);
 					$('.search-text').text(search_text);
+
+					$('.search-explanation').text(json.explanation);
 
 					$.each(results, function(idx, update){
 					     	var div = $('<div>').addClass('row');

@@ -15,10 +15,52 @@ class ArmyUpdatesController extends BaseController {
         //     ) );
         // }
  
+        $updates_sno = Input::get('updates-sno');
         $updates_name = Input::get( 'updates-name' );
         $updates_age = Input::get( 'updates-age' );
 
-        $results = ArmyUpdates::where('first-name', '=', $updates_name)->get();
+        Log::info("===[AU Search]===");
+        Log::info($updates_sno);
+        Log::info($updates_name);
+        Log::info($updates_age);
+
+        $name = false;
+        $age = false;
+        $sno = false;
+        if ($updates_name) {
+            Log::info("ya name");
+            $name = true;
+        } 
+        if ($updates_age) {
+            Log::info("ya age");
+            $age = true;
+        }
+        if ($updates_sno) {
+            Log::info("ya sno");
+            $sno = true;
+        }
+
+        $results =  array();
+        $explanation = "";
+        if ($sno) {
+            // This can only return one row (I think . TODO: check assumption)
+            $results = ArmyUpdates::where('s-no', '=', $updates_sno)->get();
+            $explanation = "Do not search on 'S.no.' and Another field together. 'S.no.' is unique for every update, so it will never match 2 records. This search is returning results for 'S.no.' = ".$updates_sno.".";
+        } elseif ($name && !$age) {
+            // Only Name Specified
+            $results = ArmyUpdates::where('first-name', '=', $updates_name)->get();
+            // TODO : search over last name too
+        } elseif ($age && !$name) {
+            // Only Age Specified
+            $results = ArmyUpdates::where('age', '=', $updates_age)->get();
+        } elseif ($name && $age) {
+            // Name, Age Specified
+            $results = ArmyUpdates::where('age', '=', $updates_age)
+                                    ->where('first-name', '=', $updates_name)
+                                    ->get();
+                                    //TODO : last name search!
+        }
+
 
 
         Log::info("===>> in search");        
@@ -34,6 +76,7 @@ class ArmyUpdatesController extends BaseController {
 
         $response = array(
             'status' => 'success',
+            'explanation' => $explanation,
             'results' => json_encode($results)
         );
  
