@@ -74,12 +74,13 @@ var main = function() {
 					// increment tracker
 					$("#find-count").text(parseInt($("#find-count").text()) + 1);
 
-					// change text of right header
-					var pelem = $('<p>').text('Welcome back ' + json.username);
+					// Reset Nav bar links
+					var span_elem = $('<span>').attr('id','auth-username').text(json.username);
+					var a_elem = $('<a>').attr('href','/dashboard').text('Welcome back ');
+					$('<li>').append(a_elem.append(span_elem)).prependTo('#right-nav-section');
 
-					//<a href={{ route('logout') }}>Log Out</a>
-					pelem.append($('<a>').attr("href", "/logout").text('Log Out'));
-					$('.header .pull-right').empty().append(pelem);
+					$('#log-text').empty().append($('<a>').attr('href','/logout').text('Log Out'));
+					console.log("here2");
 
 					// hide guest-user div tags
 					$('.guest-user').empty();

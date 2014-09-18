@@ -7,7 +7,7 @@ class SessionController extends BaseController {
 	public function showLogin()
 	{
 		if (Auth::check()) { // check if there is some user already authenticated
-			return Redirect::route('dashboardname');
+			return Redirect::route('dashboard');
 
 			//return Redirect::to('dashboard')->with(......)
 

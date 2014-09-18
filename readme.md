@@ -68,6 +68,7 @@ Ah!
 	-	always say 'return Redirect::to()'
 	-	Redirect::to('') can use path or name of route as argument
 	-	A foreign-key id col name HAS to be specified as fillable to mass fill it.
+	-	Redirect::to('url') takes URL, Redirect::route('name') takes named route.
 
 ----
 Todo:
@@ -180,7 +181,7 @@ TODO:
 			-	firstname and lastname
 			-	substr of firstname and lastname too
 	-	List of all Contributors to ARMY-Updates-translation (DB show)
-			-	List
+			-	List (DONE)
 			-	Make graph by rows-contributed
 	-	Make it easy for people to contribute
 	-	Show Details section for every army-update-list view

@@ -18,14 +18,22 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href={{ route('home') }}>Kashmir Floods 2014</a>
+              <a class="navbar-brand" href={{ route('dashboard') }}>Dashboard</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
                 <li><a href={{ route('updates') }}>ARMY Updates</a></li>
-                <li><a href="#">Volunteer</a></li>
+                <li><a href={{ route('home') }}>Find & Found</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Volunteer<span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Contribute Now!</a></li>
+                    <li class="divider"></li>
+                    <li><a href={{ route('contributors') }}>View Contributors</a></li>
+                  </ul>
+                </li>
                 <li><a href={{ route('donate') }}>Donate</a></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Leaderboards<span class="caret"></span></a>
@@ -37,20 +45,19 @@
                     <li><a href="#">All Donors</a></li>
                   </ul>
                 </li>
+                <li><a href={{ route('siteimpact') }}>Our Impact</a></li>
               </ul>
 
-              <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Additional Resources</a></li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">About Us<span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                  </ul>
-                </li>
+              <ul class="nav navbar-nav navbar-right" id="right-nav-section">
+                @if ( Auth::check() )
+                  <li><a href={{ route('dashboard') }}>Welcome back <span id ="auth-username">{{ Auth::user()->fname }}</span></a></li>
+                @endif
+                @if ( Auth::check() )
+                  <li id="log-text"><a href={{ route('logout') }}>Log Out</a></li>
+                @else
+                  <li id="log-text"><a href={{ route('login') }}>Log In</a></li>
+                @endif
+                <li><a href="#">About Us</a></li>
               </ul>
             </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->

@@ -11,16 +11,7 @@
 				<div class="container">
 					<p class="pull-left">Kashmiri Floods</p>
 					<p class="pull-right">
-						@if ( Auth::check() )
-							<span>
-								Welcome back
-								<span>{{ Auth::user()->fname }}</span>
-							</span>
-							<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-							<span><a href={{ route('logout') }}>Log Out</a></span>
-						@else
-							<span><a href={{ route('login') }}>Log In</a></span>
-						@endif
+						...
 					</p>
 				</div>
 			</div>

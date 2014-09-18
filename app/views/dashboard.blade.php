@@ -9,7 +9,6 @@
 						<span>{{ Auth::user()->fname }}</span>
 					@endif
 					</p>
-					<a href={{ route('logout') }} class="pull-right">Log Out</a>
 				</div>
 			</div>
 

@@ -74,6 +74,14 @@ Route::get('/donate', array(
 				}
 ) );
 
+Route::get('siteimpact', array(
+	'as'   => 'siteimpact',
+	'uses' => function()
+				{
+					return Redirect::to('laravel');
+				}
+) );
+
 // ===============================================================
 //			User Authentication
 // ===============================================================
@@ -98,7 +106,7 @@ Route::get('logout', array(
 
 
 Route::get('dashboard', array(
-	    'as' => 'dashboardname',
+	    'as' => 'dashboard',
 	    'uses' => function()
 					{
 						$fp_list = NULL;
