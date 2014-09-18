@@ -171,6 +171,7 @@ Tue, Sep 16 2014 : 4:50pm	-	Vagrant up working again! Phew!
 				   				DO : get('/') => Home
 				   				DO : 'home' != 'fandf'. give fandf their own name.
 				   6:21am	-	Dashboard refactoring pass two done
+Wed, Sep 17 2014 : 9:20pm	-	basic messages and notification badge done
 
 
 -----

@@ -29,6 +29,17 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	//			get Methods
 	// ===============================================================
 
+	// each User has many Dashboard Messages
+	public function messages() {
+		// specifying second param because default foreign key will be 'user_id'
+		return $this->hasMany('Message', 'user-id');  
+	}
+
+	// num of Dashboard Messages
+	public function numMessages() {
+		return $this->messages()->count();  
+	}
+
 	// each User of type Looker can try to register find requests for many people
 	public function findPeople() {
 		if ($this->looker) {
@@ -52,7 +63,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	// each User of type Looker can try to register find requests for many people
 	public function numContributed() {
 		if ($this->contributor) {
-			// specifying second param because default foreign key will be 'user_id'
 			return count($this->contributedArmyUpdates()->get());  
 		}
 		
@@ -68,6 +78,25 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function makeContributor() {
 		$this->contributor = true;
 	}
+
+    // creates new message
+    // TODO might need to SHOW alert
+    public function createNewMessage($alert_text, $source, $search_results_obj) {
+    	if ($source === 'FindPeople') {
+    		// this was searched for Name and Age
+    		$message = new Message;
+    		$message->alert = $alert_text;
+    		$intro = 'Good news! Your Find-Person post generated ';
+    		$match_count = count($search_results_obj);
+    		$intro = $intro . (string)$match_count . ' match';
+    		if ($match_count > 1) {
+    			$intro = $intro . 'es';
+    		}
+    		$message->textbody = $intro;
+    		$message->setUserID($this->id);
+    		$message->save();
+    	}
+    }
 
 	// ===============================================================
 	//			Static Methods
@@ -97,5 +126,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         Log::info("Id is " . $user_id_str);
         return $user;
     }
+
 
 }

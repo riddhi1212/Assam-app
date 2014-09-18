@@ -51,6 +51,7 @@ class FindPeopleController extends BaseController {
         }
 
         // TODO: change to adding to first-name and last-name
+        // TODO: check for duplicates before creating another record
         FindPeople::create([
             'first-name' => $find_name,
             'age' => $find_age, //str (but works)
@@ -61,9 +62,20 @@ class FindPeopleController extends BaseController {
         // $fp = User::find($looker_id)->findPeople()->get();
         // Log::info($fp);
  
+        // Now that 'Looker' has created a new 'Fip', we should try to match it against AU and FOP
+        // TODO This code might need to move somewhere else 
+        // Doing only AU for now. TODO do FOP 
+        $search_results = ArmyUpdates::searchWithNameAndAge($find_name, $find_age);
+        Log::info($search_results);
+        // If the number of search_results > 0, i.e. matches found, Write to Looker's dashboard, and create alert in Nav-bar
+        // User->hasMany(Messages)
+        Auth::user()->createNewMessage('New match', 'FindPeople', 'ArmyUpdates', $search_results);
+
+
         $response = array(
             'status' => 'success',
             'username' => Auth::user()->fname,
+            'notificationCount' => 1, // TODO : should this be num matches instead? as there can be multiple matches per notification
             'msg' => 'Person inserted in Find-People Table successfully', // figure out how to use this future-TODO
         );
 

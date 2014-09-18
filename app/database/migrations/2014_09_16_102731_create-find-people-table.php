@@ -34,10 +34,9 @@ class CreateFindPeopleTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('find-people', function(Blueprint $table)
-		{
-			Schema::dropIfExists('find-people');
-		});
+
+		Schema::dropIfExists('find-people');
+
 	}
 
 }

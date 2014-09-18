@@ -137,8 +137,12 @@ Route::get('dashboard', array(
 	    'as' => 'dashboard',
 	    'uses' => function()
 					{
+						$msg_list = NULL;
 						$fp_list = NULL;
 						$au_count = NULL;
+						if ( Auth::user()->messages()->count() > 0 ) {
+							$msg_list = Auth::user()->messages()->orderBy('created_at','dsc')->get();
+						}
 						if ( Auth::user()->looker ) {
 							$fp_list = Auth::user()->findPeople()->orderBy('created_at','dsc')->get();
 						}
@@ -146,7 +150,8 @@ Route::get('dashboard', array(
 							$au_count = Auth::user()->numContributed();
 						}
 						
-						return View::make('dashboard',[ 'find_people_list' => $fp_list,
+						return View::make('dashboard',[ 'messages_list' => $msg_list,
+														'find_people_list' => $fp_list,
 														'army_updates_count' => $au_count
 													  ]);
 					}

@@ -40,7 +40,7 @@
                   </ul>
                 </li>
                 <li><a class="navbar-link" href={{ route('donate') }}>Donate</a></li>
-                <li class="dropdown">
+<!--                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle navbar-link" data-toggle="dropdown">Leaderboards<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
                     <li><a href="#">Top Volunteers</a></li>
@@ -49,13 +49,18 @@
                     <li><a href="#">All Volunteers</a></li>
                     <li><a href="#">All Donors</a></li>
                   </ul>
-                </li>
+                </li> -->
                 <li><a class="navbar-link" href={{ route('siteimpact') }}>Our Impact</a></li>
               </ul>
 
               <ul class="nav navbar-nav navbar-right" id="right-nav-section">
                 @if ( Auth::check() )
-                  <li><a class="navbar-link" href={{ route('dashboard') }}>Welcome back <span id ="auth-username">{{ Auth::user()->fname }}</span></a></li>
+                  <li>
+                    <a class="navbar-link" href={{ route('dashboard') }}>Welcome back 
+                      <span id ="auth-username">{{ Auth::user()->fname }}</span>
+                      <span class="badge" id="notification-count">{{ Auth::user()->numMessages() }}</span>
+                    </a>
+                  </li>
                 @endif
                 @if ( Auth::check() )
                   <li id="log-text"><a class="navbar-link" href={{ route('logout') }}>Log Out</a></li>

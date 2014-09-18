@@ -85,6 +85,11 @@ var main = function() {
 						$('#log-text').empty().append($('<a>').attr('href','/logout').text('Log Out'));
 					}
 
+					// This shows ALL Msg Count
+					$('#notification-count').text(parseInt($("#notification-count").text()) + 1);
+					// TODO : use the following if you want New Notification Count. 
+					//	''+json.notificationCount);
+
 					// hide guest-user div tags
 					$('.guest-user').empty();
 				},
