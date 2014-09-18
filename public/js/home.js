@@ -74,13 +74,16 @@ var main = function() {
 					// increment tracker
 					$("#find-count").text(parseInt($("#find-count").text()) + 1);
 
-					// Reset Nav bar links
-					var span_elem = $('<span>').attr('id','auth-username').text(json.username);
-					var a_elem = $('<a>').attr('href','/dashboard').text('Welcome back ');
-					$('<li>').append(a_elem.append(span_elem)).prependTo('#right-nav-section');
+					// Reset Nav bar links (but only the first time)
+					if ( $('#auth-username').length === 0 ) { // this means jQuery did not find the selector
+						console.log('didnt find auth username');
 
-					$('#log-text').empty().append($('<a>').attr('href','/logout').text('Log Out'));
-					console.log("here2");
+						var span_elem = $('<span>').attr('id','auth-username').text(json.username);
+						var a_elem = $('<a>').attr('href','/dashboard').text('Welcome back ');
+						$('<li>').append(a_elem.append(span_elem)).prependTo('#right-nav-section');
+
+						$('#log-text').empty().append($('<a>').attr('href','/logout').text('Log Out'));
+					}
 
 					// hide guest-user div tags
 					$('.guest-user').empty();

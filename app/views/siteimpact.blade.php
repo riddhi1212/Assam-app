@@ -6,6 +6,8 @@
 			<div class="info">
 				<div class="container">
 					<h1>Stats</h1>
+					<p>{{ FindPeople::all()->count(); }}</p>
+					<p>{{ FoundPeople::all()->count(); }}</p>
 				</div>
 			</div>
 
