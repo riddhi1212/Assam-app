@@ -170,6 +170,7 @@ Tue, Sep 16 2014 : 4:50pm	-	Vagrant up working again! Phew!
 				   				DO : Home = Auth? Dashboard : ShowSummary
 				   				DO : get('/') => Home
 				   				DO : 'home' != 'fandf'. give fandf their own name.
+				   6:21am	-	Dashboard refactoring pass two done
 
 
 -----
