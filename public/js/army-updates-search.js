@@ -39,7 +39,10 @@ var main = function() {
 							$('<p>').addClass('col-md-4').text(update["first-name"]+" "+update["last-name"]).appendTo(div);
 							$('<p>').addClass('col-md-4').text(update["age"]).appendTo(div); 
 							//$('<li>').append(div).addClass('list-group-item').prependTo('.army-updates-list'); 	
-							$('<a>').attr("href", update["fb-url"]).append(div).addClass('list-group-item').prependTo('.army-updates-list'); 
+							var a_elem = $('<a>');
+							a_elem.attr( "href", update["fb-url"] );
+							a_elem.attr( "target", "_blank" );
+							a_elem.append(div).addClass('list-group-item').prependTo('.army-updates-list'); 
 					   });
 				},
 				error:function() {

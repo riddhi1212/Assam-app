@@ -8,7 +8,7 @@
         @yield('head')
     </head>
     <body>
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
           <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -18,29 +18,30 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              @if ( Auth::check() )
+<!--               @if ( Auth::check() )
                 <a class="navbar-brand" href={{ route('dashboard') }}>Dashboard</a>
               @else
                 <a class="navbar-brand" href={{ route('howto') }}>Home</a>
-              @endif
+              @endif -->
+              <a class="navbar-brand" href={{ route('howto') }}>Home</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
-                <li><a href={{ route('updates') }}>ARMY Updates</a></li>
-                <li><a href={{ route('find.and.found') }}>Find & Found</a></li>
+                <li><a class="navbar-link active-link" href={{ route('updates') }}>ARMY Updates</a></li>
+                <li><a class="navbar-link" href={{ route('find.and.found') }}>Find & Found</a></li>
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Volunteer<span class="caret"></span></a>
+                  <a href="#" class="dropdown-toggle navbar-link" data-toggle="dropdown">Volunteer<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
                     <li><a href="#">Contribute Now!</a></li>
                     <li class="divider"></li>
                     <li><a href={{ route('contributors') }}>View Contributors</a></li>
                   </ul>
                 </li>
-                <li><a href={{ route('donate') }}>Donate</a></li>
+                <li><a class="navbar-link" href={{ route('donate') }}>Donate</a></li>
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Leaderboards<span class="caret"></span></a>
+                  <a href="#" class="dropdown-toggle navbar-link" data-toggle="dropdown">Leaderboards<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
                     <li><a href="#">Top Volunteers</a></li>
                     <li><a href="#">Top Donors</a></li>
@@ -49,19 +50,19 @@
                     <li><a href="#">All Donors</a></li>
                   </ul>
                 </li>
-                <li><a href={{ route('siteimpact') }}>Our Impact</a></li>
+                <li><a class="navbar-link" href={{ route('siteimpact') }}>Our Impact</a></li>
               </ul>
 
               <ul class="nav navbar-nav navbar-right" id="right-nav-section">
                 @if ( Auth::check() )
-                  <li><a href={{ route('dashboard') }}>Welcome back <span id ="auth-username">{{ Auth::user()->fname }}</span></a></li>
+                  <li><a class="navbar-link" href={{ route('dashboard') }}>Welcome back <span id ="auth-username">{{ Auth::user()->fname }}</span></a></li>
                 @endif
                 @if ( Auth::check() )
-                  <li id="log-text"><a href={{ route('logout') }}>Log Out</a></li>
+                  <li id="log-text"><a class="navbar-link" href={{ route('logout') }}>Log Out</a></li>
                 @else
-                  <li id="log-text"><a href={{ route('login') }}>Log In</a></li>
+                  <li id="log-text"><a class="navbar-link" href={{ route('login') }}>Log In</a></li>
                 @endif
-                <li><a href={{ route('about') }}>About Us</a></li>
+                <li><a class="navbar-link" href={{ route('about') }}>About Us</a></li>
               </ul>
             </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->

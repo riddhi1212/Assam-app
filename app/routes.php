@@ -24,9 +24,9 @@ Route::get('/', array(
     'as' => 'home',
     'uses' => function()
 				{
-					if ( Auth::check() ) {
-						return Redirect::route('dashboard');
-					}
+					// if ( Auth::check() ) {
+					// 	return Redirect::route('dashboard');
+					// }
 
 					return Redirect::route('howto');
 				}

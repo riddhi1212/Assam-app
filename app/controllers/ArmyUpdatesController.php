@@ -48,17 +48,36 @@ class ArmyUpdatesController extends BaseController {
             $explanation = "Do not search on 'S.no.' and Another field together. 'S.no.' is unique for every update, so it will never match 2 records. This search is returning results for 'S.no.' = ".$updates_sno.".";
         } elseif ($name && !$age) {
             // Only Name Specified
-            $results = ArmyUpdates::where('first-name', '=', $updates_name)->get();
-            // TODO : search over last name too
+           // $results = ArmyUpdates::where('first-name', '=', $updates_name)->get();
+            // search over last name too
+            // $results = DB::table('ARMY-Updates')
+            //                     ->where('first-name', '=', $updates_name)
+            //                     ->orWhere('last-name', '=', $updates_name)
+            //                     ->get();
+
+                $results = ArmyUpdates::whereRaw('`first-name` LIKE ? or `last-name` LIKE ?', array(
+                                                    '%'.$updates_name.'%', '%'.$updates_name.'%'
+                                                ))->get();
+
+                // TODO : separate out exact matches and substr matches and disp them separately
+
+
         } elseif ($age && !$name) {
             // Only Age Specified
             $results = ArmyUpdates::where('age', '=', $updates_age)->get();
         } elseif ($name && $age) {
             // Name, Age Specified
-            $results = ArmyUpdates::where('age', '=', $updates_age)
-                                    ->where('first-name', '=', $updates_name)
-                                    ->get();
-                                    //TODO : last name search!
+            // $results = ArmyUpdates::where('age', '=', $updates_age)
+            //                         ->where('first-name', '=', $updates_name)
+            //                         ->get();
+            //                         //TODO : last name search!
+
+
+            $results = ArmyUpdates::whereRaw('( `first-name` LIKE ? or `last-name` LIKE ? ) and age = ?', array(
+                                        '%'.$updates_name.'%', '%'.$updates_name.'%', $updates_age
+                                    ))->get();
+
+                // TODO : separate out exact matches and substr matches and disp them separately
         }
 
 

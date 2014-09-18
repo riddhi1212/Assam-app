@@ -15,6 +15,7 @@
 			   	  
 			   	  <p>You don't have to enter all three fields. Enter one or more to Search.</p>
 			      <form class="form-horizontal" id="army-updates-search-form" method="post" action={{ route('army.updates.search') }}>
+			        <!-- TODO Add help text for each -->
 			        <div class="form-group">
     					<label for="updates-sno" class="control-label col-sm-2">S.no.</label>
     					<div class="col-sm-10">
