@@ -85,6 +85,9 @@ class FindPeopleController extends BaseController {
             'status' => 'success',
             'username' => Auth::user()->fname,
             'notificationCount' => $num_matches,
+            'fname' => $find_name,
+            'lname' => $find_name,
+            'age'   => $find_age,
             'msg' => 'Person inserted in Find-People Table successfully', // figure out how to use this future-TODO
         );
 

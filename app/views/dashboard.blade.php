@@ -33,9 +33,9 @@
 				          	@foreach ($find_people_list as $person)
 				          		<li class="list-group-item clearfix">
 				          			<div class="row pull-left">
-										<span class="col-md-4">{{ $person->getAttribute('first-name') }}</span>
+										<span class="col-md-4">{{ $person->getFirstName() }}</span>
+										<span class="col-md-4">{{ $person->getLastName() }}</span>
 										<span class="col-md-4">{{ $person->age }}</span>
-										<span class="col-md-4">TBD</span>
 									</div>
 				          			<span class="pull-right find-person-status" id="{{ $person->id }}">
 				          				@if ( $person->found )

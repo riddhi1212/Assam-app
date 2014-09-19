@@ -59,6 +59,28 @@
       						<input type="text" class="form-control" id="found-by" name="found-by" placeholder="ARMY / NRDF / Reporter / Medical team / Person">
     					</div>
   					</div>
+  					@if ( Auth::guest() )
+  					<div class ="guest-user">
+	  					<div class="form-group">
+	    					<label for="finder-first-name" class="control-label col-sm-2">My First Name</label>
+	    					<div class="col-sm-10">
+	      						<input type="text" class="form-control" id="finder-first-name" name="finder-first-name" placeholder="Enter Your First Name">
+	    					</div>
+	  					</div>
+	  					<div class="form-group">
+	    					<label for="finder-last-name" class="control-label col-sm-2">My Last Name</label>
+	    					<div class="col-sm-10">
+	      						<input type="text" class="form-control" id="finder-last-name" name="finder-last-name" placeholder="Enter Your Last Name">
+	    					</div>
+	  					</div>
+	  					<div class="form-group">
+	    					<label for="finder-mobile" class="control-label col-sm-2">My Mobile #</label>
+	    					<div class="col-sm-10">
+	      						<input type="text" class="form-control" id="finder-mobile" name="finder-mobile" placeholder="Enter Your Mobile Number">
+	    					</div>
+	  					</div>
+	  				</div>
+  					@endif
 			        <button type="button" class="btn btn-primary btn-block" id="found-post-btn">Post</button>
 			      </form>
 			      <div class="found-people-display">
@@ -97,24 +119,26 @@
     					</div>
   					</div>
   					@if ( Auth::guest() )
-	  					<div class="form-group guest-user">
+  					<div class="guest-user">
+	  					<div class="form-group">
 	    					<label for="looker-first-name" class="control-label col-sm-2">My First Name</label>
 	    					<div class="col-sm-10">
 	      						<input type="text" class="form-control" id="looker-first-name" name="looker-first-name" placeholder="Enter Your First Name">
 	    					</div>
 	  					</div>
-	  					<div class="form-group guest-user">
+	  					<div class="form-group">
 	    					<label for="looker-last-name" class="control-label col-sm-2">My Last Name</label>
 	    					<div class="col-sm-10">
-	      						<input type="text" class="form-control" id="looker-last-name" name="looker-last-name" placeholder="Enter Your First Name">
+	      						<input type="text" class="form-control" id="looker-last-name" name="looker-last-name" placeholder="Enter Your Last Name">
 	    					</div>
 	  					</div>
-	  					<div class="form-group guest-user">
+	  					<div class="form-group">
 	    					<label for="looker-mobile" class="control-label col-sm-2">My Mobile #</label>
 	    					<div class="col-sm-10">
 	      						<input type="text" class="form-control" id="looker-mobile" name="looker-mobile" placeholder="Enter Your Mobile Number">
 	    					</div>
 	  					</div>
+	  				</div>
   					@endif
 			        <button type="button" class="btn btn-primary btn-block" id="find-post-btn">Post</button>
 			      </form>

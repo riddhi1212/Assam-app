@@ -101,6 +101,12 @@ class FindPeople extends Eloquent {
     // TODO explanation
     private static function getBuilderWithParam($find_name, $find_age) {
 
+        Log::info("*********************[FindPeople::getBuilderWithParam]*********************");
+        Log::info("********[find_name]************");
+        Log::info($find_name);
+        Log::info("********[find_age]************");
+        Log::info($find_age);
+
         $name = false;
         $age = false;
         if ($find_name) {

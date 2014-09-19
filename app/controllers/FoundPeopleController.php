@@ -57,10 +57,12 @@ class FoundPeopleController extends BaseController {
         Log::info($fop);
 
         $fip_search_results = FindPeople::searchWithNameAndAge($found_name, $found_age);
+        Log::info("============[got back fip_search_results]==============");
         foreach ($fip_search_results as $fip_result) {
             $fip_result->createNewMatch('FoundPeople', $fop);
         }
-        
+        Log::info("============[created matches]==============");
+
         // TODO : maybe add AU also
 
         // TODO : create Message on Auth::user (Finder) saying Thank you for posting Found Record ?
@@ -68,6 +70,9 @@ class FoundPeopleController extends BaseController {
         $response = array(
             'status' => 'success',
             'username' => Auth::user()->fname,
+            'fname' => $found_name,
+            'lname' => $found_name,
+            'age'   => $found_age,
             'msg' => 'Person inserted in Found-People Table successfully', // figure out how to use this future-TODO
         );
  
