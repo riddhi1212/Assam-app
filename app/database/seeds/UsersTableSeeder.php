@@ -14,7 +14,6 @@ class UsersTableSeeder extends Seeder {
             'fname'     => 'Riddhi',
             'lname'     => 'Mittal',
             'mobile'    => 9873574130,
-            'looker'    => true,
             'password'  => Hash::make('9873574130'),
             'age'       => 34,
             'email'    => 'riddhi.mittal1@gmail.com',

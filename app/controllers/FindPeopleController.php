@@ -31,9 +31,6 @@ class FindPeopleController extends BaseController {
             $looker_mobile = Input::get('looker-mobile');
 
             $looker_obj = User::createLookerAndSave($looker_first_name, $looker_last_name, $looker_mobile);
-            // Log::info("===back in FindPeopleController =====");
-            // $looker_id_str = (string) $looker_id;
-            // Log::info("== The id of created looker ==" . $looker_id_str);
 
             // =====[start]================================================
             // Manually logging in user and 'Remember me' = true. 
@@ -68,14 +65,19 @@ class FindPeopleController extends BaseController {
         $au_search_results = ArmyUpdates::searchWithNameAndAge($find_name, $find_age);
         Log::info($au_search_results);
 
-        // If the number of search_results > 0, i.e. matches found, Write to Looker's dashboard, and create alert in Nav-bar
-        // User->hasMany(Messages)
+        // If the number of search_results > 0, i.e. matches found, create matches on FIP. (Alerts to FIP->Looker fired automatically)
+        // FIP->hasMany(Matches)
         if (count($au_search_results))
-            Auth::user()->createNewMessage('New match', 'FindPeople', 'ArmyUpdates', $fip->id, $au_search_results);
+            $fip->createNewMatches('ArmyUpdates', $au_search_results);
+
 
         $fop_search_results = FoundPeople::searchWithNameAndAge($find_name, $find_age);
-        if (count($fop_search_results))
-            Auth::user()->createNewMessage('New match', 'FindPeople', 'FoundPeople', $fip->id, $fop_search_results);
+        if (count($fop_search_results)) {
+            $fip->createNewMatches('FoundPeople', $fop_search_results);
+        }
+
+        Log::info("========[in FindPeopleController -> fop__search_result is]==========");
+        Log::info($fop_search_results);
 
         $num_matches = count($au_search_results) + count($fop_search_results);
 
@@ -85,7 +87,6 @@ class FindPeopleController extends BaseController {
             'notificationCount' => $num_matches,
             'msg' => 'Person inserted in Find-People Table successfully', // figure out how to use this future-TODO
         );
-
 
         return Response::json( $response );
     }

@@ -66,9 +66,9 @@
 					  	@foreach ($found_people_list as $person)
 			          		<li class="list-group-item">
 				           		<div class="row">
-									<p class="col-md-4">{{ $person->getAttribute('first-name') }}</p>
-									<p class="col-md-4">{{ $person->age }}</p>
-									<p class="col-md-4">TBD</p>
+									<span class="col-md-4">{{ $person->getFirstName() }}</span>
+									<span class="col-md-4">{{ $person->getLastName() }}</span>
+									<span class="col-md-4">{{ $person->age }}</span>
 								</div>
 							</li>
 			          	@endforeach
@@ -121,7 +121,11 @@
 			      <div class="find-people-display">
 			          <ul class="find-people-list list-group">
 			          	@foreach ($find_people_list as $person)
-			          		<li class="list-group-item">{{ $person->getAttribute('first-name') }}</li>
+		          			<div class="row list-group-item">
+								<span class="col-md-4">{{ $person->getFirstName() }}</span>
+								<span class="col-md-4">{{ $person->getLastName() }}</span>
+								<span class="col-md-4">{{ $person->age }}</span>
+							</div>
 			          	@endforeach
 			          </ul>
 			      </div>

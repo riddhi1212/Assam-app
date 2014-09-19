@@ -138,21 +138,28 @@ Route::get('dashboard', array(
 	    'uses' => function()
 					{
 						$msg_list = NULL;
-						$fp_list = NULL;
+						$fip_list = NULL;
 						$au_count = NULL;
+						$fop_list = NULL;
 						if ( Auth::user()->messages()->count() > 0 ) {
 							$msg_list = Auth::user()->messages()->orderBy('created_at','dsc')->get();
 						}
 						if ( Auth::user()->looker ) {
-							$fp_list = Auth::user()->findPeople()->orderBy('created_at','dsc')->get();
+							$fip_list = Auth::user()->findPeople()->orderBy('created_at','dsc')->get();
 						}
 						if ( Auth::user()->contributor ) {
 							$au_count = Auth::user()->numContributed();
 						}
+						if ( Auth::user()->finder ) {
+							$fop_list = Auth::user()->foundPeople()->orderBy('created_at','dsc')->get();
+						}
+
+						Log::info($fip_list);
 						
 						return View::make('dashboard',[ 'messages_list' => $msg_list,
-														'find_people_list' => $fp_list,
-														'army_updates_count' => $au_count
+														'find_people_list' => $fip_list,
+														'army_updates_count' => $au_count,
+														'found_people_list' => $fop_list
 													  ]);
 					}
 	)

@@ -32,8 +32,6 @@
 				          <ul class="find-people-list list-group">
 				          	@foreach ($find_people_list as $person)
 				          		<li class="list-group-item clearfix">
-<!-- 				          			<span class="pull-left">{{ $person->getAttribute('first-name') }}</span>
-				          			<span class="pull-left">{{ $person->age }}</span> -->
 				          			<div class="row pull-left">
 										<span class="col-md-4">{{ $person->getAttribute('first-name') }}</span>
 										<span class="col-md-4">{{ $person->age }}</span>
@@ -89,6 +87,20 @@
 			          			ARMY Update records of Rescued people.
 			          		</p>			          	
 			      		</div>
+			      	@endif
+			      	@if ($found_people_list)
+						<div class="messages-display">
+						  <h4 class="list-group-item list-group-item-info">Found-Person Reports</h4>
+				          <ul class="messages-list list-group">
+				          	@foreach ($found_people_list as $fop)
+			          			<div class="list-group-item row">
+									<span class="col-md-4">{{ $fop->getFirstName() }}</span>
+									<span class="col-md-4">{{ $fop->getLastName() }}</span>
+									<span class="col-md-4">{{ $fop->age }}</span>
+								</div>
+				          	@endforeach
+				          </ul>
+				      	</div>
 			      	@endif
 				</div>
 			</div>

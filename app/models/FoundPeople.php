@@ -3,7 +3,7 @@
 
 class FoundPeople extends Eloquent {
 
-	protected $fillable = ['first-name', 'age'];
+	protected $fillable = ['first-name', 'age', 'finder_id'];
 
 	/**
 	 * The database table used by the model.

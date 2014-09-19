@@ -56,11 +56,11 @@
 			      	  </li>
 			          <div class="army-updates-list list-group">
 			          	@foreach ($army_updates_pag->getCollection()->all() as $update)
-					  	  	<a href={{ $update->getAttribute('fb-url') }} target="_blank" class="list-group-item">
+					  	  	<a class="list-group-item" href={{ $update->getAttribute('fb-url') }} target="_blank">
 				           		<div class="row">
-				           			<p class="col-md-4">{{ $update->getAttribute('s-no') }}</p>
-									<p class="col-md-4">{{ $update->getAttribute('first-name') .' '. $update->getAttribute('last-name') }}</p>
-									<p class="col-md-4">{{ $update->age }}</p>
+				           			<span class="col-md-4">{{ $update->getAttribute('s-no') }}</span>
+									<span class="col-md-4">{{ $update->getAttribute('first-name') .' '. $update->getAttribute('last-name') }}</span>
+									<span class="col-md-4">{{ $update->age }}</span>
 								</div>
 							</a>
 			          	@endforeach

@@ -179,6 +179,9 @@ Tue, Sep 16 2014 : 4:50pm	-	Vagrant up working again! Phew!
 Wed, Sep 17 2014 : 9:20pm	-	basic messages and notification badge done
 Thur, Sep18 2014 : 9:17am	-	Matching, msg gen and claiming (+dup claiming) done on new FIP post. Against AU and FOP DBs
 				   12:21pm  -	Pagination AU page DONE
+				   3:57pm	-	Made Found-Person post workflow work. It searches on FIP and updates user Dashboard. 
+				   				DO : Create new msg per fip looker on FOP post if it matches some fips
+				   				DO : way to say FOP is Equal to AU
 
 
 -----

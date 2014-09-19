@@ -22,6 +22,10 @@ class CreateFoundPeopleTable extends Migration {
 			$table->integer('age')->unsigned();
 			$table->string('by')->nullable();
 
+			// Relationships
+			// Each found-people row has a Finder user
+			$table->integer('finder_id')->unsigned();
+
 			$table->boolean('claimed')->default(false);
 		});
 	}

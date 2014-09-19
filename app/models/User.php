@@ -58,6 +58,16 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return NULL;
 	}
 
+  // each User of type Finder can try to register found records for many people
+  public function foundPeople() {
+    if ($this->finder) {
+      // specifying second param because default foreign key will be 'user_id' (check)
+      return $this->hasMany('FoundPeople', 'finder_id');  
+    }
+    
+    return NULL;
+  }
+
 	// each User of type Looker can try to register find requests for many people
 	public function contributedArmyUpdates() {
 		if ($this->contributor) {
@@ -80,127 +90,99 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	// make looker
 	public function makeLooker() {
 		$this->looker = true;
+    $this->save();
 	}
 
 	// make contributor
 	public function makeContributor() {
 		$this->contributor = true;
+    $this->save();
 	}
 
-  // creates new message
-  // TODO might need to SHOW alert
-  public function createNewMessage($alert_text, $source_table, $match_table, $source_table_id, $search_results_obj) {
-
-  	$message = new Message;
-  	$message->alert = $alert_text;
-  	$intro = 'Good news! Your Find-Person post generated ';
-  	$match_count = count($search_results_obj);
-  	$intro = $intro . (string)$match_count . ' match';
-  	if ($match_count > 1) {
-  		$intro = $intro . 'es';
-  	}
-  	$message->textbody = $intro;
-  	
-  	$message->setUserID($this->id);
-  	$message->save();
-
-  	if ($source_table === 'FindPeople') {
-  		// this was searched for Name and Age
-
-  		foreach ($search_results_obj as $search_result) {
-  			$match = new Match;
-
-  			$match->fip_id = $source_table_id;
-  			$match->match_table_id = $search_result['id'];
-  			if ($match_table == 'ArmyUpdates') {
-  				$match->match_army_update = true;
-  			}
-  			elseif ($match_table == 'FoundPeople') {
-  				$match->match_found_person = true;
-  			}
-  			$match->msg_id = $message->id;
-  			$match->user_id = $this->id;
-  			
-  			$match->save();
-  		}
-  	} // No other case RIGHT NOW
+  // make finder
+  public function makeFinder() {
+    $this->finder = true;
+    $this->save();
   }
 
-  //   // creates new message
-  //   // TODO might need to SHOW alert
-  //   public function createNewMessage($alert_text, $matches) {
+  // Creates new message   
+  // ONLY works if user is looker
+  // Write to Looker's dashboard, and create alert in Nav-bar
+  // TODO : might need to show alert
+  public function createNewMessageForLooker($alert_text, $match_table, $match_count) {
+      if (!$this->looker)
+        return;
 
-		// $message = new Message;
-  //   	$message->alert = $alert_text;
+      $message = new Message;
+      $message->alert = $alert_text;
 
-  //   	foreach ($matches as $match_obj) {
-  //   		$find_people_id = $match_obj->fip_id;
+      $intro = 'Good news! Your Find-Person post generated ';
+      $intro = $intro . (string)$match_count . ' match';
+      if ($match_count > 1) {
+        $intro = $intro . 'es';
+      }
+      $intro = $intro . ' from ' . $match_table; 
 
+      $message->textbody = $intro;
+      
+      $message->setUserID($this->id);
+      $message->save();
+  }
 
-  //   		$intro = 'Good news! Your Find-Person post generated ';
-  //   		$match_count = count($search_results_obj);
-  //   		$intro = $intro . (string)$match_count . ' match';
-  //   		if ($match_count > 1) {
-  //   			$intro = $intro . 'es';
-  //   		}
-  //   		$message->textbody = $intro;
-    		
-  //   		$message->setUserID($this->id);
-  //   		$message->save();
-
-	 //    	if ($match_obj->match_army_update) {
-	 //    		$army_update_id = $match_obj->match_table_id;
-	 //    	}
-  //   	}
-    	
-
-
-
-  //   	if ($source_table === 'FindPeople') {
-  //   		// this was searched for Name and Age
-  //   		$message = new Message;
-  //   		$message->alert = $alert_text;
-  //   		$intro = 'Good news! Your Find-Person post generated ';
-  //   		$match_count = count($search_results_obj);
-  //   		$intro = $intro . (string)$match_count . ' match';
-  //   		if ($match_count > 1) {
-  //   			$intro = $intro . 'es';
-  //   		}
-  //   		$message->textbody = $intro;
-    		
-  //   		$message->setUserID($this->id);
-  //   		$message->save();
-  //   	}
-  //   }
 
 	// ===============================================================
 	//			Static Methods
 	// ===============================================================
 
 
-	// Return the user object
-    public static function createLookerAndSave($fname, $lname, $mobile) {
-        Log::info("===Creating Looker " . $fname);
+	// Returns the Looker object
+  public static function createLookerAndSave($fname, $lname, $mobile) {
+      Log::info("===Creating Looker " . $fname);
 
-        Log::info($lname);
-        Log::info($mobile);
+      Log::info($lname);
+      Log::info($mobile);
 
-        $user = new User;
-        $user->fname = $fname;
-        $user->lname = $lname;
-        $user->mobile = $mobile;
-        $user->makeLooker();
-        // $mobile is str
-        $user->password = Hash::make($mobile);  //TODO : add mix of first name and mob num
-        $user->save();
+      $user = new User;
+      $user->fname = $fname;
+      $user->lname = $lname;
+      $user->mobile = $mobile;
+      $user->makeLooker();
+      // $mobile is str
+      $user->password = Hash::make($mobile);  //TODO : add mix of first name and mob num
+      $user->save();
 
 
-        // Return id so we can save id of this looker User into find people
-        Log::info("===Returning looker id ====");
-        $user_id_str = (string) $user->id;
-        Log::info("Id is " . $user_id_str);
-        return $user;
-    }
+      // Return id so we can save id of this looker User into find people
+      Log::info("===Returning looker id ====");
+      $user_id_str = (string) $user->id;
+      Log::info("Id is " . $user_id_str);
+      return $user;
+  }
+
+  // Returns the Finder object
+  // TODO: fire new Message with Congratulations on becoming Finder and thank you note.
+  public static function createFinderAndSave($fname, $lname, $mobile) {
+      Log::info("===Creating Finder " . $fname);
+
+      Log::info($lname);
+      Log::info($mobile);
+
+      $user = new User;
+      $user->fname = $fname;
+      $user->lname = $lname;
+      $user->mobile = $mobile;
+      $user->makeFinder();
+      // $mobile is str
+      $user->password = Hash::make($mobile);  //TODO : add mix of first name and mob num
+      $user->save();
+
+
+      // Return id so we can save id of this looker User into find people
+      Log::info("===Returning finder id ====");
+      $user_id_str = (string) $user->id;
+      Log::info("Id is " . $user_id_str);
+      return $user;
+  }
 
 
 }

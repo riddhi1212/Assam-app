@@ -17,16 +17,14 @@ class CreateMatchesTable extends Migration {
 			$table->increments('id');
 		    $table->timestamps();
 
+		    // Relationships
+		    // Each FIP hasMany Matches. So each match has a fip_id
 			$table->integer('fip_id');
+
 			$table->integer('match_table_id');
 			$table->boolean('match_army_update')->default(false);
 			$table->boolean('match_found_person')->default(false);
 			$table->boolean('claimed')->default(false);
-
-			// Message->HasMany(Matches). So each match belongs to one msg
-			$table->integer('msg_id')->unsigned();
-			// TODO should I include ? User is same as msg->user-id or fip->user-id
-			$table->integer('user_id')->unsigned();
 		});
 	}
 
