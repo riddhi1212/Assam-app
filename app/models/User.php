@@ -29,6 +29,14 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	//			get Methods
 	// ===============================================================
 
+  public function getFullName() {
+      $name = $this->getAttribute('fname');
+      if ($this->getAttribute('lname') !== null) {
+          $name = $name . " " . $this->getAttribute('lname');
+      }
+      return $name;
+  }
+    
 	// each User has many Dashboard Messages
 	public function messages() {
 		// specifying second param because default foreign key will be 'user_id'
@@ -79,24 +87,91 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		$this->contributor = true;
 	}
 
-    // creates new message
-    // TODO might need to SHOW alert
-    public function createNewMessage($alert_text, $source, $search_results_obj) {
-    	if ($source === 'FindPeople') {
-    		// this was searched for Name and Age
-    		$message = new Message;
-    		$message->alert = $alert_text;
-    		$intro = 'Good news! Your Find-Person post generated ';
-    		$match_count = count($search_results_obj);
-    		$intro = $intro . (string)$match_count . ' match';
-    		if ($match_count > 1) {
-    			$intro = $intro . 'es';
-    		}
-    		$message->textbody = $intro;
-    		$message->setUserID($this->id);
-    		$message->save();
-    	}
-    }
+  // creates new message
+  // TODO might need to SHOW alert
+  public function createNewMessage($alert_text, $source_table, $match_table, $source_table_id, $search_results_obj) {
+
+  	$message = new Message;
+  	$message->alert = $alert_text;
+  	$intro = 'Good news! Your Find-Person post generated ';
+  	$match_count = count($search_results_obj);
+  	$intro = $intro . (string)$match_count . ' match';
+  	if ($match_count > 1) {
+  		$intro = $intro . 'es';
+  	}
+  	$message->textbody = $intro;
+  	
+  	$message->setUserID($this->id);
+  	$message->save();
+
+  	if ($source_table === 'FindPeople') {
+  		// this was searched for Name and Age
+
+  		foreach ($search_results_obj as $search_result) {
+  			$match = new Match;
+
+  			$match->fip_id = $source_table_id;
+  			$match->match_table_id = $search_result['id'];
+  			if ($match_table == 'ArmyUpdates') {
+  				$match->match_army_update = true;
+  			}
+  			elseif ($match_table == 'FoundPeople') {
+  				$match->match_found_person = true;
+  			}
+  			$match->msg_id = $message->id;
+  			$match->user_id = $this->id;
+  			
+  			$match->save();
+  		}
+  	} // No other case RIGHT NOW
+  }
+
+  //   // creates new message
+  //   // TODO might need to SHOW alert
+  //   public function createNewMessage($alert_text, $matches) {
+
+		// $message = new Message;
+  //   	$message->alert = $alert_text;
+
+  //   	foreach ($matches as $match_obj) {
+  //   		$find_people_id = $match_obj->fip_id;
+
+
+  //   		$intro = 'Good news! Your Find-Person post generated ';
+  //   		$match_count = count($search_results_obj);
+  //   		$intro = $intro . (string)$match_count . ' match';
+  //   		if ($match_count > 1) {
+  //   			$intro = $intro . 'es';
+  //   		}
+  //   		$message->textbody = $intro;
+    		
+  //   		$message->setUserID($this->id);
+  //   		$message->save();
+
+	 //    	if ($match_obj->match_army_update) {
+	 //    		$army_update_id = $match_obj->match_table_id;
+	 //    	}
+  //   	}
+    	
+
+
+
+  //   	if ($source_table === 'FindPeople') {
+  //   		// this was searched for Name and Age
+  //   		$message = new Message;
+  //   		$message->alert = $alert_text;
+  //   		$intro = 'Good news! Your Find-Person post generated ';
+  //   		$match_count = count($search_results_obj);
+  //   		$intro = $intro . (string)$match_count . ' match';
+  //   		if ($match_count > 1) {
+  //   			$intro = $intro . 'es';
+  //   		}
+  //   		$message->textbody = $intro;
+    		
+  //   		$message->setUserID($this->id);
+  //   		$message->save();
+  //   	}
+  //   }
 
 	// ===============================================================
 	//			Static Methods

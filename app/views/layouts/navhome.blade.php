@@ -4,7 +4,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Kashmiri Floods 2014 Person Finder</title>
         {{ HTML::style('http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'); }}
-        {{ HTML::style('css/layouts/nav-style.css'); }}
+        {{ HTML::style('css/layouts/nav.css'); }}
         @yield('head')
     </head>
     <body>

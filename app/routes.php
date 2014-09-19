@@ -158,6 +158,16 @@ Route::get('dashboard', array(
 	)
 )->before('auth');
 
+Route::post('claim', array(
+	    'as' => 'claim',
+	    'uses' => 'ClaimController@claim'
+))->before('auth');
+
+Route::post('duplicateclaim', array(
+	    'as' => 'duplicate.claim',
+	    'uses' => 'ClaimController@duplicateClaim'
+))->before('auth');
+
 // ===============================================================
 //			Playing w code
 // ===============================================================

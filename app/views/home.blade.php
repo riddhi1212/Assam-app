@@ -1,7 +1,7 @@
 @extends('layouts/navhome')
 
 @section('head')
-        {{ HTML::style('css/home-style.css'); }}
+        {{ HTML::style('css/home.css'); }}
 @stop
 
 @section('content')

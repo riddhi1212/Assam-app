@@ -69,6 +69,7 @@ Ah!
 	-	Redirect::to('') can use path or name of route as argument
 	-	A foreign-key id col name HAS to be specified as fillable to mass fill it.
 	-	Redirect::to('url') takes URL, Redirect::route('name') takes named route.
+	-	Floated elements do not add to the height of the element they reside in properly. A similar scenario is described here: css-tricks.com/the-how-and-why-of-clearing-floats
 
 ----
 Todo:
@@ -121,6 +122,7 @@ What is / Learn
 			for applying filters to a bunch of routes
 	-	Validator http://laravel.com/docs/validation
 	-	Session::flash ?
+	-	Laravel events / Model observers
 
 
 ----
@@ -129,6 +131,7 @@ Todo Features
 1) Avoid duplicates when people submitting names of found and missing people
 2) Add 'claim' functionality to Found people display list
 3) Add 'found' functionality to Find people display list (upload happy pic or something or add as 'success story')
+	Basic DONE
 4) Add leaderboard for most founds (will need some kind of user auth) (auth by mob num is fine)
 5) Indian ARMY Updates Display
 	Basic - DONE @ 1:02 am
@@ -144,6 +147,8 @@ Todo Features
 2) Get domain name DONE
 3) Point deployment to domain name (know how to DO)
 4) Add google analytics
+5) Instrument code - Add kissmetrics or something
+6) Log code w papertrail or something
 
 
 ---
@@ -172,6 +177,7 @@ Tue, Sep 16 2014 : 4:50pm	-	Vagrant up working again! Phew!
 				   				DO : 'home' != 'fandf'. give fandf their own name.
 				   6:21am	-	Dashboard refactoring pass two done
 Wed, Sep 17 2014 : 9:20pm	-	basic messages and notification badge done
+Thur, Sep18 2014 : 9:17am	-	Matching, msg gen and claiming (+dup claiming) done on new FIP post. Against AU and FOP DBs
 
 
 -----

@@ -24,6 +24,13 @@ class CreateFindPeopleTable extends Migration {
 			// Relationships
 			// Each find-people row has a Looker user
 			$table->integer('looker-id')->unsigned();
+
+			$table->boolean('found')->default(false);
+			// to be filled if found = true
+			$table->boolean('duplicate')->default(false); // true if this is duplicate claim. i.e. AU/FOP has already been claimed by someone else first
+			$table->integer('found_table_id')->default(0);
+			$table->boolean('found_in_army_updates')->default(false);
+			$table->boolean('found_in_found_people')->default(false);
 		});
 	}
 

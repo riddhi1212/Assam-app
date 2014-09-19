@@ -13,6 +13,7 @@ var main = function() {
 		// Validate that atleast one is filled
 		if (name.length === 0 && age.length === 0 && sno.length === 0) return;
 
+		console.log($("#army-updates-search-form").serializeArray());
 
 		// now POST to server
 		$.ajax({

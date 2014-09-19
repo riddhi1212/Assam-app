@@ -16,6 +16,8 @@ class ArmyUpdatesController extends BaseController {
         //     ) );
         // }
 
+        Log::info(Input::all());
+
         $updates_sno = Input::get('updates-sno');
         $updates_name = Input::get( 'updates-name' );
         $updates_age = Input::get( 'updates-age' );

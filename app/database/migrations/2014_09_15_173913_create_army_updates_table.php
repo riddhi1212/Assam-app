@@ -30,6 +30,8 @@ class CreateArmyUpdatesTable extends Migration {
 			// Relationships
 			// Each army-updates row has a Contributor user
 			$table->integer('contributor-id')->unsigned();
+
+			$table->boolean('claimed')->default(false);
 		});
 	}
 

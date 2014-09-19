@@ -19,4 +19,14 @@ class FindPeople extends Eloquent {
 	 */
 	//protected $hidden = array('password', 'remember_token');
 
+
+	// each FIP hasMany matches
+	public function matches() {
+		return $this->hasMany('Match', 'fip_id');  
+	}
+
+	public function getLookerID() {
+		return $this->getAttribute('looker-id');
+	}
+
 }

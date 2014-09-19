@@ -21,6 +21,8 @@ class CreateFoundPeopleTable extends Migration {
 			$table->string('last-name')->nullable();
 			$table->integer('age')->unsigned();
 			$table->string('by')->nullable();
+
+			$table->boolean('claimed')->default(false);
 		});
 	}
 
