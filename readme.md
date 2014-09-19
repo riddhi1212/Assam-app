@@ -178,6 +178,7 @@ Tue, Sep 16 2014 : 4:50pm	-	Vagrant up working again! Phew!
 				   6:21am	-	Dashboard refactoring pass two done
 Wed, Sep 17 2014 : 9:20pm	-	basic messages and notification badge done
 Thur, Sep18 2014 : 9:17am	-	Matching, msg gen and claiming (+dup claiming) done on new FIP post. Against AU and FOP DBs
+				   12:21pm  -	Pagination AU page DONE
 
 
 -----
@@ -198,6 +199,7 @@ TODO:
 	-	Make it easy for people to contribute
 	-	Show Details section for every army-update-list view
 	-	Pagination for army updates view
+			- DONE
 
 
 Importance of features

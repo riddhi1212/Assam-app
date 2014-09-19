@@ -74,8 +74,8 @@ Route::get('/updates', array(
     'as' => 'updates',
     'uses' => function()
 				{
-					$army_updates_list = ArmyUpdates::orderBy('s-no','asc')->get();
-					return View::make('armyupdates',[ 'army_updates_list' => $army_updates_list ]);
+					$army_updates_pag = ArmyUpdates::orderBy('s-no','asc')->paginate(5);
+					return View::make('armyupdates',[ 'army_updates_pag'  => $army_updates_pag ]);
 				}
 ) );
 

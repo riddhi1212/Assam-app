@@ -1,11 +1,15 @@
 @extends('layouts/navhome')
 
+@section('head')
+        {{ HTML::style('css/armyupdates.css'); }}
+@stop
+
 @section('content')
 		<div id="wrap">
 			<div class="stripe">
 				<div class="container">
 					<p class="pull-left">ARMY Updates of Rescued People</p>
-					<p class="pull-right">Number of Records Uploaded So far : {{ count($army_updates_list) }} Records</p>
+					<p class="pull-right">Number of Records Uploaded So far : {{ $army_updates_pag->getTotal() }} Records</p>
 				</div>
 			</div>
 
@@ -34,13 +38,15 @@
       						<input type="text" class="form-control" id="updates-age" name="updates-age" placeholder="Enter Age">
     					</div>
   					</div>
-  					
 			        <button type="button" class="btn btn-primary btn-block" id="army-updates-search-btn">Search</button>
 			      </form>
-			      <br/>
+			      <br>
 			      <div class="army-updates-display">
 			      	  <p class="search-explanation"></p>
 			      	  <p class="search-text"></p>
+			      	  <div>
+			          	{{ $army_updates_pag->links() }}
+			          </div>
 			      	  <li class="list-group-item list-group-item-info">
 			      	  	<div class="row">
 	      	  				<h4 class="col-md-4">S.no.</h4>
@@ -49,15 +55,13 @@
 			      	  	</div>
 			      	  </li>
 			          <div class="army-updates-list list-group">
-					  	@foreach ($army_updates_list as $update)
+			          	@foreach ($army_updates_pag->getCollection()->all() as $update)
 					  	  	<a href={{ $update->getAttribute('fb-url') }} target="_blank" class="list-group-item">
-				          		<!--<li class="list-group-item">-->
-					           		<div class="row">
-					           			<p class="col-md-4">{{ $update->getAttribute('s-no') }}</p>
-										<p class="col-md-4">{{ $update->getAttribute('first-name') .' '. $update->getAttribute('last-name') }}</p>
-										<p class="col-md-4">{{ $update->age }}</p>
-									</div>
-							<!--	</li>-->
+				           		<div class="row">
+				           			<p class="col-md-4">{{ $update->getAttribute('s-no') }}</p>
+									<p class="col-md-4">{{ $update->getAttribute('first-name') .' '. $update->getAttribute('last-name') }}</p>
+									<p class="col-md-4">{{ $update->age }}</p>
+								</div>
 							</a>
 			          	@endforeach
 			          </div>
