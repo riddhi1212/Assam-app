@@ -51,8 +51,7 @@ class ClaimController extends BaseController {
 		$fip->found_table_id = $match->match_table_id;
 		$fip->save();
 
-		Match::where('fip_id', '=', $fip->id)->delete();
-
+		Match::deleteMatchesForFip($fip->id);
 
 		// TODO : also send back the id in the table it was matched to
 		// Turn into Found

@@ -98,7 +98,8 @@ Route::get('/donate', array(
     'as' => 'donate',
     'uses' => function()
 				{
-					return View::make('donate');
+					$dc_list = DonationCause::all();
+					return View::make('donate',[ 'donation_causes_list' => $dc_list ]);
 				}
 ) );
 
@@ -156,7 +157,7 @@ Route::get('dashboardold', array(
 
 						Log::info($fip_list);
 						
-						return View::make('dashboard',[ 'messages_list' => $msg_list,
+						return View::make('trying\dashboard',[ 'messages_list' => $msg_list,
 														'find_people_list' => $fip_list,
 														'army_updates_count' => $au_count,
 														'found_people_list' => $fop_list
@@ -188,7 +189,7 @@ Route::get('dashboard', array(
 
 						Log::info($fip_list);
 						
-						return View::make('tabbeddashboard',[ 'messages_list' => $msg_list,
+						return View::make('paneldashboard',[ 'messages_list' => $msg_list,
 														'find_people_list' => $fip_list,
 														'army_updates_count' => $au_count,
 														'found_people_list' => $fop_list

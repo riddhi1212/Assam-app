@@ -44,23 +44,45 @@
                         <div class="tab-pane fade" id="tab2info">
                     		@if ($find_people_list)
 								<div class="find-people-display">
-								  <h4 class="list-group-item list-group-item-info">Find-Person Reports</h4>
-						          <ul class="find-people-list list-group">
+								  <!-- <h4 class="list-group-item list-group-item-info">Find-Person Reports</h4> -->
+								  <h4>FIPs</h4>
+						          <!-- <ul class="find-people-list list-group"> -->
+						          <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+						          <thead>
+						            <tr>
+						                <th>G</th>
+						                <th>First Name</th>
+						                <th>Last Name</th>
+						                <th>Age</th>
+						                <th>Status</th>
+						            </tr>
+							      </thead>
+						          <tbody class="find-people-list">
 						          	@foreach ($find_people_list as $person)
-						          		<li class="list-group-item clearfix">
-						          			<div class="row">
-												<span class="col-md-3">{{ $person->getFirstName() }}</span>
-												<span class="col-md-3">{{ $person->getLastName() }}</span>
-												<span class="col-md-3">{{ $person->age }}</span>
+						          		<div class="fip-match-group">
+						          		<!-- <li class="list-group-item clearfix"> -->
+						          			<tr>
+						          				<!-- <a href="#"><span class="col-md-1 fa fa-remove fa-fw fa-2x"></span></a> -->
+						          				<td><a href="#"><span class="col-md-1 fa fa-remove fa-fw fa-2x"></span></a></td>
+						          				<td>{{ $person->getFirstName() }}</td>
+						          				<td>{{ $person->getLastName() }}</td>
+						          				<td>{{ $person->age }}</td>
+												<!-- <span class="col-md-2">{{ $person->getFirstName() }}</span>
+												<span class="col-md-2">{{ $person->getLastName() }}</span>
+												<span class="col-md-5">{{ $person->age }}</span> -->
 						          				@if ( $person->found )
-						          					<span class="col-md-3 find-person-status label label-default" id="{{ $person->id }}">FOUND</span>
+						          					<!-- <span class="col-md-2 find-person-status label label-default" id="{{ $person->id }}">FOUND</span> -->
+						          					<td><span class="find-person-status label label-default" id="{{ $person->id }}">FOUND</span></td>
 						     					@elseif ( $person->matches()->count() )
-						     						<span class="col-md-3 find-person-status label label-default" id="{{ $person->id }}">Review matches</span>
+						     						<!-- <span class="col-md-2 find-person-status label label-default" id="{{ $person->id }}">Review matches</span> -->
+						     						<td><span class="find-person-status label label-default" id="{{ $person->id }}">Review matches</span></td>
+						     					@else
+						     						<td></td>
 						     					@endif
-						          			</div>
-						          		</li>
+						          			</tr>
+						          		<!-- </li> -->
 						          		@if ($person->matches()->count())
-							          		<li class="list-group-item clearfix">
+							          		<!-- <li class="list-group-item clearfix"> -->
 							          			<div class="matches-list list-group clearfix">
 							          			@foreach ($person->matches()->get() as $match)
 							          				<div class="list-group-item clearfix">
@@ -86,10 +108,13 @@
 							          				</div>
 							          			@endforeach
 							          			</div>
-								          	</li>
+								          	<!-- </li> -->
 							          	@endif
+							          	</div>
 						          	@endforeach
-						          </ul>
+						          <!-- </ul> -->
+						          </tbody>
+						          </table>
 						      	</div>
 					      	@endif
                         </div>

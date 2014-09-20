@@ -75,4 +75,13 @@ class Match extends Eloquent {
 		return ($this->getSourceClaimer()->id === Auth::user()->id);
 	}
 
+
+	// ===============================================================
+	//			Static Methods
+	// ===============================================================
+
+	public static function deleteMatchesForFip($fip_id) {
+		Match::where('fip_id', '=', $fip_id)->delete();
+	}
+
 }

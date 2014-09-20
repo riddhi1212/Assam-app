@@ -250,9 +250,12 @@ Add donor pages:
 		http://get.hike.in/donate/
 	-	PMRF
 		Payment may be made by cheque/draft/cash in the name of "Prime Minister's National Relief Fund" and sent to the PMO in South Block, the statement said, adding as per directions on the subject, the nationalised banks will not charge any commission on preparation of drafts favouring the PMNRF.
+			-	all bank online pages
+				- https://pmnrf.gov.in/faqs.php
 	-	Sewa International
 		http://sewainternational.org//Encyc/2014/9/10/Jammu-Kashmir-Appeal.aspx
-	-	
+	-	http://www.thealternative.in/society/useful-resources-to-help-donate-to-the-kashmir-floods-relief-programs/
+		-	Helpline numbers including NRDF control room
 
 ---------
 Updates:
