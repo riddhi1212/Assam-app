@@ -48,18 +48,16 @@
 						          <ul class="find-people-list list-group">
 						          	@foreach ($find_people_list as $person)
 						          		<li class="list-group-item clearfix">
-						          			<div class="row pull-left">
-												<span class="col-md-4">{{ $person->getFirstName() }}</span>
-												<span class="col-md-4">{{ $person->getLastName() }}</span>
-												<span class="col-md-4">{{ $person->age }}</span>
-											</div>
-						          			<span class="pull-right find-person-status" id="{{ $person->id }}">
+						          			<div class="row">
+												<span class="col-md-3">{{ $person->getFirstName() }}</span>
+												<span class="col-md-3">{{ $person->getLastName() }}</span>
+												<span class="col-md-3">{{ $person->age }}</span>
 						          				@if ( $person->found )
-						          					FOUND
+						          					<span class="col-md-3 find-person-status label label-default" id="{{ $person->id }}">FOUND</span>
 						     					@elseif ( $person->matches()->count() )
-						     						Review matches
+						     						<span class="col-md-3 find-person-status label label-default" id="{{ $person->id }}">Review matches</span>
 						     					@endif
-						          			</span>
+						          			</div>
 						          		</li>
 						          		@if ($person->matches()->count())
 							          		<li class="list-group-item clearfix">

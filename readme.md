@@ -77,6 +77,7 @@ Ah!
 		DB::table('ArmyUpdates')->whereRaw()->get() gives you an array of StdClass objects.
 			-	Change 'fetch' => PDO::FETCH_ASSOC, from PDO::FETCH_CLASS (Default) in app/config/database.php to change this behavior and get a results array like before again
 	-	DO NOT add <div class="container"> inside a tabbed panel. It will ruin it and even clearfix will not fix it.
+	-	ArmyUpdates::all(['first_name', 'age']) for getting specified cols through eloquent
 
 
 ----

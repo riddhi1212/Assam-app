@@ -5,32 +5,33 @@
 
 			<div class="info">
 				<div class="container">
-					<h1>Stats</h1>
-					<p>So far, this site has made searchable    
-						<span>{{ ArmyUpdates::all()->count(); }}</span>
-						Official Indian ARMY Updates of Rescued people.
-					</p>
-					<p>There are currently     
-						<span>{{ User::where('contributor',true)->get()->count(); }}</span>
-						contributors registered on this site.
-					</p>
-					<p>Through this site, people posted Missing Person Reports for  
-						<span>{{ FindPeople::all()->count(); }}</span>
-						people
-					</p>
-					<p>Through this site, people have posted that they have found   
-						<span>{{ FoundPeople::all()->count(); }}</span>
-						people
-					</p>
-					<p>Through this site,   
-						<span>{{ FindPeople::where('found', '=', true)->count(); }}</span>
-						Missing Person Reports have been Resolved. These people have been found by their loved ones.
-					</p>
-					<p>
-						{{ ArmyUpdates::all(['first-name', 'age']); }}
-					</p>
+					<div id="chart_div" style="width: auto; height: 500px;"></div>
+					<div class="stripe">
+						<div class="container">
+							<h3>Site Stats</h3>
+							<p>So far, this site has made searchable    
+								<span><b>{{ ArmyUpdates::all()->count(); }}</b></span>
+								Official Indian ARMY Updates of Rescued people.
+							</p>
+							<p>There are currently     
+								<span><b>{{ User::where('contributor',true)->get()->count(); }}</b></span>
+								contributors registered on this site.
+							</p>
+							<p>Through this site, people posted Missing Person Reports for  
+								<span><b>{{ FindPeople::all()->count(); }}</b></span>
+								people
+							</p>
+							<p>Through this site, people have posted that they have found   
+								<span><b>{{ FoundPeople::all()->count(); }}</b></span>
+								people
+							</p>
+							<p>Through this site,   
+								<span><b>{{ FindPeople::where('found', '=', true)->count(); }}</b></span>
+								Missing Person Reports have been Resolved. These people have been found by their loved ones.
+							</p>
+						</div>
+					</div>
 				</div>
-				<div id="chart_div" style="width: 900px; height: 500px;"></div>
 			</div>
 
 		</div>
@@ -76,8 +77,10 @@
 	
 
         var options = {
-          title: 'Ages of Rescued people by the Indian ARMY',
+          title: 'Histogram of Ages of Rescued people by the Indian ARMY',
           legend: { position: 'none' },
+          hAxis: { title: 'Ages of Rescued people' },
+          vAxis: { title: 'Number of Rescued people' }
         };
 
         var chart = new google.visualization.Histogram(document.getElementById('chart_div'));

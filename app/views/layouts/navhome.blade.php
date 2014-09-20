@@ -77,7 +77,7 @@
 
         <div id="footer">
             <div class="container">
-                <p>PLEASE NOTE: All data entered will be available to the public and viewable and usable by anyone. We do not review or verify the accuracy of this data.</p>
+                <span>PLEASE NOTE: All data entered will be available to the public and viewable and usable by anyone. We do not review or verify the accuracy of this data.</span>
             </div>
         </div>
 
