@@ -19,19 +19,37 @@ class ArmyUpdatesTableSeeder extends Seeder {
             $contributor_user->makeContributor();
             $contributor_user->save(); // TODO: can this go into makeContributor function ? and makeLooker function?
 
+
+            $s_no = $listings[1];
+            $first_name = $listings[2];
+            $last_name = $listings[3];
+            $age = $listings[4];
+            $fb_url = $listings[7];
+
+
  			// TODO: add col update-fb-date
-            $update = ArmyUpdates::create([ // add contributor
-                'contributor'=> $contributor_user->fname,
-            	's-no' 		 => $listings[1],
-            	'first-name' => $listings[2],
-            	'last-name'	 =>	$listings[3],
-            	'age'		 => $listings[4],
-            	'address' 	 => $listings[5], // add fb-date
-            	'fb-url'     => $listings[7],
-            	'child'		 => $listings[8]
-            ]);
-            $update->setContributorID($contributor_user->id);
-            $update->save();
+
+            $update = ArmyUpdates::createNewForContributor(
+                                        $s_no,
+                                        $first_name,
+                                        $last_name,
+                                        $age,
+                                        $fb_url,
+                                        $contributor_user->id
+                                    );
+
+
+            // $update = ArmyUpdates::create([ // add contributor
+            //  'contributor'=> $contributor_user->fname,
+            // 	's-no' 		 => $listings[1],
+            // 	'first-name' => $listings[2],
+            // 	'last-name'	 =>	$listings[3],
+            // 	'age'		 => $listings[4],
+            // 	'address' 	 => $listings[5], // add fb-date
+            // 	'fb-url'     => $listings[7],
+            // 	'child'		 => $listings[8]
+            // ]);
+
             
             //echo $listings[0] . 'recorded added <br />';
         }

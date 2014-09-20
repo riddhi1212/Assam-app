@@ -11,7 +11,7 @@ var resetNavLinks = function(json) {
 		$('#log-text').empty().append($('<a>').attr('href','/logout').text('Log Out'));
 	} else {
 		// This shows ALL Msg Count
-		$('#notification-count').text(Integer.parseInt(badge, 0) + 1);
+		$('#notification-count').text(json.msgCount);
 
 
 		// TODO : use the following if you want New Notification Count. 

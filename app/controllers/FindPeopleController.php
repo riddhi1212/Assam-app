@@ -47,13 +47,8 @@ class FindPeopleController extends BaseController {
             Auth::user()->makeLooker();
         }
 
-        // TODO: change to adding to first-name and last-name
         // TODO: check for duplicates before creating another record
-        $fip = FindPeople::create([
-            'first-name' => $find_name,
-            'age' => $find_age, //str (but works)
-            'looker-id' => Auth::user()->id //int
-        ]);  
+        $fip = FindPeople::createNewForLooker($find_name, $find_age, Auth::user()->id);
 
         // If we wanted to print the findPeople per user. 
         // $fp = User::find($looker_id)->findPeople()->get();
@@ -63,17 +58,18 @@ class FindPeopleController extends BaseController {
         // TODO This code might need to move somewhere else 
         // Doing only AU for now. TODO do FOP 
         $au_search_results = ArmyUpdates::searchWithNameAndAge($find_name, $find_age);
+        Log::info("==[AU search results]==");
         Log::info($au_search_results);
 
         // If the number of search_results > 0, i.e. matches found, create matches on FIP. (Alerts to FIP->Looker fired automatically)
         // FIP->hasMany(Matches)
         if (count($au_search_results))
-            $fip->createNewMatches('ArmyUpdates', $au_search_results);
+            $fip->createNewMatches(ArmyUpdates::TABLE_NAME, $au_search_results);
 
 
         $fop_search_results = FoundPeople::searchWithNameAndAge($find_name, $find_age);
         if (count($fop_search_results)) {
-            $fip->createNewMatches('FoundPeople', $fop_search_results);
+            $fip->createNewMatches(FoundPeople::TABLE_NAME, $fop_search_results);
         }
 
         Log::info("========[in FindPeopleController -> fop__search_result is]==========");
@@ -85,11 +81,14 @@ class FindPeopleController extends BaseController {
             'status' => 'success',
             'username' => Auth::user()->fname,
             'notificationCount' => $num_matches,
-            'fname' => $find_name,
-            'lname' => $find_name,
+            'fname' => Helper::getFirstNameFrom($find_name),
+            'lname' => Helper::getLastNameFrom($find_name),
             'age'   => $find_age,
+            'msgCount' => Auth::user()->messages()->count(),
             'msg' => 'Person inserted in Find-People Table successfully', // figure out how to use this future-TODO
         );
+
+        Log::info("===========================in FindPeopleController create [end]");
 
         return Response::json( $response );
     }

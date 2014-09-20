@@ -74,7 +74,7 @@ Route::get('/updates', array(
     'as' => 'updates',
     'uses' => function()
 				{
-					$army_updates_pag = ArmyUpdates::orderBy('s-no','asc')->paginate(5);
+					$army_updates_pag = ArmyUpdates::orderBy('s_no','asc')->paginate(5);
 					return View::make('armyupdates',[ 'army_updates_pag'  => $army_updates_pag ]);
 				}
 ) );
@@ -133,6 +133,38 @@ Route::get('logout', array(
 // ===============================================================
 
 
+Route::get('dashboardold', array(
+	    'as' => 'dashboard.old',
+	    'uses' => function()
+					{
+						$msg_list = NULL;
+						$fip_list = NULL;
+						$au_count = NULL;
+						$fop_list = NULL;
+						if ( Auth::user()->messages()->count() > 0 ) {
+							$msg_list = Auth::user()->messages()->orderBy('created_at','dsc')->get();
+						}
+						if ( Auth::user()->looker ) {
+							$fip_list = Auth::user()->findPeople()->orderBy('created_at','dsc')->get();
+						}
+						if ( Auth::user()->contributor ) {
+							$au_count = Auth::user()->numContributed();
+						}
+						if ( Auth::user()->finder ) {
+							$fop_list = Auth::user()->foundPeople()->orderBy('created_at','dsc')->get();
+						}
+
+						Log::info($fip_list);
+						
+						return View::make('dashboard',[ 'messages_list' => $msg_list,
+														'find_people_list' => $fip_list,
+														'army_updates_count' => $au_count,
+														'found_people_list' => $fop_list
+													  ]);
+					}
+	)
+)->before('auth');
+
 Route::get('dashboard', array(
 	    'as' => 'dashboard',
 	    'uses' => function()
@@ -156,7 +188,7 @@ Route::get('dashboard', array(
 
 						Log::info($fip_list);
 						
-						return View::make('dashboard',[ 'messages_list' => $msg_list,
+						return View::make('tabbeddashboard',[ 'messages_list' => $msg_list,
 														'find_people_list' => $fip_list,
 														'army_updates_count' => $au_count,
 														'found_people_list' => $fop_list

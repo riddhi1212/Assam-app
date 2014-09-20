@@ -5,6 +5,8 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateFindPeopleTable extends Migration {
 
+	private $tableName = FindPeople::TABLE_NAME;
+
 	/**
 	 * Run the migrations.
 	 *
@@ -12,18 +14,19 @@ class CreateFindPeopleTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('find-people', function(Blueprint $table)
+		Schema::create($this->tableName, function(Blueprint $table)
 		{
 		    $table->increments('id');
 		    $table->timestamps();
 
-			$table->string('first-name');
-			$table->string('last-name')->nullable();
+			$table->string('first_name');
+			$table->string('last_name')->nullable();
+			$table->boolean('first_name_has_spaces')->default(false);
 			$table->integer('age')->unsigned();
 
 			// Relationships
 			// Each find-people row has a Looker user
-			$table->integer('looker-id')->unsigned();
+			$table->integer('looker_id')->unsigned();
 
 			$table->boolean('found')->default(false);
 			// to be filled if found = true
@@ -42,7 +45,7 @@ class CreateFindPeopleTable extends Migration {
 	public function down()
 	{
 
-		Schema::dropIfExists('find-people');
+		Schema::dropIfExists($this->tableName);
 
 	}
 

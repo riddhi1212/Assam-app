@@ -29,14 +29,7 @@ var main = function() {
 				url: "/claim",
 				data: match_data,
 				success:function(json) {
-					console.log('====Claim Returned fip_id ====');
-				   	console.log(json['fip-id']);
-
-				   	var selector = '#' + json['fip-id'] + '.find-person-status';
-				   	$(selector).empty().text("FOUND !!");
-
-				   	// TODO : remove matches display
-
+					location.reload();
 				},
 				error:function() {
 					alert("Error");
@@ -61,14 +54,7 @@ var main = function() {
 				url: "/duplicateclaim",
 				data: match_data,
 				success:function(json) {
-					console.log('====Claim Returned fip_id ====');
-				   	console.log(json['fip-id']);
-
-				   	var selector = '#' + json['fip-id'] + '.find-person-status';
-				   	$(selector).empty().text("FOUND !!");
-
-				   	// TODO : remove matches display
-
+					location.reload();
 				},
 				error:function() {
 					alert("Error");

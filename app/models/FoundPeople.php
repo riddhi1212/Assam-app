@@ -3,14 +3,16 @@
 
 class FoundPeople extends Eloquent {
 
-	protected $fillable = ['first-name', 'age', 'finder_id'];
+	//protected $fillable = ['first-name', 'age', 'finder_id'];
+
+    const TABLE_NAME = 'FoundPeopleTable';
 
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
-	protected $table = 'found-people';
+	protected $table = FoundPeople::TABLE_NAME;
 
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -21,11 +23,11 @@ class FoundPeople extends Eloquent {
 
 
 	public function getFirstName() {
-		return $this->getAttribute('first-name');
+		return $this->first_name;
 	}
 
 	public function getLastName() {
-		return $this->getAttribute('last-name');
+		return $this->last_name;
 	}
 
  	public function getFullName() {
@@ -55,6 +57,18 @@ class FoundPeople extends Eloquent {
 	// ===============================================================
 	//			Static Methods
 	// ===============================================================
+
+    // returns created $fop
+    public static function createNewForFinder($name, $age, $finder_id) {
+        $fop = new FoundPeople;
+
+        Helper::setFirstAndLastNameFor($name, $fop);
+
+        $fop->age = $age;
+        $fop->finder_id = $finder_id;
+        $fop->save();
+        return $fop;
+    }
 
 
 	// returns a results array
@@ -95,9 +109,11 @@ class FoundPeople extends Eloquent {
             //                     ->get();
 
         	// Substr match
-            $results = FoundPeople::whereRaw('`first-name` LIKE ? or `last-name` LIKE ?', array(
-                                                '%'.$find_name.'%', '%'.$find_name.'%'
-                                            ));
+            // $results = FoundPeople::whereRaw('first_name LIKE ? and last_name LIKE ?', array(
+            //                                     '%'.$find_first_name.'%', '%'.$find_last_name.'%'
+            //                                 ));
+
+            $results = Helper::searchTableForName(FoundPeople::TABLE_NAME, $find_name);
 
             // TODO : separate out exact matches and substr matches and disp them separately
 
@@ -108,9 +124,11 @@ class FoundPeople extends Eloquent {
         } elseif ($name && $age) {
             // Name, Age Specified
 
-            $results = FoundPeople::whereRaw('( `first-name` LIKE ? or `last-name` LIKE ? ) and age = ?', array(
-                                        '%'.$find_name.'%', '%'.$find_name.'%', $find_age
-                                    ));
+            // $results = FoundPeople::whereRaw('( first_name LIKE ? and last_name LIKE ? ) and age = ?', array(
+            //                             '%'.$find_first_name.'%', '%'.$find_last_name.'%', $find_age
+            //                         ));
+
+            $results = Helper::searchTableForNameAndAge(FoundPeople::TABLE_NAME, $find_name, $find_age);
 
             // TODO : separate out exact matches and substr matches and disp them separately
         }

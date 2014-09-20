@@ -71,6 +71,13 @@ Ah!
 	-	Redirect::to('url') takes URL, Redirect::route('name') takes named route.
 	-	Floated elements do not add to the height of the element they reside in properly. A similar scenario is described here: css-tricks.com/the-how-and-why-of-clearing-floats
 	-	If css change not affecting anything, go to Chrome > Dev tools. Settings icon > General > Disable cache (while Devtools is open). Then refresh. Check in Dev tools > Sources tab if the file is being loaded w all latest changes now.
+	-	Static functions and const variables inside classes in php. 
+		-	const CON_NAME = 'dd';    ClassName::CON_NAME to access. DON'T say const $NAME = 'dd' -> will not work
+	-	ArmyUpdates::whereRaw()->get() gives you a results array.
+		DB::table('ArmyUpdates')->whereRaw()->get() gives you an array of StdClass objects.
+			-	Change 'fetch' => PDO::FETCH_ASSOC, from PDO::FETCH_CLASS (Default) in app/config/database.php to change this behavior and get a results array like before again
+	-	DO NOT add <div class="container"> inside a tabbed panel. It will ruin it and even clearfix will not fix it.
+
 
 ----
 Todo:
@@ -183,6 +190,9 @@ Thur, Sep18 2014 : 9:17am	-	Matching, msg gen and claiming (+dup claiming) done 
 				   3:57pm	-	Made Found-Person post workflow work. It searches on FIP and updates user Dashboard. 
 				   				DO : Create new msg per fip looker on FOP post if it matches some fips
 				   				DO : way to say FOP is Equal to AU
+Sat, Sep 19 2014 : 10:10am	-	Dashboard tabbed navigation DONE
+								auto-matching of newly posted FOP against all FIPs DONE
+								TODO auto-matching of newly posted AU against all FIPs
 
 
 -----

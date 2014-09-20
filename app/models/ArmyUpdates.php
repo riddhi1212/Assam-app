@@ -3,14 +3,18 @@
 
 class ArmyUpdates extends Eloquent {
 
-	protected $fillable = ['first-name', 'age'];
+	//protected $fillable = ['first-name', 'age'];
+
+    const TABLE_NAME = 'ArmyUpdatesTable';
 
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
-	protected $table = 'ARMY-Updates';
+	protected $table = ArmyUpdates::TABLE_NAME;
+
+
 
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -21,17 +25,17 @@ class ArmyUpdates extends Eloquent {
 
 
 	public function setContributorID($id) {
-		$this->setAttribute('contributor-id', $id);
+		$this->contributor_id = $id;
+        $this->save();
 	}
 
     public function getFullName() {
-        $name = $this->getAttribute('first-name');
-        if ($this->getAttribute('last-name') !== null) {
-            $name = $name . " " . $this->getAttribute('last-name');
+        $name = $this->first_name;
+        if ($this->last_name !== null) {
+            $name = $name . " " . $this->last_name;
         }
         return $name;
     }
-
 
     // each AU hasMany FIP reports
     public function fips() {
@@ -54,29 +58,38 @@ class ArmyUpdates extends Eloquent {
 	//			Static Methods
 	// ===============================================================
 
-    // CAn't get matches without msg_id, won't create msg unless existence of matches confirmed
-    // public static function getMatchesForFIPWithNameAndAge($fip_id, $find_name, $find_age) {
-    //     $search_results = ArmyUpdates::searchWithNameAndAge($find_name, $find_age);
-    //     // $match = new Match;
-    //     // $match->match_army_update = true;
-    //     // $match->match_table_id = 
-    // }
 
-
+    // returns created $au
+    // TODO : do programmatically split of first name and last name and set first_name_has_spaces
+    public static function createNewForContributor($s_no, $first_name, $last_name, $age, $fb_url, $contributor_id) {
+        
+        $au = new ArmyUpdates;
+        $au->s_no = $s_no;
+        $au->first_name = $first_name;
+        $au->last_name = $last_name;
+        $au->age = $age;
+        $au->fb_url = $fb_url;
+        $au->contributor_id = $contributor_id;
+        $au->save();
+        return $au;
+    }
 
     // returns a results array
-    public static function searchUnclaimedWithParam($updates_sno, $updates_name, $updates_age) {
+    public static function searchUnclaimedWithParam($find_sno, $find_name, $find_age) {
         return ArmyUpdates::getBuilderWithParam($find_sno, $find_name, $find_age)
                             ->where('claimed', '=', false)
                             ->get();
     }
 
     // returns a results array
+    // Called from FindPeopleController::create
     public static function searchWithNameAndAge($find_name, $find_age) {
         return ArmyUpdates::searchWithParam("", $find_name, $find_age);
     }
 
     // returns a results array
+        // TODO explanation
+    // Called from ArmyUpdatesController. No matching capability yet? // TODO can add 'Claim' in future
     public static function searchWithParam($find_sno, $find_name, $find_age) {
         return ArmyUpdates::getBuilderWithParam($find_sno, $find_name, $find_age)->get();
     }
@@ -84,30 +97,31 @@ class ArmyUpdates extends Eloquent {
 	// returns a chainable thingie. A Builder object I think
     // example: the output of AU::where() ... ->get() has not been called yet
     // TODO explanation
-    // Called from AU page search button. No matching capability yet? // TODO can add 'Claim' in future
-    private static function getBuilderWithParam($updates_sno, $updates_name, $updates_age) {
+    private static function getBuilderWithParam($find_sno, $find_name, $find_age) {
 
+        $sno = false;
         $name = false;
         $age = false;
-        $sno = false;
-        if ($updates_name) {
+        if ($find_name) {
             $name = true;
         } 
-        if ($updates_age) {
+        if ($find_age) {
             $age = true;
         }
-        if ($updates_sno) {
+        if ($find_sno) {
             $sno = true;
         }
+
 
         $results =  array();
         $explanation = "";
         if ($sno) {
             // This can only return one row (I think . TODO: check assumption)
-            $results = ArmyUpdates::where('s-no', '=', $updates_sno);
+            $results = ArmyUpdates::where('s_no', '=', $find_sno);
             $explanation = "Do not search on 'S.no.' and Another field together. 'S.no.' is unique for every update, so it will never match 2 records. This search is returning results for 'S.no.' = ".$updates_sno.".";
         } elseif ($name && !$age) {
             // Only Name Specified
+
            // $results = ArmyUpdates::where('first-name', '=', $updates_name)->get();
             // search over last name too
             // $results = DB::table('ARMY-Updates')
@@ -115,16 +129,19 @@ class ArmyUpdates extends Eloquent {
             //                     ->orWhere('last-name', '=', $updates_name)
             //                     ->get();
 
-                $results = ArmyUpdates::whereRaw('`first-name` LIKE ? or `last-name` LIKE ?', array(
-                                                    '%'.$updates_name.'%', '%'.$updates_name.'%'
-                                                ));
+                // $results = ArmyUpdates::whereRaw(' first_name LIKE ? and last_name LIKE ? ', array(
+                //                                     '%'.$find_first_name.'%', '%'.$find_last_name.'%'
+                //                                 ));
 
-                // TODO : separate out exact matches and substr matches and disp them separately
+            $results = Helper::searchTableForName(ArmyUpdates::TABLE_NAME, $find_name);
+
+            // TODO : separate out exact matches and substr matches and disp them separately
 
 
         } elseif ($age && !$name) {
             // Only Age Specified
-            $results = ArmyUpdates::where('age', '=', $updates_age);
+            $results = ArmyUpdates::where('age', '=', $find_age);
+
         } elseif ($name && $age) {
             // Name, Age Specified
             // $results = ArmyUpdates::where('age', '=', $updates_age)
@@ -133,14 +150,18 @@ class ArmyUpdates extends Eloquent {
             //                         //TODO : last name search!
 
 
-            $results = ArmyUpdates::whereRaw('( `first-name` LIKE ? or `last-name` LIKE ? ) and age = ?', array(
-                                        '%'.$updates_name.'%', '%'.$updates_name.'%', $updates_age
-                                    ));
+            // $results = ArmyUpdates::whereRaw('( first_name LIKE ? and last_name LIKE ? ) and age = ?', array(
+            //                             '%'.$find_first_name.'%', '%'.$find_last_name.'%', $find_age
+            //                         ));
 
-                // TODO : separate out exact matches and substr matches and disp them separately
+            $results = Helper::searchTableForNameAndAge(ArmyUpdates::TABLE_NAME, $find_name, $find_age);
+
+            // TODO : separate out exact matches and substr matches and disp them separately
         }
 
         return $results;
     }
 
 }
+
+

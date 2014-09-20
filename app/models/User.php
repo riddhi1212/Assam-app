@@ -52,7 +52,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function findPeople() {
 		if ($this->looker) {
 			// specifying second param because default foreign key will be 'user_id'
-			return $this->hasMany('FindPeople', 'looker-id');  
+			return $this->hasMany('FindPeople', 'looker_id');  
 		}
 		
 		return NULL;
@@ -72,7 +72,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function contributedArmyUpdates() {
 		if ($this->contributor) {
 			// specifying second param because default foreign key will be 'user_id'
-			return $this->hasMany('ArmyUpdates', 'contributor-id');  
+			return $this->hasMany('ArmyUpdates', 'contributor_id');  
 		}
 		
 		return NULL;

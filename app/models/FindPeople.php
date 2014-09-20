@@ -3,14 +3,16 @@
 
 class FindPeople extends Eloquent {
 
-	protected $fillable = ['first-name', 'age', 'looker-id'];
+	//protected $fillable = ['first-name', 'age', 'looker-id'];
+
+    const TABLE_NAME = 'FindPeopleTable';
 
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
-	protected $table = 'find-people';
+	protected $table = FindPeople::TABLE_NAME;
 
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -21,11 +23,11 @@ class FindPeople extends Eloquent {
 
 
     public function getFirstName() {
-        return $this->getAttribute('first-name');
+        return $this->first_name;
     }
 
     public function getLastName() {
-        return $this->getAttribute('last-name');
+        return $this->last_name;
     }
 
     public function getFullName() {
@@ -44,7 +46,7 @@ class FindPeople extends Eloquent {
 	}
 
 	public function getLookerID() {
-		return $this->getAttribute('looker-id');
+		return $this->looker_id;
 	}
 
 	public function getLooker() {
@@ -59,9 +61,9 @@ class FindPeople extends Eloquent {
         $match = new Match;
         $match->fip_id = $this->id;
         $match->match_table_id = $found['id']; // TODO try $found->id
-        if ($match_table == 'ArmyUpdates') {
+        if ($match_table == ArmyUpdates::TABLE_NAME) {
             $match->match_army_update = true;
-        } elseif ($match_table == 'FoundPeople') {
+        } elseif ($match_table == FoundPeople::TABLE_NAME) {
             $match->match_found_person = true;
         }
         $match->save();
@@ -82,6 +84,19 @@ class FindPeople extends Eloquent {
 	// ===============================================================
 	//			Static Methods
 	// ===============================================================
+
+
+    // returns created $fip
+    public static function createNewForLooker($name, $age, $looker_id) {
+        $fip = new FindPeople;
+
+        Helper::setFirstAndLastNameFor($name, $fip);
+
+        $fip->age = $age;
+        $fip->looker_id = $looker_id;
+        $fip->save();
+        return $fip;
+    }
 
 
 	// returns a results array
@@ -109,7 +124,7 @@ class FindPeople extends Eloquent {
 
         $name = false;
         $age = false;
-        if ($find_name) {
+        if ($find_name) { 
             $name = true;
         } 
         if ($find_age) {
@@ -128,9 +143,11 @@ class FindPeople extends Eloquent {
             //                     ->get();
 
         	// Substr match
-            $results = FindPeople::whereRaw('`first-name` LIKE ? or `last-name` LIKE ?', array(
-                                                '%'.$find_name.'%', '%'.$find_name.'%'
-                                            ));
+            // $results = FindPeople::whereRaw('first_name LIKE ? and last_name LIKE ?', array(
+            //                                     '%'.$find_first_name.'%', '%'.$find_last_name.'%'
+            //                                 ));
+
+            $results = Helper::searchTableForName(FindPeople::TABLE_NAME, $find_name);
 
             // TODO : separate out exact matches and substr matches and disp them separately
 
@@ -141,9 +158,11 @@ class FindPeople extends Eloquent {
         } elseif ($name && $age) {
             // Name, Age Specified
 
-            $results = FindPeople::whereRaw('( `first-name` LIKE ? or `last-name` LIKE ? ) and age = ?', array(
-                                        '%'.$find_name.'%', '%'.$find_name.'%', $find_age
-                                    ));
+            // $results = FindPeople::whereRaw('( first_name LIKE ? and last_name LIKE ? ) and age = ?', array(
+            //                             '%'.$find_first_name.'%', '%'.$find_last_name.'%', $find_age
+            //                         ));
+
+            $results = Helper::searchTableForNameAndAge(FindPeople::TABLE_NAME, $find_name, $find_age);
 
             // TODO : separate out exact matches and substr matches and disp them separately
         }

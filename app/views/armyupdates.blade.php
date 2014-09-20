@@ -44,7 +44,7 @@
 			      <div class="army-updates-display">
 			      	  <p class="search-explanation"></p>
 			      	  <p class="search-text"></p>
-			      	  <div>
+			      	  <div class="army-updates-pag-links">
 			          	{{ $army_updates_pag->links() }}
 			          </div>
 			      	  <li class="list-group-item list-group-item-info">
@@ -56,10 +56,10 @@
 			      	  </li>
 			          <div class="army-updates-list list-group">
 			          	@foreach ($army_updates_pag->getCollection()->all() as $update)
-					  	  	<a class="list-group-item" href={{ $update->getAttribute('fb-url') }} target="_blank">
+					  	  	<a class="list-group-item" href={{ $update->fb_url }} target="_blank">
 				           		<div class="row">
-				           			<span class="col-md-4">{{ $update->getAttribute('s-no') }}</span>
-									<span class="col-md-4">{{ $update->getAttribute('first-name') .' '. $update->getAttribute('last-name') }}</span>
+				           			<span class="col-md-4">{{ $update->s_no }}</span>
+									<span class="col-md-4">{{ $update->getFullName() }}</span>
 									<span class="col-md-4">{{ $update->age }}</span>
 								</div>
 							</a>

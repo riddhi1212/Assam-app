@@ -45,21 +45,19 @@ class FoundPeopleController extends BaseController {
             Auth::user()->makeFinder();
         }
 
-        // TODO: change to adding to first-name and last-name
         // TODO: check for duplicates before creating another record
-        $fop = FoundPeople::create([
-            'first-name' => $found_name,
-            'age' => $found_age,
-            'finder_id' => Auth::user()->id
-        ]);
+        $fop = FoundPeople::createNewForFinder($found_name, $found_age, Auth::user()->id);
+
 
         Log::info("========[in FouldPeopleController -> fop is]==========");
         Log::info($fop);
 
         $fip_search_results = FindPeople::searchWithNameAndAge($found_name, $found_age);
         Log::info("============[got back fip_search_results]==============");
+        Log::info($fip_search_results);
         foreach ($fip_search_results as $fip_result) {
-            $fip_result->createNewMatch('FoundPeople', $fop);
+            Log::info($fip_result);
+            FindPeople::find($fip_result['id'])->createNewMatch(FoundPeople::TABLE_NAME, $fop);
         }
         Log::info("============[created matches]==============");
 
@@ -70,12 +68,15 @@ class FoundPeopleController extends BaseController {
         $response = array(
             'status' => 'success',
             'username' => Auth::user()->fname,
-            'fname' => $found_name,
-            'lname' => $found_name,
+            'fname' => Helper::getFirstNameFrom($found_name),
+            'lname' => Helper::getLastNameFrom($found_name),
             'age'   => $found_age,
+            'msgCount' => Auth::user()->messages()->count(),
             'msg' => 'Person inserted in Found-People Table successfully', // figure out how to use this future-TODO
         );
  
+        Log::info("===========================in FoundPeopleController create [end]");
+        
         return Response::json( $response );
     }
 }

@@ -5,6 +5,8 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateArmyUpdatesTable extends Migration {
 
+	private $tableName = ArmyUpdates::TABLE_NAME;
+
 	/**
 	 * Run the migrations.
 	 *
@@ -12,24 +14,25 @@ class CreateArmyUpdatesTable extends Migration {
 	 */
 	public function up()
 	{		
-		Schema::create('ARMY-Updates', function(Blueprint $table)
+		Schema::create($this->tableName, function(Blueprint $table)
 		{
 		    $table->increments('id');
 		    $table->timestamps();
 
 			$table->string('contributor');
-		    $table->integer('s-no')->unsigned();
-			$table->string('first-name');
-			$table->string('last-name')->nullable();
+		    $table->integer('s_no')->unsigned();
+			$table->string('first_name');
+			$table->string('last_name')->nullable();
+			$table->boolean('first_name_has_spaces')->default(false);
 			$table->integer('age')->unsigned();
 			$table->string('address')->nullable();
-			$table->date('update-fb-date')->nullable();
-			$table->string('fb-url')->nullable();
+			$table->date('update_fb_date')->nullable();
+			$table->string('fb_url');
 			$table->integer('child')->unsigned()->default('0');
 
 			// Relationships
 			// Each army-updates row has a Contributor user
-			$table->integer('contributor-id')->unsigned();
+			$table->integer('contributor_id')->unsigned();
 
 			$table->boolean('claimed')->default(false);
 		});
@@ -42,7 +45,7 @@ class CreateArmyUpdatesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('ARMY-Updates');
+		Schema::dropIfExists($this->tableName);
 	}
 
 }
