@@ -195,6 +195,7 @@ Thur, Sep18 2014 : 9:17am	-	Matching, msg gen and claiming (+dup claiming) done 
 Sat, Sep 19 2014 : 10:10am	-	Dashboard tabbed navigation DONE
 								auto-matching of newly posted FOP against all FIPs DONE
 								TODO auto-matching of newly posted AU against all FIPs
+				   11:15am	-	navbar active link highlighting done
 
 
 -----

@@ -5,7 +5,7 @@
 
 			<div class="info">
 				<div class="container">
-					<h1>About Us</h1>
+					<h1>About Me</h1>
 					<p>Developer:...</p>
 					<p>...</p>
 				</div>
