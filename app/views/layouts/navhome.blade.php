@@ -18,18 +18,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-<!--               @if ( Auth::check() )
-                <a class="navbar-brand" href={{ route('dashboard') }}>Dashboard</a>
-              @else
-                <a class="navbar-brand" href={{ route('howto') }}>Home</a>
-              @endif -->
               <a class="navbar-brand" href={{ route('howto') }}>Home</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav">
-                <li><a class="navbar-link active-link" href={{ route('updates') }}>ARMY Updates</a></li>
+              <ul class="nav navbar-nav navbar-left">
+                <li><a class="navbar-link" href={{ route('updates') }}>ARMY Updates</a></li>
                 <li><a class="navbar-link" href={{ route('find.and.found') }}>Find & Found</a></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle navbar-link" data-toggle="dropdown">Volunteer<span class="caret"></span></a>
@@ -84,6 +79,27 @@
         <br/>
         {{ HTML::script('https://code.jquery.com/jquery-1.11.1.min.js'); }}
         {{ HTML::script('http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.js'); }}
+
+        <script>
+          $(document).ready(function() {
+
+              var url = $(location).attr('href');
+              var jq = "a[href='" + url + "']";
+
+              console.log(jq);
+
+              $(jq).addClass("active-link");
+
+              
+
+              $(".nav a").on("click", function(){
+                $(document).find(".active-link").removeClass("active-link");
+                 //$(".nav").find(".active-link").removeClass("active-link");
+                 $(this).parent().addClass("active-link");
+              });
+          });
+        </script>
+
         @yield('jsinclude')
     </body>
 </html>
