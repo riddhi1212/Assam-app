@@ -8,7 +8,7 @@
 <div id="wrap">
 	<div class="stripe">
 		<div class="container">
-			<p class="pull-left">Congratulations on taking the wonderful step of Adding a Donation Cause here:</p>
+			<p class="pull-left">Congratulations on taking the wonderful step of Adding a Donation Channel here:</p>
 			<p class="pull-right">
 				...
 			</p>
@@ -36,7 +36,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="dc-img-url" class="control-label col-sm-4">Org Logo URL</label>
+					<label for="dc-img-url" class="control-label col-sm-4">Organisation Logo URL</label>
 					<div class="col-sm-8">
 							<input type="text" class="form-control" id="dc-img-url" name="dc-img-url" placeholder="Enter URL to image of organisation">
 					</div>

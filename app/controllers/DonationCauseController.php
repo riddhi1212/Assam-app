@@ -39,4 +39,21 @@ class DonationCauseController extends BaseController {
         return Redirect::route('donate');
 	}
 
+    public function edit() {
+        Log::info("editing");
+
+        $dc_id = Input::get( 'dc-id' );
+        $dc_name = Input::get( 'dc-name' );
+        $dc_desc = Input::get( 'dc-desc' );
+        $dc_img_url = Input::get( 'dc-img-url' );
+
+        $dc_donation_url = Input::get( 'dc-donation-url' );
+        $dc_instructions = Input::get( 'dc-instructions' );
+
+        DonationCause::updateWithID($dc_id, $dc_name, $dc_desc, $dc_img_url, $dc_donation_url, $dc_instructions);
+
+        return Redirect::route('donation.channel.show', $dc_id);
+
+    }
+
 }

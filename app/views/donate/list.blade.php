@@ -8,10 +8,10 @@
 <div id="wrap">
 	<div class="stripe">
 		<div class="container">
-			<p class="pull-left">Donate</p>
+			<p class="pull-left">All Donation Channels</p>
 			<p class="pull-right">
 				<a class="btn btn-primary" href={{ route('donationcause.addform') }}>
-					<span class="fa fa-plus-square fa-fw fa-lg"></span>Add Your Cause
+					<span class="fa fa-plus-square fa-fw fa-lg"></span>Add Your Channel
 				</a>
 			</p>
 		</div>
@@ -24,8 +24,11 @@
 					@foreach ($row as $cause)
 			  			<div class="col-xs-12 col-sm-4">
 				  			<div class="thumbnail">
-				  				<!-- add class img-responsive ?? -->
-				  				<img src="{{ $cause->img_url }}" class="img-responsive">
+				  				@if ($cause->img_url)
+				  					<img src="{{ $cause->img_url }}" class="img-responsive">
+				  				@else
+				  					<img src="http://dummyimage.com/250x120&text=No image specified" class="img-responsive">
+				  				@endif
 						      	<div class="caption">
 						        	<h3>{{ $cause->name }}</h3>
 						        	<p>{{ $cause->description }}</p>

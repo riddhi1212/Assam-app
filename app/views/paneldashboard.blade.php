@@ -153,10 +153,13 @@
 						          <ul class="dc-list list-group">
 						          	@foreach ($donation_causes_list as $dc)
 					          			<div class="list-group-item row">
-											<span class="col-md-4">{{ $dc->name }}</span>
-											<span class="col-md-4">{{ $dc->description }}</span>
-											<span class="col-md-4">
+											<span class="col-md-3">{{ $dc->name }}</span>
+											<span class="col-md-3">{{ $dc->description }}</span>
+											<span class="col-md-3">
 												<a href="{{ $dc->donation_url }}" target="_blank">Donation URL</a>
+											</span>
+											<span class="col-md-3">
+												<a href="{{ route('donation.channel.edit', $dc->id) }}"><span class="fa fa-pencil fa-fw fa-lg">Edit</a>
 											</span>
 										</div>
 						          	@endforeach
