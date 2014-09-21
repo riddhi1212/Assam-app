@@ -1,6 +1,4 @@
 var main = function() {
-	console.log("in main");
-
 	// ------------------
 	// Remove-fip Button click
 	// ------------------

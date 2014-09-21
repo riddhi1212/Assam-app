@@ -24,7 +24,8 @@
                             <li><a href="#tab2info" data-toggle="tab">Missing Person Reports</a></li>
                             <li><a href="#tab3info" data-toggle="tab">Contributions</a></li>
                             <li><a href="#tab4info" data-toggle="tab">Found Person Reports</a></li>
-                            <li><a href="#tab5info" data-toggle="tab">Info5</a></li>
+                            <li><a href="#tab5info" data-toggle="tab">Donation Causes Added</a></li>
+                            <li><a href="#tab6info" data-toggle="tab">Info6</a></li>
                         </ul>
                     </span>
                 </div>
@@ -55,7 +56,11 @@
 										        <col class="fip-last-name">
 										        <col class="fip-age">
 							          			<tr>
-							          				<td width="auto"><button type="button" class="btn btn-danger remove-fip-btn" name="remove-fip-btn" id="{{ $person->id }}"><span class="fa fa-remove fa-fw fa-2x"></span></button></td>
+							          				<td width="auto">
+							          					<button type="button" class="btn btn-danger remove-fip-btn" name="remove-fip-btn" id="{{ $person->id }}" data-toggle="tooltip" data-placement="bottom" title="Delete this Missing Person Report">
+							          						<span class="fa fa-remove fa-fw fa-lg"></span>
+							          					</button>
+							          				</td>
 
 							          				<td class="find-person-status" id="{{ $person->id }}">
 							          					<a data-toggle="collapse" data-parent="#accordion" href="#C{{ $person->id }}">
@@ -127,9 +132,9 @@
                         </div>
                         <div class="tab-pane fade" id="tab4info">
                     		@if ($found_people_list)
-								<div class="messages-display">
+								<div class="fop-display">
 								  <h4 class="list-group-item list-group-item-info">Found-Person Reports</h4>
-						          <ul class="messages-list list-group">
+						          <ul class="fop-list list-group">
 						          	@foreach ($found_people_list as $fop)
 					          			<div class="list-group-item row">
 											<span class="col-md-4">{{ $fop->getFirstName() }}</span>
@@ -142,6 +147,24 @@
 					      	@endif
                         </div>
                         <div class="tab-pane fade" id="tab5info">
+                    		@if ($donation_causes_list)
+								<div class="dc-display">
+								  <h4 class="list-group-item list-group-item-info">Donation Causes added by you: </h4>
+						          <ul class="dc-list list-group">
+						          	@foreach ($donation_causes_list as $dc)
+					          			<div class="list-group-item row">
+											<span class="col-md-4">{{ $dc->name }}</span>
+											<span class="col-md-4">{{ $dc->description }}</span>
+											<span class="col-md-4">
+												<a href="{{ $dc->donation_url }}" target="_blank">Donation URL</a>
+											</span>
+										</div>
+						          	@endforeach
+						          </ul>
+						      	</div>
+					      	@endif
+                        </div>
+                        <div class="tab-pane fade" id="tab6info">
                         	<h4 class="list-group-item list-group-item-info">Found-Person Reports</h4>
                         	<ul class="list-group">
                         		<li class="list-group-item">test</li>

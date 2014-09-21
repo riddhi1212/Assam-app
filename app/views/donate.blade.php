@@ -9,7 +9,11 @@
 	<div class="stripe">
 		<div class="container">
 			<p class="pull-left">Donate</p>
-			<p class="pull-right">Links ..</p>
+			<p class="pull-right">
+				<a class="btn btn-primary" href={{ route('donationcause.addform') }}>
+					<span class="fa fa-plus-square fa-fw fa-lg"></span>Add Your Cause
+				</a>
+			</p>
 		</div>
 	</div>
 
@@ -44,5 +48,5 @@
 @stop
 
 @section('jsinclude')
-        
+        {{ HTML::script('js/donate.js'); }}
 @stop

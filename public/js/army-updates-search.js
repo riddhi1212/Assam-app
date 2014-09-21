@@ -1,5 +1,4 @@
 var main = function() {
-	console.log("in main");
 
 	// ------------------
 	// Form Button Clicks

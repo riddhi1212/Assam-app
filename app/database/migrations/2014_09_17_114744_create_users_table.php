@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration {
 			$table->boolean('looker')->default(false);
 			$table->boolean('finder')->default(false);
 			$table->boolean('contributor')->default(false);
+			$table->boolean('donationcause_adder')->default(false);
 
 
 			$table->string('password'); // hash of mobile for now

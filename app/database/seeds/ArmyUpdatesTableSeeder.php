@@ -17,8 +17,6 @@ class ArmyUpdatesTableSeeder extends Seeder {
             // HAVE-TODO: Create contributor user for each contributor name in seedCSV file and use that id below
             $contributor_user = User::where('fname','Riddhi')->get()->first();
             $contributor_user->makeContributor();
-            $contributor_user->save(); // TODO: can this go into makeContributor function ? and makeLooker function?
-
 
             $s_no = $listings[1];
             $first_name = $listings[2];

@@ -97,7 +97,7 @@ Route::get('/contributors', array(
 					$cu_list = User::where('contributor',true)->get();
 					return View::make('contributors',[ 'contributor_users_list' => $cu_list ]);
 				}
-) );
+));
 
 Route::get('/donate', array(
     'as' => 'donate',
@@ -106,7 +106,20 @@ Route::get('/donate', array(
 					$dc_list = DonationCause::all();
 					return View::make('donate',[ 'donation_causes_list' => $dc_list ]);
 				}
-) );
+));
+
+Route::get('/DonationCauseAdd', array(
+    'as' => 'donationcause.addform',
+    'uses' => function()
+				{
+					return View::make('donationcause');
+				}
+));
+
+Route::post('/DonationCauseAdd', array(
+    'as' => 'donationcause.add',
+    'uses' => 'DonationCauseController@create')
+);
 
 Route::get('siteimpact', array(
 	'as'   => 'siteimpact',
@@ -114,7 +127,7 @@ Route::get('siteimpact', array(
 				{
 					return View::make('siteimpact');
 				}
-) );
+));
 
 // ===============================================================
 //			User Authentication
@@ -147,6 +160,7 @@ Route::get('dashboardold', array(
 						$fip_list = NULL;
 						$au_count = NULL;
 						$fop_list = NULL;
+						$dc_list = NULL;
 						if ( Auth::user()->messages()->count() > 0 ) {
 							$msg_list = Auth::user()->messages()->orderBy('created_at','dsc')->get();
 						}
@@ -159,14 +173,16 @@ Route::get('dashboardold', array(
 						if ( Auth::user()->finder ) {
 							$fop_list = Auth::user()->foundPeople()->orderBy('created_at','dsc')->get();
 						}
-
-						Log::info($fip_list);
+						if ( Auth::user()->donationcause_adder ) {
+							$dc_list = Auth::user()->donationCausesAdded()->orderBy('created_at','dsc')->get();
+						}
 						
 						return View::make('trying\dashboard',[ 'messages_list' => $msg_list,
-														'find_people_list' => $fip_list,
-														'army_updates_count' => $au_count,
-														'found_people_list' => $fop_list
-													  ]);
+															'find_people_list' => $fip_list,
+															'army_updates_count' => $au_count,
+															'found_people_list' => $fop_list,
+															'donation_causes_list' => $dc_list
+														  ]);
 					}
 	)
 )->before('auth');
@@ -179,6 +195,7 @@ Route::get('dashboard', array(
 						$fip_list = NULL;
 						$au_count = NULL;
 						$fop_list = NULL;
+						$dc_list = NULL;
 						if ( Auth::user()->messages()->count() > 0 ) {
 							$msg_list = Auth::user()->messages()->orderBy('created_at','dsc')->get();
 						}
@@ -191,13 +208,15 @@ Route::get('dashboard', array(
 						if ( Auth::user()->finder ) {
 							$fop_list = Auth::user()->foundPeople()->orderBy('created_at','dsc')->get();
 						}
-
-						Log::info($fip_list);
+						if ( Auth::user()->donationcause_adder ) {
+							$dc_list = Auth::user()->donationCausesAdded()->orderBy('created_at','dsc')->get();
+						}
 						
 						return View::make('paneldashboard',[ 'messages_list' => $msg_list,
 														'find_people_list' => $fip_list,
 														'army_updates_count' => $au_count,
-														'found_people_list' => $fop_list
+														'found_people_list' => $fop_list,
+														'donation_causes_list' => $dc_list
 													  ]);
 					}
 	)

@@ -79,6 +79,7 @@ Ah!
 	-	DO NOT add <div class="container"> inside a tabbed panel. It will ruin it and even clearfix will not fix it.
 	-	ArmyUpdates::all(['first_name', 'age']) for getting specified cols through eloquent
 	-	navbar-brand is different from navbar-link because the navbar-links are collapsed on mobile screens
+	-	<a class="btn btn-primary"> works. haha. you can style an <a> tag like a button
 
 
 ----

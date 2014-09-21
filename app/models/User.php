@@ -68,6 +68,16 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     return NULL;
   }
 
+  // each User of type DonationCauseAdder can try to add many donation causes
+  public function donationCausesAdded() {
+    if ($this->donationcause_adder) {
+      // specifying second param because default foreign key will be 'user_id' (check)
+      return $this->hasMany('DonationCause', 'poster_id');  
+    }
+    
+    return NULL;
+  }
+
 	// each User of type Looker can try to register find requests for many people
 	public function contributedArmyUpdates() {
 		if ($this->contributor) {
@@ -102,6 +112,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
   // make finder
   public function makeFinder() {
     $this->finder = true;
+    $this->save();
+  }
+
+  // make donation cause adder
+  public function makeDonationCauseAdder() {
+    $this->donationcause_adder = true;
     $this->save();
   }
 
