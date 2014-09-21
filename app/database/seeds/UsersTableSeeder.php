@@ -9,7 +9,13 @@ class UsersTableSeeder extends Seeder {
 	 */
     public function run()
     {
-        DB::table('users')->delete();
+        // DB::table('users')->delete(); // only deletes all records from table. that's a problem because the auto incrementing id will not reset to 1.
+
+        // Calling appropriate migration directly
+        $ut = new CreateUsersTable;
+        $ut->down();
+        $ut->up();
+
         User::create(array(
             'fname'     => 'Riddhi',
             'lname'     => 'Mittal',

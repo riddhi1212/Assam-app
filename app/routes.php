@@ -104,7 +104,16 @@ Route::get('/donate', array(
     'uses' => function()
 				{
 					$dc_list = DonationCause::all();
-					return View::make('donate',[ 'donation_causes_list' => $dc_list ]);
+					return View::make('donate/list',[ 'donation_causes_list' => $dc_list ]);
+				}
+));
+
+Route::get('DonationCause/{id}', array(
+    'as' => 'donationcause.show',
+    'uses' => function($id)
+				{
+					$dc = DonationCause::find($id);
+					return View::make('donate/show', [ 'donation_cause' => $dc ]);
 				}
 ));
 
@@ -112,7 +121,7 @@ Route::get('/DonationCauseAdd', array(
     'as' => 'donationcause.addform',
     'uses' => function()
 				{
-					return View::make('donationcause');
+					return View::make('donate/add');
 				}
 ));
 

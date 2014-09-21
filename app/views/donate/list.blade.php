@@ -48,5 +48,5 @@
 @stop
 
 @section('jsinclude')
-        {{ HTML::script('js/donate.js'); }}
+
 @stop

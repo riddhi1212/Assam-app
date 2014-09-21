@@ -9,12 +9,14 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	use UserTrait, RemindableTrait;
 
+  const TABLE_NAME = 'users';
+
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
-	protected $table = 'users';
+	protected $table = User::TABLE_NAME;
 
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -146,6 +148,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
   }
 
 
+
+
 	// ===============================================================
 	//			Static Methods
 	// ===============================================================
@@ -197,6 +201,25 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
       Log::info("===Returning finder id ====");
       $user_id_str = (string) $user->id;
       Log::info("Id is " . $user_id_str);
+      return $user;
+  }
+
+  // Returns the user object
+  public static function createDCAdderAndSave($fname, $lname, $mobile) {
+      Log::info("===Creating DC Adder " . $fname);
+
+      Log::info($lname);
+      Log::info($mobile);
+
+      $user = new User;
+      $user->fname = $fname;
+      $user->lname = $lname;
+      $user->mobile = $mobile;
+      $user->makeDonationCauseAdder();
+      // $mobile is str
+      $user->password = Hash::make($mobile);  //TODO : add mix of first name and mob num
+      $user->save();
+
       return $user;
   }
 
