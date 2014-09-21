@@ -10,7 +10,7 @@
 		<div class="container">
 			<p class="pull-left">All Donation Channels</p>
 			<p class="pull-right">
-				<a class="btn btn-primary" href={{ route('donationcause.addform') }}>
+				<a class="btn btn-primary" href={{ route('donation.channel.add.form') }}>
 					<span class="fa fa-plus-square fa-fw fa-lg"></span>Add Your Channel
 				</a>
 			</p>

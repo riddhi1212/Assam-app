@@ -18,7 +18,7 @@
 	<div class="row">
 		<div class="col-md-8">
 			<h2>Donation Cause details :</h2>
-	      	<form class="form-horizontal" id="add-donation-cause-form" method="post" action={{ route('donationcause.add') }}>
+	      	<form class="form-horizontal" id="add-donation-cause-form" method="post" action={{ route('donation.channel.add') }}>
 	        	<div class="form-group">
 					<label for="dc-name" class="control-label col-sm-4">Name of Organisation Collecting Donations</label>
 					<div class="col-sm-8">

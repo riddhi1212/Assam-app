@@ -155,11 +155,16 @@
 					          			<div class="list-group-item row">
 											<span class="col-md-3">{{ $dc->name }}</span>
 											<span class="col-md-3">{{ $dc->description }}</span>
-											<span class="col-md-3">
+											<span class="col-md-2">
 												<a href="{{ $dc->donation_url }}" target="_blank">Donation URL</a>
 											</span>
-											<span class="col-md-3">
-												<a href="{{ route('donation.channel.edit', $dc->id) }}"><span class="fa fa-pencil fa-fw fa-lg">Edit</a>
+											<span class="col-md-2">
+												<a href="{{ route('donation.channel.edit', $dc->id) }}">
+													<span class="fa fa-pencil fa-fw fa-lg">Edit</span></a>
+											</span>
+											<span class="col-md-2">
+												<a href="{{ route('donation.channel.delete', $dc->id) }}">
+													<span class="fa fa-remove fa-fw fa-lg">Delete</span></a>
 											</span>
 										</div>
 						          	@endforeach

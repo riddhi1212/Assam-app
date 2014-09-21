@@ -56,4 +56,9 @@ class DonationCauseController extends BaseController {
 
     }
 
+    public function delete($id) {
+        DonationCause::find($id)->delete();
+        return Redirect::to('dashboard');
+    }
+
 }

@@ -117,15 +117,15 @@ Route::get('donation/show/{id}', array(
 				}
 ));
 
-Route::get('/DonationCauseAdd', array(
-    'as' => 'donationcause.addform',
+Route::get('/donation/channel/add/form', array(
+    'as' => 'donation.channel.add.form',
     'uses' => function()
 				{
 					return View::make('donate/add');
 				}
 ));
 
-Route::post('/DonationCauseAdd', array(
+Route::post('/donation/channel/add', array(
     'as' => 'donation.channel.add',
     'uses' => 'DonationCauseController@create')
 );
@@ -137,6 +137,11 @@ Route::get('donation/edit/{id}', array(
 					$dc = DonationCause::find($id);
 					return View::make('donate/edit', [ 'dc' => $dc ]);
 				}
+))->before('auth');
+
+Route::get('donation/delete/{id}', array(
+    'as' => 'donation.channel.delete',
+    'uses' => 'DonationCauseController@delete'
 ))->before('auth');
 
 Route::post('donation/edit/{id}', array(
