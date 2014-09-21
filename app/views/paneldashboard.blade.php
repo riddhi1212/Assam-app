@@ -55,7 +55,8 @@
 										        <col class="fip-last-name">
 										        <col class="fip-age">
 							          			<tr>
-							          				<td width="auto"><a href="#"><span class="fa fa-remove fa-fw fa-2x"></span></a></td>
+							          				<td width="auto"><button type="button" class="btn btn-danger remove-fip-btn" name="remove-fip-btn" id="{{ $person->id }}"><span class="fa fa-remove fa-fw fa-2x"></span></button></td>
+
 							          				<td class="find-person-status" id="{{ $person->id }}">
 							          					<a data-toggle="collapse" data-parent="#accordion" href="#C{{ $person->id }}">
 							          					@if ($person->found)
@@ -71,7 +72,7 @@
 							     				</tr>
 							     				</table>
 											<!-- </div> -->
-											<div id="C{{ $person->id }}" class="panel-collapse collapse in">
+											<div id="C{{ $person->id }}" class="panel-collapse collapse"> <!-- adding class in makes default open -->
 												<div class="panel-body">
 													Panel body goes here.
 												</div>

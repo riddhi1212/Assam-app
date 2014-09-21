@@ -6,6 +6,7 @@ class FindPeopleController extends BaseController {
     //     return View::make( 'options/new' );
     // }
     
+    // POST to /find
     public function create() {
         //check if its our form 
         // TODO #7
@@ -92,4 +93,24 @@ class FindPeopleController extends BaseController {
 
         return Response::json( $response );
     }
+
+    // POST to /deletefip
+    public function delete() {
+        $fip_id = Input::get( 'fip-id' );
+
+        Log::info("===========================in FindPeopleController delete [fip_id] is =>");
+        Log::info($fip_id);
+
+        FindPeople::find($fip_id)->delete();
+
+        Match::deleteMatchesForFip($fip_id);
+
+        $response = array(
+            'status' => 'success',
+        );
+
+        return Response::json( $response );
+    }
+
+
 }

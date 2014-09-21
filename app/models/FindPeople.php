@@ -1,7 +1,12 @@
 <?php
 
+use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
 class FindPeople extends Eloquent {
+
+    use SoftDeletingTrait;
+
+    protected $dates = ['deleted_at'];
 
 	//protected $fillable = ['first-name', 'age', 'looker-id'];
 

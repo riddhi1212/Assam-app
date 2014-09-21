@@ -65,6 +65,11 @@ Route::post('/find', array(
     'uses' => 'FindPeopleController@create'
 ) );
 
+Route::post('deletefip', array(
+    'as' => 'find.people.delete',
+    'uses' => 'FindPeopleController@delete'
+) );
+
 Route::post('/found', array(
     'as' => 'found.people.create',
     'uses' => 'FoundPeopleController@create'

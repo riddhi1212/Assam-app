@@ -28,6 +28,9 @@ class CreateFindPeopleTable extends Migration {
 			// Each find-people row has a Looker user
 			$table->integer('looker_id')->unsigned();
 
+			$table->softDeletes();
+			$table->text('why')->nullable(); // reason for deleting/canceling FIP request (make this enum maybe)
+
 			$table->boolean('found')->default(false);
 			// to be filled if found = true
 			$table->boolean('duplicate')->default(false); // true if this is duplicate claim. i.e. AU/FOP has already been claimed by someone else first
