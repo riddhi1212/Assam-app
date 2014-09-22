@@ -80,6 +80,8 @@ Ah!
 	-	ArmyUpdates::all(['first_name', 'age']) for getting specified cols through eloquent
 	-	navbar-brand is different from navbar-link because the navbar-links are collapsed on mobile screens
 	-	<a class="btn btn-primary"> works. haha. you can style an <a> tag like a button
+	-	__DIR__ gives a string with the current folder
+	-	the file path given to Input::file('au-file')->move(...) creates a folder if it doesn't already exist
 
 
 ----
@@ -268,4 +270,6 @@ Updates:
 
 
 
-
+---------seedAfterReview
+	contrib_firstname | contrib_lastname | _uploadedby_ | uploader_firstname | uploader_numuploaded . csv
+---------

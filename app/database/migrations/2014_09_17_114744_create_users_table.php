@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration {
 		    // User input
 			$table->string('fname');
 			$table->string('lname');
-			$table->integer('mobile');
+			$table->bigInteger('mobile');
 
 			// Required, I will set
 			//$table->string('type'); // Looker / Finder / Contributor
@@ -29,6 +29,8 @@ class CreateUsersTable extends Migration {
 			$table->boolean('finder')->default(false);
 			$table->boolean('contributor')->default(false);
 			$table->boolean('donationcause_adder')->default(false);
+
+			$table->integer('upload_number')->default(0);
 
 
 			$table->string('password'); // hash of mobile for now

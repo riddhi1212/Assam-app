@@ -38,10 +38,6 @@ class FindPeopleController extends BaseController {
             // So no need to use Auth::attempt
             Auth::login($looker_obj, true);
             // =====[end]================================================
-        } 
- 
-        if ( Auth::guest() ) {
-            dd('why is there no Authenticated User here');
         }
 
         if ( !Auth::user()->looker ) {

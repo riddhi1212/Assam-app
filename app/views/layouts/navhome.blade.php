@@ -30,7 +30,7 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle navbar-link" data-toggle="dropdown">Volunteer<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Contribute Now!</a></li>
+                    <li><a href={{ route('contributor.add.form') }}>Contribute Now!</a></li>
                     <li class="divider"></li>
                     <li><a href={{ route('contributors') }}>View Contributors</a></li>
                   </ul>

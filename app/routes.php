@@ -75,6 +75,15 @@ Route::post('/found', array(
     'uses' => 'FoundPeopleController@create'
 ) );
 
+
+Route::get('AUdata', array(
+    'as' => 'au.data',
+    'uses' => function()
+				{
+					return Response::json(ArmyUpdates::all(array('first_name','age')));
+				}
+) );
+
 Route::get('/updates', array(
     'as' => 'updates',
     'uses' => function()
@@ -93,10 +102,22 @@ Route::get('/contributors', array(
     'as' => 'contributors',
     'uses' => function()
 				{
-					// $army_updates_list = ArmyUpdates::orderBy('s-no','asc')->get();
-					$cu_list = User::where('contributor',true)->get();
+					$cu_list = User::where('contributor',true)->get()->sortByDesc('contributed');
 					return View::make('contributors',[ 'contributor_users_list' => $cu_list ]);
 				}
+));
+
+Route::get('/contributor/add/form', array(
+    'as' => 'contributor.add.form',
+    'uses' => function()
+				{
+					return View::make('contributor/add');
+				}
+));
+
+Route::post('/contributor/add', array(
+    'as' => 'contributor.add',
+    'uses' => 'ArmyUpdatesController@addContributor'
 ));
 
 Route::get('/donate', array(
@@ -239,10 +260,17 @@ Route::get('dashboard', array(
 						if ( Auth::user()->donationcause_adder ) {
 							$dc_list = Auth::user()->donationCausesAdded()->orderBy('created_at','dsc')->get();
 						}
+						$uploads_count = Auth::user()->upload_number;
+						$total_uploads = NULL;
+						if ( Auth::user()->isAdmin() ){
+							$total_uploads = DB::table(User::TABLE_NAME)->sum('upload_number');
+						}
 						
 						return View::make('paneldashboard',[ 'messages_list' => $msg_list,
 														'find_people_list' => $fip_list,
 														'army_updates_count' => $au_count,
+														'uploads_count' => $uploads_count,
+														'total_uploads' => $total_uploads,
 														'found_people_list' => $fop_list,
 														'donation_causes_list' => $dc_list
 													  ]);

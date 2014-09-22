@@ -241,4 +241,89 @@ class Helper {
         return $last_name;
     }
 
+    // ============================================================
+    //          CSV file reading from contributors for Army Updates
+    // ============================================================
+
+    // returns the file as an array of listing arrays
+    private static function readCSV($csvFile) {
+        $file_handle = fopen($csvFile, 'r');
+        while (!feof($file_handle)) {
+            $line_of_text[] = fgetcsv($file_handle, 1024);
+        }
+        fclose($file_handle);
+        return array_slice($line_of_text,1); // excluding row 0 because that has the col names
+    }
+
+    // CSV format
+    // | s-no |  first-name  | last-name |  age  |  address | fb-url  |  child  |
+    public static function createArmyUpdatesFromFileForContributor($csvFile, $contributor_id) {
+ 
+        $csv = Helper::readCSV($csvFile);
+ 
+        foreach ($csv as $listing) {
+            Helper::createFromCSVFormat1($listing, $contributor_id);
+        }
+    }
+
+    // | s-no |  first-name  | last-name |  age  |  address | fb-url  |  child  |
+    private static function createFromCSVFormat1($listing, $contributor_id) {
+        $s_no = $listing[0];
+        $first_name = $listing[1];
+        $last_name = $listing[2];
+        $age = $listing[3];
+        $fb_url = $listing[5];
+
+        // TODO: add col address and w-child and additional
+
+        $update = ArmyUpdates::createNewForContributor(
+                                    $s_no,
+                                    $first_name,
+                                    $last_name,
+                                    $age,
+                                    $fb_url,
+                                    $contributor_id
+                                );
+    }
+
+    // TODO : create Format3 where they just contribute 'name' and I programmatically break it into first-name and last-name
+
+    public static function createArmyUpdatesFromFile($csvFile) {
+ 
+        $csv = Helper::readCSV($csvFile);
+
+        foreach ($csv as $listing) {
+            Helper::createFromCSVFormat2($listing);
+        }
+    }
+
+
+
+    // Contributor fname,lname,mob,S.no.,First name,Last name,Child,Age,Address,City,FB URL,w Child ?,Additional
+    private static function createFromCSVFormat2($listing) {
+        $contributor_fname = $listing[0];
+        $contributor_lname = $listing[1];
+        $contributor_mob = $listing[2];
+        $s_no = $listing[3];
+        $first_name = $listing[4];
+        $last_name = $listing[5];
+        $age = $listing[7];
+        $fb_url = $listing[10];
+        $w_child = $listing[11];
+
+        $contributor = User::createContributorIfNotExists($contributor_fname, $contributor_lname, $contributor_mob);
+
+        // TODO: add col address and w-child and additional
+
+        $update = ArmyUpdates::createNewForContributor(
+                                    $s_no,
+                                    $first_name,
+                                    $last_name,
+                                    $age,
+                                    $fb_url,
+                                    $contributor->id
+                                );
+    }
+ 
+
 }

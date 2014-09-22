@@ -25,11 +25,19 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $hidden = array('password', 'remember_token');
 
+
 	//public function authorize
 
 	// ===============================================================
 	//			get Methods
 	// ===============================================================
+
+
+    public function isAdmin() {
+        if ( $this->id === 1 )
+            return true;
+        return false;
+    }
 
   public function getFullName() {
       $name = $this->getAttribute('fname');
@@ -98,6 +106,27 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		
 		return 0;
 	}
+
+    // Accessor 'contributed' defined
+    public function getContributedAttribute()
+    {
+        return $this->numContributed();
+    }
+
+
+
+    public function incrementUploadNumber() {
+      Log::info("original upload_number : ");
+      Log::info($this->upload_number);
+      $this->upload_number = $this->upload_number + 1;
+      $this->save();
+
+      Log::info("after increment upload_number : ");
+      Log::info($this->upload_number);
+
+      return $this->upload_number;
+    }
+
 
 	// make looker
 	public function makeLooker() {
@@ -222,6 +251,39 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
       return $user;
   }
+
+    // Returns the user object
+    public static function createContributorAndSave($fname, $lname, $mobile) {
+        Log::info("===Creating Contributor " . $fname);
+
+        Log::info($lname);
+        Log::info($mobile);
+
+        $user = new User;
+        $user->fname = $fname;
+        $user->lname = $lname;
+        $user->mobile = $mobile;
+        $user->makeContributor();
+        // $mobile is str
+        $user->password = Hash::make($mobile);  //TODO : add mix of first name and mob num
+        $user->save();
+
+        return $user;
+    }
+
+    public static function createContributorIfNotExists($fname, $lname, $mob) {
+        $user_obj = User::where('mobile', '=', $mob)->first();
+        $contributor_obj = NULL;
+        if ( $user_obj ) {
+            Log::info("Contributor user ALREADY EXISTS");
+            $user_obj->makeContributor();
+            $contributor_obj = $user_obj;
+        } else {
+            Log::info("Making NEW Contributor");
+            $contributor_obj = User::createContributorAndSave($fname, $lname, $mob);
+        }
+        return $contributor_obj;
+    }
 
 
 }

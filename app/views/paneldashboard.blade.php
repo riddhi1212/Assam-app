@@ -25,7 +25,6 @@
                             <li><a href="#tab3info" data-toggle="tab">Contributions</a></li>
                             <li><a href="#tab4info" data-toggle="tab">Found Person Reports</a></li>
                             <li><a href="#tab5info" data-toggle="tab">Donation Causes Added</a></li>
-                            <li><a href="#tab6info" data-toggle="tab">Info6</a></li>
                         </ul>
                     </span>
                 </div>
@@ -121,11 +120,31 @@
                         <div class="tab-pane fade" id="tab3info">
                     		@if ($army_updates_count)
 					      		<div class="army-updates-display-count">
-					      			<h4 class="list-group-item list-group-item-info">Contributions</h4>
+					      			<h4 class="list-group-item list-group-item-info">Reviewed Contributions (these are live on this site now)</h4>
 					          		<p class="list-group-item">
 					          			Thank you for contributing
 					          			<span>{{ $army_updates_count }}</span>
 					          			ARMY Update records of Rescued people.
+					          		</p>			          	
+					      		</div>
+					      	@endif
+					      	@if ($uploads_count)
+					      		<div class="uploads-count">
+					      			<h4 class="list-group-item list-group-item-info">Uploads</h4>
+					          		<p class="list-group-item">
+					          			Thank you for uploading
+					          			<span>{{ $uploads_count }}</span>
+					          			files containing ARMY Update records of Rescued people.
+					          		</p>			          	
+					      		</div>
+					      	@endif
+					      	@if ($total_uploads)
+					      		<div class="uploads-count">
+					      			<h4 class="list-group-item list-group-item-info">To Review:</h4>
+					          		<p class="list-group-item">
+					          			There are
+					          			<span>{{ $total_uploads }}</span>
+					          			files waiting for your review and seeding.
 					          		</p>			          	
 					      		</div>
 					      	@endif
@@ -171,40 +190,6 @@
 						          </ul>
 						      	</div>
 					      	@endif
-                        </div>
-                        <div class="tab-pane fade" id="tab6info">
-                        	<h4 class="list-group-item list-group-item-info">Found-Person Reports</h4>
-                        	<ul class="list-group">
-                        		<li class="list-group-item">test</li>
-                        		<li class="list-group-item">test</li>
-                        		<li class="list-group-item">test</li>
-                        		<li class="list-group-item">test</li>
-                        		<li class="list-group-item">test</li>
-                        		<li class="list-group-item">test</li>
-                        	</ul>
-                        	<h4 class="list-group-item list-group-item-info">Found-Person Reports</h4>
-                        	<ul class="list-group">
-                        		<div class="list-group-item row">
-                        			<span class="col-md-4">first</span>
-									<span class="col-md-4">name</span>
-									<span class="col-md-4">age</span>
-                        		</div>
-                        		<div class="list-group-item row">
-                        			<span class="col-md-4">first</span>
-									<span class="col-md-4">name</span>
-									<span class="col-md-4">age</span>
-                        		</div>
-                        		<div class="list-group-item row">
-                        			<span class="col-md-4">first</span>
-									<span class="col-md-4">name</span>
-									<span class="col-md-4">age</span>
-                        		</div>
-                        		<div class="list-group-item row">
-                        			<span class="col-md-4">first</span>
-									<span class="col-md-4">name</span>
-									<span class="col-md-4">age</span>
-                        		</div>
-                        	</ul>
                         </div>
                     </div>
                 </div>
