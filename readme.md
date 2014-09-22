@@ -70,7 +70,7 @@ Ah!
 	-	A foreign-key id col name HAS to be specified as fillable to mass fill it.
 	-	Redirect::to('url') takes URL, Redirect::route('name') takes named route.
 	-	Floated elements do not add to the height of the element they reside in properly. A similar scenario is described here: css-tricks.com/the-how-and-why-of-clearing-floats
-	-	If css change not affecting anything, go to Chrome > Dev tools. Settings icon > General > Disable cache (while Devtools is open). Then refresh. Check in Dev tools > Sources tab if the file is being loaded w all latest changes now.
+	-	If css/js change not affecting anything, go to Chrome > Dev tools. Settings icon > General > Disable cache (while Devtools is open). Then refresh. Check in Dev tools > Sources tab if the file is being loaded w all latest changes now.
 	-	Static functions and const variables inside classes in php. 
 		-	const CON_NAME = 'dd';    ClassName::CON_NAME to access. DON'T say const $NAME = 'dd' -> will not work
 	-	ArmyUpdates::whereRaw()->get() gives you a results array.
