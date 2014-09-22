@@ -69,6 +69,15 @@
           </div><!-- /.container-fluid -->
         </nav>
 
+        <div class="floating-help pull-left">
+          <a href={{ route('about') }}>
+          H<br>
+          E<br>
+          L<br>
+          P<br>
+          </a>
+        </div>
+
         @yield('content')
 
         <div id="footer">
