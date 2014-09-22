@@ -148,7 +148,12 @@
 		          			<div class="row list-group-item">
 								<span class="col-md-4">{{ $person->getFirstName() }}</span>
 								<span class="col-md-4">{{ $person->getLastName() }}</span>
-								<span class="col-md-4">{{ $person->age }}</span>
+								<span class="col-md-3">{{ $person->age }}</span>
+								@if (Auth::user() AND Auth::user()->id === $person->getLookerID())
+									<a href="#" class="col-md-1 remove-fip-link" id="{{ $person->id }}" data-toggle="tooltip" data-placement="bottom" title="Delete this Missing Person Report">
+		          						<span class="fa fa-remove fa-fw"></span>
+		          					</a>
+	          					@endif
 							</div>
 			          	@endforeach
 			          </ul>

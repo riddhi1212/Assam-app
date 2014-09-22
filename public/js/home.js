@@ -23,10 +23,34 @@ var main = function() {
 	console.log("in main");
 
 	// ------------------
-	// Load data from DB
+	// Remove FIP Link click
 	// ------------------
 
-	// DB: find-people
+	$('.remove-fip-link').click(function() {
+		
+		var id = $(this).attr('id');
+		var fip_data = { "fip-id" : id }; // this is a JS obj
+
+		console.log("Sending fip_data to backend : ");
+		console.log(fip_data);
+
+		// now POST to server
+		$.ajax({
+				type:"post",
+				url: "/deletefip",
+				data: fip_data,
+				success:function(json) {
+					// remove the list-group-item displaying this FIP
+					$('.remove-fip-link#'+id).parent().remove();
+				},
+				error:function() {
+					alert("Error");
+				}
+		});
+
+	});
+
+
 
 
 
