@@ -23,7 +23,7 @@ class FindPeopleController extends BaseController {
         Log::info($find_name);
         Log::info($find_age); // find_age is str
 
-
+        // If not logged in, it could be New User or Returning User
         if ( Auth::guest() ) {
             /////// Create User of type Looker
 
@@ -31,13 +31,17 @@ class FindPeopleController extends BaseController {
             $looker_last_name = Input::get('looker-last-name');
             $looker_mobile = Input::get('looker-mobile');
 
-            $looker_obj = User::createLookerAndSave($looker_first_name, $looker_last_name, $looker_mobile);
+            $returning_user = User::where('mobile', '=', $looker_mobile)->get()->first();
+            if ( $returning_user ) {
+                Auth::login($returning_user, true);
+            } else {
+                // New user
+                $looker_obj = User::createLookerAndSave($looker_first_name, $looker_last_name, $looker_mobile);
 
-            // =====[start]================================================
-            // Manually logging in user and 'Remember me' = true. 
-            // So no need to use Auth::attempt
-            Auth::login($looker_obj, true);
-            // =====[end]================================================
+                // Manually logging in user and 'Remember me' = true. 
+                // So no need to use Auth::attempt
+                Auth::login($looker_obj, true);
+            }
         }
 
         if ( !Auth::user()->looker ) {

@@ -5,7 +5,7 @@ class UsersController extends BaseController {
 
 	// POST from Contact Me form
 	public function contactMe() {
-		$purpose = Input::get( 'purpose' );
+    	$purpose = Input::get( 'purpose' );
         $text_body = Input::get( 'comments' );
         $guest_first_name = Input::get('guest-first-name');
         $guest_last_name = Input::get('guest-last-name');
