@@ -75,7 +75,10 @@
 											</div>
 											<div id="C{{ $person->id }}" class="panel-collapse collapse"> <!-- adding class in makes default open -->
 												<div class="panel-body">
-													Panel body goes here.
+													<a class="col-md-2" href="{{ route('find.person.show', $person->id) }}" data-toggle="tooltip" data-placement="bottom" title="See this report in full-page view">
+							          					<span class="fa fa-eye fa-fw">See Photo</span>
+							          				</a>
+													<span class="col-md-10">{{ $person->getDescription() }}</span>
 												</div>
 												<div class="matches-list list-group clearfix">
 												@if ($person->matches()->count())
