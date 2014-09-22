@@ -78,7 +78,14 @@
 													<a class="col-md-2" href="{{ route('find.person.show', $person->id) }}" data-toggle="tooltip" data-placement="bottom" title="See this report in full-page view">
 							          					<span class="fa fa-eye fa-fw">See Photo</span>
 							          				</a>
-													<span class="col-md-10">{{ $person->getDescription() }}</span>
+													<span class="col-md-8">{{ $person->getDescription() }}</span>
+													<span class="col-md-2">
+														@if ($person->found)
+															<a href="{{ $person->getFoundTablePostURL() }}" target="_blank">
+																<span class="fa fa-eye fa-fw">See Match</span>
+															</a>
+														@endif
+													</span>
 												</div>
 												<div class="matches-list list-group clearfix">
 												@if ($person->matches()->count())
@@ -156,18 +163,24 @@
 						          <ul class="fop-list list-group">
 						          	@foreach ($found_people_list as $fop)
 					          			<div class="list-group-item row">
-											<span class="col-md-4">{{ $fop->getFirstName() }}</span>
-											<span class="col-md-4">{{ $fop->getLastName() }}</span>
-											<span class="col-md-2">{{ $fop->age }}</span>
 											@if ($fop->claimed)
-												<a href="#" class="col-md-1 claimed-fop-link" id="{{ $fop->id }}" data-toggle="tooltip" data-placement="bottom" title="Thank you for helping someone find the person you posted about.">
+												<a href="#" class="col-sm-2 claimed-fop-link" id="{{ $fop->id }}" data-toggle="tooltip" data-placement="bottom" title="Thank you for helping someone find the person you posted about.">
 					          						Claimed
 					          					</a>
 				          					@else
-												<a href="#" class="col-md-1 remove-fop-link" id="{{ $fop->id }}" data-toggle="tooltip" data-placement="bottom" title="Delete this Found Person Report">
-					          						<span class="fa fa-remove fa-fw"></span>
-					          					</a>
+												<a class="col-sm-2 remove-fop-link" id="{{ $fop->id }}" href="#" data-toggle="tooltip" data-placement="bottom" title="Delete this Found Person Report">
+							          				<span class="fa fa-remove fa-fw"></span>Delete
+							          			</a>
 				          					@endif
+				          					<span class="col-sm-3">{{ $fop->getFirstName() }}</span>
+											<span class="col-sm-2">{{ $fop->getLastName() }}</span>
+											<span class="col-sm-1">{{ $fop->age }}</span>
+				          					<a class="col-sm-3" href="{{ route('found.person.show', $fop->id) }}">
+												<span class="fa fa-eye fa-fw"></span>See photo and description
+											</a>
+				          					<a class="col-sm-1" href="{{ route('found.person.edit', $fop->id) }}">
+												<span class="fa fa-pencil fa-fw"></span>Edit
+											</a>
 										</div>
 						          	@endforeach
 						          </ul>

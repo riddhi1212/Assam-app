@@ -48,6 +48,8 @@ class FoundPeopleController extends BaseController {
             Auth::user()->makeFinder();
         }
 
+        Auth::user()->setAffiliation(Input::get('found-by'));
+
         // TODO: check for duplicates before creating another record
         $fop = FoundPeople::createNewForFinder($found_name, $found_age, Auth::user()->id);
 
@@ -111,6 +113,34 @@ class FoundPeopleController extends BaseController {
         );
 
         return Response::json( $response );
+    }
+
+    // POST to route('found.person.edit')
+    public function edit() {
+        $fop_id = Input::get( 'fop-id' );
+
+        Log::info("===========================in FoundPeopleController EDIT [fop_id] is =>");
+        Log::info($fop_id);
+
+        $fop = FoundPeople::find($fop_id);
+
+        // Storing the image
+        $image_file = Input::file('fop-photo-file');
+        if ($image_file) {
+            $image_file_name = 'FOP_id_' . $fop_id . '.' . $image_file->guessClientExtension();
+            $image_file_location = 'images/FOP_photos/';
+            $image_file->move($image_file_location, $image_file_name);
+
+            if ($fop->photo_url) {
+                // delete old upload
+                unlink(app_path().'/../public'.$fop->photo_url);
+            }
+            $fop->photo_url = '/' . $image_file_location . $image_file_name;
+        }
+        $fop->description = Input::get( 'fop-desc' );
+        $fop->save();
+
+        return Redirect::route('found.person.show', $fop_id);
     }
 
 }

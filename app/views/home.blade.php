@@ -53,12 +53,23 @@
       						<input type="text" class="form-control" id="found-tel" name="found-tel" placeholder="Enter Telephone Number">
     					</div>
   					</div>
-  					<div class="form-group">
-    					<label for="found-by" class="control-label col-sm-2">Found By</label>
-    					<div class="col-sm-10">
-      						<input type="text" class="form-control" id="found-by" name="found-by" placeholder="ARMY / NRDF / Reporter / Medical team / Person">
-    					</div>
-  					</div>
+  					@if ( Auth::user() and Auth::user()->hasNoAffiliation() )
+  						<div class="form-group">
+							{{ Form::label('found-by', 'I belong to :', array('class' => 'control-label col-sm-2')); }}
+							<div class="col-sm-8">
+								{{ Form::select('found-by', array(
+															   'army' => 'ARMY',
+															   'nrdf' => 'NRDF',
+															   'media' => 'Media',
+															   'medical' => 'Medical team',
+															   'ngo' => 'NGO',
+															   'other' => 'Other Organisation',
+															   'person' => 'I am just an individual Person'),
+														   array('class' => 'form-control',
+																	'id' => 'found-by') ); }}
+							</div>
+						</div>
+					@endif
   					@if ( Auth::guest() )
   					<div class ="guest-user">
 	  					<div class="form-group">
@@ -84,26 +95,39 @@
 			        <button type="button" class="btn btn-primary btn-block" id="found-post-btn">Post</button>
 			      </form>
 			      <div class="found-people-display">
-			          <ul class="found-people-list list-group">
-					  	@foreach ($found_people_list as $person)
-				           	<div class="list-group-item row">
-								<span class="col-md-4">{{ $person->getFirstName() }}</span>
-								<span class="col-md-4">{{ $person->getLastName() }}</span>
-								<span class="col-md-2">{{ $person->age }}</span>
-								@if (Auth::user() AND Auth::user()->id === $person->getFinderID())
-									@if ($person->claimed)
-										<a href="#" class="col-md-1 claimed-fop-link" id="{{ $person->id }}" data-toggle="tooltip" data-placement="bottom" title="Thank you for helping someone find the person you posted about.">
-			          						Claimed
-			          					</a>
-		          					@else
-										<a href="#" class="col-md-1 remove-fop-link" id="{{ $person->id }}" data-toggle="tooltip" data-placement="bottom" title="Delete this Found Person Report">
-			          						<span class="fa fa-remove fa-fw"></span>
-			          					</a>
-		          					@endif
-          						@endif
-							</div>
-			          	@endforeach
-			          </ul>
+					@if ($found_people_list)
+			      		<ul class="found-people-list list-group">
+				       		<div class="row list-group-item list-group-item-info">
+				       			<span class="col-sm-3">First Name</span>
+				       			<span class="col-sm-3">Last Name</span>
+				       			<span class="col-sm-1">Age</span>
+				       		</div>
+						  	@foreach ($found_people_list as $person)
+								<div class="row list-group-item">
+										<span class="col-sm-3">{{ $person->getFirstName() }}</span>
+										<span class="col-sm-3">{{ $person->getLastName() }}</span>
+										<span class="col-sm-1">{{ $person->age }}</span>
+										<a href="{{ route('found.person.show', $person->id) }}" class="col-sm-2" data-toggle="tooltip" data-placement="bottom" title="See full Found Person Report with photo and description.">
+				          					<span class="fa fa-eye fa-fw">See</span>
+				          				</a>
+										@if (Auth::user() AND Auth::user()->id === $person->getFinderID())
+											<a href="{{ route('find.person.edit', $person->id) }}" class="col-sm-1" data-toggle="tooltip" data-placement="bottom" title="Edit photo and description.">
+												<span class="fa fa-pencil fa-fw">Edit</span>
+											</a>
+				          					@if ($person->claimed)
+												<span class="col-sm-2 claimed-fop" id="{{ $person->id }}" data-toggle="tooltip" data-placement="bottom" title="Thank you for helping someone find the person you posted about.">
+					          						Claimed
+					          					</span>
+				          					@else
+												<a href="#" class="col-sm-2 remove-fop-link" id="{{ $person->id }}" data-toggle="tooltip" data-placement="bottom" title="Delete this Found Person Report">
+					          						<span class="fa fa-remove fa-fw">Delete</span>
+					          					</a>
+				          					@endif
+			          					@endif
+								</div>
+				          	@endforeach
+			          	</ul>
+			        @endif
 			      </div>
 			    </div>
 			  </div>
@@ -155,22 +179,25 @@
 			      	@if ($find_people_list)
 			      		<ul class="find-people-list list-group">
 				       		<div class="row list-group-item list-group-item-info">
-				       			<span class="col-md-4">First Name</span>
-				       			<span class="col-md-3">Last Name</span>
-				       			<span class="col-md-1">Age</span>
+				       			<span class="col-sm-3">First Name</span>
+				       			<span class="col-sm-3">Last Name</span>
+				       			<span class="col-sm-1">Age</span>
 				       		</div>
 				        	@foreach ($find_people_list as $person)
 			          			<div class="row list-group-item">
-									<span class="col-md-4">{{ $person->getFirstName() }}</span>
-									<span class="col-md-3">{{ $person->getLastName() }}</span>
-									<span class="col-md-1">{{ $person->age }}</span>
+									<span class="col-sm-3">{{ $person->getFirstName() }}</span>
+									<span class="col-sm-3">{{ $person->getLastName() }}</span>
+									<span class="col-sm-1">{{ $person->age }}</span>
+									<a href="{{ route('find.person.show', $person->id) }}" class="col-sm-2" data-toggle="tooltip" data-placement="bottom" title="See full Missing Person Report with photo and description.">
+			          					<span class="fa fa-eye fa-fw">See</span>
+			          				</a>
 									@if (Auth::user() AND Auth::user()->id === $person->getLookerID())
-										<a href="#" class="col-md-2 remove-fip-link" id="{{ $person->id }}" data-toggle="tooltip" data-placement="bottom" title="Delete this Missing Person Report">
+										<a href="{{ route('find.person.edit', $person->id) }}" class="col-sm-1" data-toggle="tooltip" data-placement="bottom" title="Edit photo and description.">
+											<span class="fa fa-pencil fa-fw">Edit</span>
+										</a>	
+										<a href="#" class="col-sm-2 remove-fip-link" id="{{ $person->id }}" data-toggle="tooltip" data-placement="bottom" title="Delete this Missing Person Report">
 			          						<span class="fa fa-remove fa-fw">Delete</span>
 			          					</a>
-										<a href="{{ route('find.person.edit', $person->id) }}" class="col-md-2">
-											<span class="fa fa-pencil fa-fw">Edit</span>
-										</a>		
 		          					@endif
 								</div>
 				       		@endforeach

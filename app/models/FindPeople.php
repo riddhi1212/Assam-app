@@ -49,7 +49,7 @@ class FindPeople extends Eloquent {
     
 
     public function addedByCurrentUser() {
-        if ($this->looker_id == Auth::user()->id)
+        if ($this->getLookerID() == Auth::user()->id)
             return true;
         else
             return false;
@@ -67,6 +67,32 @@ class FindPeople extends Eloquent {
 	public function getLooker() {
 		return User::find($this->getLookerID());
 	}
+
+    // ASSUMES $this->found = true; 
+    public function getMatchTableName() {
+        if ($this->found) {
+            if ($this->found_in_army_updates)
+                return ArmyUpdates::TABLE_NAME;
+            elseif ($this->found_in_found_people)
+                return FoundPeople::TABLE_NAME;
+            else
+                return NULL; // this should never happen (by design)
+        }
+        return NULL; // this should never happen (by assumption)
+    }
+
+    // ASSUMES $this->found = true; 
+    public function getFoundTablePostURL() {
+        if ($this->found) {
+            if ($this->found_in_army_updates)
+                return ArmyUpdates::find($this->found_table_id)->fb_url;
+            elseif ($this->found_in_found_people)
+                return "foundperson/show/" . $this->found_table_id;
+            else
+                return NULL; // this should never happen (by design)
+        }
+        return NULL; // this should never happen (by assumption)
+    }
 
     // takes a single result
     public function createNewMatch($match_table, $found) {

@@ -73,7 +73,7 @@ Route::post('/find', array(
 Route::post('deletefip', array(
     'as' => 'find.person.delete',
     'uses' => 'FindPeopleController@delete'
-) );
+))->before('auth');
 
 Route::get('findperson/edit/{id}', array(
     'as' => 'find.person.edit',
@@ -105,10 +105,35 @@ Route::post('/found', array(
     'uses' => 'FoundPeopleController@create'
 ) );
 
+Route::get('foundperson/show/{id}', array(
+    'as' => 'found.person.show',
+    'uses' => function($id)
+				{
+					$fop = FoundPeople::find($id);
+					$finder = $fop->getFinder();
+					return View::make('found_person/show', [ 'fop' => $fop,
+															 'finder' => $finder ]);
+				}
+));
+
+Route::get('foundperson/edit/{id}', array(
+    'as' => 'found.person.edit',
+    'uses' => function($id)
+				{
+					$fop = FoundPeople::find($id);
+					return View::make('found_person/edit', [ 'fop' => $fop ]);
+				}
+))->before('auth');
+
+Route::post('foundperson/edit/{id}', array(
+    'as' => 'found.person.edit',
+    'uses' => 'FoundPeopleController@edit'
+))->before('auth');
+
 Route::post('deletefop', array(
     'as' => 'found.people.delete',
     'uses' => 'FoundPeopleController@delete'
-) );
+))->before('auth');
 
 
 Route::get('AUdata', array(

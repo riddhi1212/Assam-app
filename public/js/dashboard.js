@@ -52,6 +52,7 @@ var main = function() {
 					if (json.deleted) {
 						// remove the list-group-item displaying this FIP
 						$('.remove-fop-link#'+id).parent().remove();
+						console.log("removed");
 					} else {
 						alert('Cannot delete because someone has claimed this Found Person Report');
 					}

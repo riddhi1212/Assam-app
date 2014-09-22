@@ -54,6 +54,16 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         }
         return $name;
     }
+
+    public function hasNoAffiliation() {
+        return ($this->affiliation == 'unspecified');
+    }
+
+    // Currently only Finders have Affiliation
+    public function setAffiliation($affiliation) {
+        $this->affiliation = $affiliation;
+        $this->save();
+    }
     
 	// each User has many Dashboard Messages
 	public function messages() {

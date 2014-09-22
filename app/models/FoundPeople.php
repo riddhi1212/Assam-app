@@ -38,8 +38,23 @@ class FoundPeople extends Eloquent {
         return $name;
     }
 
+    public function getDescription() {
+        return $this->description;
+    }
+
     public function getFinderID() {
         return $this->finder_id;
+    }
+
+    public function getFinder() {
+        return User::find($this->getFinderID());
+    }
+
+    public function addedByCurrentUser() {
+        if ($this->getFinderID() == Auth::user()->id)
+            return true;
+        else
+            return false;
     }
 
     // each FOP can hasMany FIP reports
