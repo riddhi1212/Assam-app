@@ -63,7 +63,7 @@
                 @else
                   <li id="log-text"><a class="navbar-link" href={{ route('login') }}>Log In</a></li>
                 @endif
-                <li><a class="navbar-link" href={{ route('about') }}>About Me</a></li>
+                <li><a class="navbar-link" href={{ route('about') }}>Contact Me</a></li>
               </ul>
             </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->

@@ -6,17 +6,9 @@
 	<div class="stripe">
 		<div class="container">
 			<span>You can reach me here:</span>
-			<a href="www.linkedin.com/in/riddhimittal"><span class="fa fa-linkedin fa-fw fa-2x"></span></a>
-			<a href="#"><span class="fa fa-twitter fa-fw fa-2x"></span></a>
-			<a href="#"><span class="fa fa-facebook fa-fw fa-2x"></span></a>
-		</div>
-	</div>
-
-
-	<div class="info">
-		<div class="container">
-
-
+			<a target="_blank" href="http://www.linkedin.com/in/riddhimittal"><span class="fa fa-linkedin fa-fw fa-2x"></span></a>
+			<a target="_blank" href="http://twitter.com/riddhi_mittal"><span class="fa fa-twitter fa-fw fa-2x"></span></a>
+			<a target="_blank" href="http://www.facebook.com/riddhi.mittal"><span class="fa fa-facebook fa-fw fa-2x"></span></a>
 		</div>
 	</div>
 
