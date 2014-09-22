@@ -21,20 +21,23 @@ class FoundPeopleController extends BaseController {
         Log::info("===========================in FoundPeopleController create [start]");
         Log::info($found_name);
 
+        // If not logged in, it could be New User or Returning User
         if ( Auth::guest() ) {
-            /////// Create User of type Looker
-
             $finder_first_name = Input::get('finder-first-name');
             $finder_last_name = Input::get('finder-last-name');
             $finder_mobile = Input::get('finder-mobile');
 
-            $finder_obj = User::createFinderAndSave($finder_first_name, $finder_last_name, $finder_mobile);
+            $returning_user = User::where('mobile', '=', $finder_mobile)->get()->first();
+            if ( $returning_user ) {
+                Auth::login($returning_user, true);
+            } else {
+                // New user
+                $finder_obj = User::createFinderAndSave($finder_first_name, $finder_last_name, $finder_mobile);
 
-            // =====[start]================================================
-            // Manually logging in user and 'Remember me' = true. 
-            // So no need to use Auth::attempt
-            Auth::login($finder_obj, true);
-            // =====[end]================================================
+                // Manually logging in user and 'Remember me' = true. 
+                // So no need to use Auth::attempt
+                Auth::login($finder_obj, true);
+            }
         } 
  
         if ( Auth::guest() ) {
