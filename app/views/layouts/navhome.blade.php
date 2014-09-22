@@ -2,11 +2,24 @@
 <html lang="en">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Kashmiri Floods 2014 Person Finder</title>
+        <meta name="author" content="Riddhi Mittal">
+        <meta name="description" content="This website makes the Indian ARMY Updates of Rescued people, as posted on their Facebook and Twitter accounts, searchable. It also lets people add Missing Person Reports and Found Person Reports.">
+        <meta name="keywords" content="kashmir floods, kashmir floods 2014, Indian army, kashmir rescued people, help kashmir">
+        <title>Kashmiri Floods 2014 Missing Person Finder</title>
         {{ HTML::style('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'); }}
         {{ HTML::style('//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'); }}
         {{ HTML::style('css/layouts/nav.css'); }}
         @yield('head')
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-55044304-1', 'auto');
+          ga('send', 'pageview');
+
+        </script>
     </head>
     <body>
         <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">

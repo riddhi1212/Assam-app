@@ -5,7 +5,7 @@
 
 			<div class="stripe">
 				<div class="container">
-					<h1>If you need help using this site, you can call 888-888-8888</h1>
+					<h2>If you need help using this site, click on the Red Help button</h2>
 				</div>
 			</div>
 
