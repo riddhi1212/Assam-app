@@ -158,7 +158,16 @@
 					          			<div class="list-group-item row">
 											<span class="col-md-4">{{ $fop->getFirstName() }}</span>
 											<span class="col-md-4">{{ $fop->getLastName() }}</span>
-											<span class="col-md-4">{{ $fop->age }}</span>
+											<span class="col-md-2">{{ $fop->age }}</span>
+											@if ($fop->claimed)
+												<a href="#" class="col-md-1 claimed-fop-link" id="{{ $fop->id }}" data-toggle="tooltip" data-placement="bottom" title="Thank you for helping someone find the person you posted about.">
+					          						Claimed
+					          					</a>
+				          					@else
+												<a href="#" class="col-md-1 remove-fop-link" id="{{ $fop->id }}" data-toggle="tooltip" data-placement="bottom" title="Delete this Found Person Report">
+					          						<span class="fa fa-remove fa-fw"></span>
+					          					</a>
+				          					@endif
 										</div>
 						          	@endforeach
 						          </ul>

@@ -86,13 +86,22 @@
 			      <div class="found-people-display">
 			          <ul class="found-people-list list-group">
 					  	@foreach ($found_people_list as $person)
-			          		<li class="list-group-item">
-				           		<div class="row">
-									<span class="col-md-4">{{ $person->getFirstName() }}</span>
-									<span class="col-md-4">{{ $person->getLastName() }}</span>
-									<span class="col-md-4">{{ $person->age }}</span>
-								</div>
-							</li>
+				           	<div class="list-group-item row">
+								<span class="col-md-4">{{ $person->getFirstName() }}</span>
+								<span class="col-md-4">{{ $person->getLastName() }}</span>
+								<span class="col-md-2">{{ $person->age }}</span>
+								@if (Auth::user() AND Auth::user()->id === $person->getFinderID())
+									@if ($person->claimed)
+										<a href="#" class="col-md-1 claimed-fop-link" id="{{ $person->id }}" data-toggle="tooltip" data-placement="bottom" title="Thank you for helping someone find the person you posted about.">
+			          						Claimed
+			          					</a>
+		          					@else
+										<a href="#" class="col-md-1 remove-fop-link" id="{{ $person->id }}" data-toggle="tooltip" data-placement="bottom" title="Delete this Found Person Report">
+			          						<span class="fa fa-remove fa-fw"></span>
+			          					</a>
+		          					@endif
+          						@endif
+							</div>
 			          	@endforeach
 			          </ul>
 			      </div>

@@ -50,6 +50,38 @@ var main = function() {
 
 	});
 
+	// ------------------
+	// Remove FOP Link click
+	// ------------------
+
+	$('.remove-fop-link').click(function() {
+		
+		var id = $(this).attr('id');
+		var fop_data = { "fop-id" : id }; // this is a JS obj
+
+		console.log("Sending fop_data to backend : ");
+		console.log(fop_data);
+
+		// now POST to server
+		$.ajax({
+				type:"post",
+				url: "/deletefop",
+				data: fop_data,
+				success:function(json) {
+					if (json.deleted) {
+						// remove the list-group-item displaying this FIP
+						$('.remove-fop-link#'+id).parent().remove();
+					} else {
+						alert('Cannot delete because someone has claimed this Found Person Report');
+					}
+				},
+				error:function() {
+					alert("Error");
+				}
+		});
+
+	});
+
 
 
 

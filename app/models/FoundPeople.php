@@ -38,6 +38,10 @@ class FoundPeople extends Eloquent {
         return $name;
     }
 
+    public function getFinderID() {
+        return $this->finder_id;
+    }
+
     // each FOP can hasMany FIP reports
     public function fips() {
         return $this->hasMany('FindPeople', 'found_table_id')

@@ -82,4 +82,35 @@ class FoundPeopleController extends BaseController {
         
         return Response::json( $response );
     }
+
+    // POST to /deletefop
+    public function delete() {
+        $fop_id = Input::get( 'fop-id' );
+
+        Log::info("===========================in FoundPeopleController delete [fop_id] is =>");
+        Log::info($fop_id);
+
+        $fop = FoundPeople::find($fop_id);
+
+        $deleted = false;
+        if ( $fop->claimed ) {
+            // I will not currently allow the deletion of a claimed FOP
+            $deleted = false;
+        } else {
+            // This FOP is unclaimed
+            Log::info($fop->fips() == null); // please print true
+
+            Match::deleteMatchesForFop($fop_id);
+            FoundPeople::find($fop_id)->delete();
+            $deleted = true;
+        }
+
+        $response = array(
+            'status' => 'success',
+            'deleted' => $deleted
+        );
+
+        return Response::json( $response );
+    }
+
 }

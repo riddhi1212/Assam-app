@@ -101,9 +101,8 @@ class FindPeopleController extends BaseController {
         Log::info("===========================in FindPeopleController delete [fip_id] is =>");
         Log::info($fip_id);
 
-        FindPeople::find($fip_id)->delete();
-
         Match::deleteMatchesForFip($fip_id);
+        FindPeople::find($fip_id)->delete();
 
         $response = array(
             'status' => 'success',

@@ -84,4 +84,10 @@ class Match extends Eloquent {
 		Match::where('fip_id', '=', $fip_id)->delete();
 	}
 
+	public static function deleteMatchesForFop($fop_id) {
+		Match::where('match_found_person', '=', true)
+			 ->where('match_table_id', '=', $fop_id)
+		 	 ->delete();
+	}
+
 }

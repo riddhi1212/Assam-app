@@ -80,6 +80,11 @@ Route::post('/found', array(
     'uses' => 'FoundPeopleController@create'
 ) );
 
+Route::post('deletefop', array(
+    'as' => 'found.people.delete',
+    'uses' => 'FoundPeopleController@delete'
+) );
+
 
 Route::get('AUdata', array(
     'as' => 'au.data',
