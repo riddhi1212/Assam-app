@@ -47,35 +47,32 @@
 									<div class="panel-group" id="accordion">
 										@foreach ($find_people_list as $person)
 										<div class="panel panel-default">
-											<!-- <div class="panel-heading"> -->
-												<table class="panel-heading table table-bordered find-people-table" cellspacing="0" width="100%">
-												<col class="fip-options">
-												<col class="fip-review">
-												<col class="fip-first-name">
-										        <col class="fip-last-name">
-										        <col class="fip-age">
-							          			<tr>
-							          				<td width="auto">
-							          					<button type="button" class="btn btn-danger remove-fip-btn" name="remove-fip-btn" id="{{ $person->id }}" data-toggle="tooltip" data-placement="bottom" title="Delete this Missing Person Report">
-							          						<span class="fa fa-remove fa-fw fa-lg"></span>
-							          					</button>
-							          				</td>
-
-							          				<td class="find-person-status" id="{{ $person->id }}">
+											<div class="panel-heading find-people-table">
+												<div class="row">
+							          				<a class="col-md-1 remove-fip-link" id="{{ $person->id }}" href="#" data-toggle="tooltip" data-placement="bottom" title="Delete this Missing Person Report">
+							          					<span class="fa fa-remove fa-fw">Delete</span>
+							          				</a>
+							          				<span class="col-md-1">
+							          					<a href="{{ route('find.person.edit', $person->id) }}">
+															<span class="fa fa-pencil fa-fw">Edit</span>
+														</a>
+							          				</span>
+							          				<span class="col-md-2 find-person-status" id="{{ $person->id }}">
 							          					<a data-toggle="collapse" data-parent="#accordion" href="#C{{ $person->id }}">
 							          					@if ($person->found)
 							          						FOUND
 							          					@elseif ($person->matches()->count())
 							          						Review Matches
+							          					@else
+							          						No matches yet
 							          					@endif
 							          					</a>
-							          				</td>
-							          				<td>{{ $person->getFirstName() }}</td>
-													<td>{{ $person->getLastName() }}</td>
-													<td>{{ $person->age }}</td>
-							     				</tr>
-							     				</table>
-											<!-- </div> -->
+							          				</span>
+							          				<span class="col-md-3">{{ $person->getFirstName() }}</span>
+													<span class="col-md-2">{{ $person->getLastName() }}</span>
+													<span class="col-md-3">{{ $person->age }}</span>
+							     				</div>
+											</div>
 											<div id="C{{ $person->id }}" class="panel-collapse collapse"> <!-- adding class in makes default open -->
 												<div class="panel-body">
 													Panel body goes here.

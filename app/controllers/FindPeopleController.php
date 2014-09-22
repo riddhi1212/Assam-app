@@ -112,4 +112,33 @@ class FindPeopleController extends BaseController {
     }
 
 
+    // POST to route('find.person.edit')
+    public function edit() {
+        $fip_id = Input::get( 'fip-id' );
+
+        Log::info("===========================in FindPeopleController EDIT [fip_id] is =>");
+        Log::info($fip_id);
+
+        $fip = FindPeople::find($fip_id);
+
+        // Storing the image
+        $image_file = Input::file('fip-photo-file');
+        if ($image_file) {
+            $image_file_name = 'FIP_id_' . $fip_id . '.' . $image_file->guessClientExtension();
+            $image_file_location = 'images/FIP_photos/';
+            $image_file->move($image_file_location, $image_file_name);
+
+            if ($fip->photo_url) {
+                // delete old upload
+                unlink(app_path().'/../public'.$fip->photo_url);
+            }
+            $fip->photo_url = '/' . $image_file_location . $image_file_name;
+        }
+        $fip->description = Input::get( 'fip-desc' );
+        $fip->save();
+
+        return Redirect::route('find.person.show', $fip_id);
+    }
+
+
 }

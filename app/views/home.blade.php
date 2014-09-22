@@ -152,20 +152,30 @@
 			        <button type="button" class="btn btn-primary btn-block" id="find-post-btn">Post</button>
 			      </form>
 			      <div class="find-people-display">
-			          <ul class="find-people-list list-group">
-			          	@foreach ($find_people_list as $person)
-		          			<div class="row list-group-item">
-								<span class="col-md-4">{{ $person->getFirstName() }}</span>
-								<span class="col-md-4">{{ $person->getLastName() }}</span>
-								<span class="col-md-3">{{ $person->age }}</span>
-								@if (Auth::user() AND Auth::user()->id === $person->getLookerID())
-									<a href="#" class="col-md-1 remove-fip-link" id="{{ $person->id }}" data-toggle="tooltip" data-placement="bottom" title="Delete this Missing Person Report">
-		          						<span class="fa fa-remove fa-fw"></span>
-		          					</a>
-	          					@endif
-							</div>
-			          	@endforeach
-			          </ul>
+			      	@if ($find_people_list)
+			      		<ul class="find-people-list list-group">
+				       		<div class="row list-group-item list-group-item-info">
+				       			<span class="col-md-4">First Name</span>
+				       			<span class="col-md-3">Last Name</span>
+				       			<span class="col-md-1">Age</span>
+				       		</div>
+				        	@foreach ($find_people_list as $person)
+			          			<div class="row list-group-item">
+									<span class="col-md-4">{{ $person->getFirstName() }}</span>
+									<span class="col-md-3">{{ $person->getLastName() }}</span>
+									<span class="col-md-1">{{ $person->age }}</span>
+									@if (Auth::user() AND Auth::user()->id === $person->getLookerID())
+										<a href="#" class="col-md-2 remove-fip-link" id="{{ $person->id }}" data-toggle="tooltip" data-placement="bottom" title="Delete this Missing Person Report">
+			          						<span class="fa fa-remove fa-fw">Delete</span>
+			          					</a>
+										<a href="{{ route('find.person.edit', $person->id) }}" class="col-md-2">
+											<span class="fa fa-pencil fa-fw">Edit</span>
+										</a>		
+		          					@endif
+								</div>
+				       		@endforeach
+				        </ul>
+			        @endif
 			      </div>
 			    </div>
 			  </div>

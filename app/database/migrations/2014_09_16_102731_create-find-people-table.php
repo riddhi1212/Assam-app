@@ -31,6 +31,10 @@ class CreateFindPeopleTable extends Migration {
 			$table->softDeletes();
 			$table->text('why')->nullable(); // reason for deleting/canceling FIP request (make this enum maybe)
 
+			// Other optional info fields
+			$table->string('photo_url')->nullable();
+			$table->text('description')->default('');
+
 			$table->boolean('found')->default(false);
 			// to be filled if found = true
 			$table->boolean('duplicate')->default(false); // true if this is duplicate claim. i.e. AU/FOP has already been claimed by someone else first

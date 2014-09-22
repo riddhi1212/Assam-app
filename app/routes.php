@@ -71,9 +71,34 @@ Route::post('/find', array(
 ) );
 
 Route::post('deletefip', array(
-    'as' => 'find.people.delete',
+    'as' => 'find.person.delete',
     'uses' => 'FindPeopleController@delete'
 ) );
+
+Route::get('findperson/edit/{id}', array(
+    'as' => 'find.person.edit',
+    'uses' => function($id)
+				{
+					$fip = FindPeople::find($id);
+					return View::make('find_person/edit', [ 'fip' => $fip ]);
+				}
+))->before('auth');
+
+Route::post('findperson/edit/{id}', array(
+    'as' => 'find.person.edit',
+    'uses' => 'FindPeopleController@edit'
+))->before('auth');
+
+Route::get('findperson/show/{id}', array(
+    'as' => 'find.person.show',
+    'uses' => function($id)
+				{
+					$fip = FindPeople::find($id);
+					$looker = $fip->getLooker();
+					return View::make('find_person/show', [ 'fip' => $fip,
+															'looker' => $looker ]);
+				}
+));
 
 Route::post('/found', array(
     'as' => 'found.people.create',
@@ -170,14 +195,14 @@ Route::get('donation/edit/{id}', array(
 				}
 ))->before('auth');
 
-Route::get('donation/delete/{id}', array(
-    'as' => 'donation.channel.delete',
-    'uses' => 'DonationCauseController@delete'
-))->before('auth');
-
 Route::post('donation/edit/{id}', array(
     'as' => 'donation.channel.edit',
     'uses' => 'DonationCauseController@edit'
+))->before('auth');
+
+Route::get('donation/delete/{id}', array(
+    'as' => 'donation.channel.delete',
+    'uses' => 'DonationCauseController@delete'
 ))->before('auth');
 
 Route::get('siteimpact', array(

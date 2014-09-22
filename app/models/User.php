@@ -39,13 +39,21 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return false;
     }
 
-  public function getFullName() {
-      $name = $this->getAttribute('fname');
-      if ($this->getAttribute('lname') !== null) {
-          $name = $name . " " . $this->getAttribute('lname');
-      }
-      return $name;
-  }
+    public function getFirstName() {
+        return $this->fname;
+    }
+
+    public function getLastName() {
+        return $this->lname;
+    }
+
+    public function getFullName() {
+        $name = $this->getAttribute('fname');
+        if ($this->getAttribute('lname') !== null) {
+            $name = $name . " " . $this->getAttribute('lname');
+        }
+        return $name;
+    }
     
 	// each User has many Dashboard Messages
 	public function messages() {

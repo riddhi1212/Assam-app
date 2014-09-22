@@ -3,7 +3,7 @@ var main = function() {
 	// Remove-fip Button click
 	// ------------------
 
-	$('.remove-fip-btn').click(function(){
+	$('.remove-fip-link').click(function(){
 
 		// Any checks ??
 
@@ -20,6 +20,7 @@ var main = function() {
 				url: "/deletefip",
 				data: fip_data,
 				success:function(json) {
+					// Simply removing the parent doesn't work because this is a collapsible panel
 					location.reload();
 				},
 				error:function() {
@@ -35,7 +36,7 @@ var main = function() {
 	// ------------------
 
 	$('.remove-fop-link').click(function() {
-		
+
 		var id = $(this).attr('id');
 		var fop_data = { "fop-id" : id }; // this is a JS obj
 

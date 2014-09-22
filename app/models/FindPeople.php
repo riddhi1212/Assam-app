@@ -43,7 +43,17 @@ class FindPeople extends Eloquent {
         return $name;
     }
 
+    public function getDescription() {
+        return $this->description;
+    }
     
+
+    public function addedByCurrentUser() {
+        if ($this->looker_id == Auth::user()->id)
+            return true;
+        else
+            return false;
+    }
 
 	// each FIP hasMany matches
 	public function matches() {
@@ -113,7 +123,9 @@ class FindPeople extends Eloquent {
     // returns a results array
     // TODO : add more searchable params here
     public static function searchWithParam($find_name, $find_age) {
-        return FindPeople::getBuilderWithParam($find_name, $find_age)->get();
+        return FindPeople::getBuilderWithParam($find_name, $find_age)
+                            ->where('deleted_at', '=', NULL)  // Important because FIP can be soft_deleted and raw mysql query does not care about that
+                            ->get();
     }
 
 	// returns a chainable Builder object
