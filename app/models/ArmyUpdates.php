@@ -72,6 +72,8 @@ class ArmyUpdates extends Eloquent {
         $au->contributor_id = $contributor_id;
         $au->save();
         return $au;
+
+        // TODO : AUTO-RUN search against FIP DB here
     }
 
     // returns a results array

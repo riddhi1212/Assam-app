@@ -48,6 +48,11 @@ Route::get('/about', array(
 				}
 ) );
 
+Route::post('/about', array(
+    'as' => 'contact.me',
+    'uses' => 'UsersController@contactMe'
+) );
+
 Route::get('/findandfound', array(
     'as' => 'find.and.found',
     'uses' => function()
