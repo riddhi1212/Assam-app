@@ -125,32 +125,53 @@ var main = function() {
     });
 
 	// ------------------
-	// Remove FIP Link click
+	// Remove FIP Link click // from inside Modal
 	// ------------------
 
-	$('.remove-fip-link').click(function() {
-		
-		var id = $(this).attr('id');
-		var fip_data = { "fip-id" : id }; // this is a JS obj
+    $('#delete-fip-btn').click(function(){
 
-		console.log("Sending fip_data to backend : ");
-		console.log(fip_data);
+        // Any checks ??
 
-		// now POST to server
-		$.ajax({
-				type:"post",
-				url: "/deletefip",
-				data: fip_data,
-				success:function(json) {
-					// remove the list-group-item displaying this FIP
-					$('.remove-fip-link#'+id).parent().remove();
-				},
-				error:function() {
-					alert("Error");
-				}
-		});
 
-	});
+        // now POST to server
+        $.ajax({
+                type:"post",
+                url: "/deletefip",
+                data: $('#why-delete-form').serialize(),
+                success:function(json) {
+                    // Simply removing the parent doesn't work because this is a collapsible panel
+                    location.reload();
+                },
+                error:function() {
+                    alert("Error");
+                }
+        });
+    
+    });
+
+
+    $('#delete-modal').on('show.bs.modal', function (e) {
+        $('#delete-fip-btn').addClass('disabled');
+    })
+
+
+    $('#why').keyup(function() {
+        var value = $(this).val();
+        var form_group_elem = $(this).parent().parent();
+
+        if (value.length == 0) {
+            form_group_elem.removeClass('has-success');
+            form_group_elem.addClass('has-error');
+            form_group_elem.find(".help-block").text("This field cannot be left empty.");
+            $('#delete-fip-btn').addClass('disabled');
+        } else {
+            form_group_elem.addClass('has-success');
+            form_group_elem.removeClass('has-error');
+            form_group_elem.find(".help-block").empty();
+            $('#delete-fip-btn').removeClass('disabled');
+        }
+
+    });
 
 }
 

@@ -14,7 +14,7 @@
 	</div>
 
 	<div class="row">
-	  <div class="col-md-6 col-md-offset-3">
+	  <div class="col-md-8 col-md-offset-2">
 	    <div class="find-people">
 	      <p>Tracking 
 	   	  <span id="find-count">{{ count($find_people_list) }}</span>
@@ -83,10 +83,42 @@
 								<a href="{{ route('find.person.edit', $person->id) }}" class="col-sm-1" data-toggle="tooltip" data-placement="bottom" title="Edit photo and description.">
 									<span class="fa fa-pencil fa-fw">Edit</span>
 								</a>	
-								<a href="#" class="col-sm-2 remove-fip-link" id="{{ $person->id }}" data-toggle="tooltip" data-placement="bottom" title="Delete this Missing Person Report">
+								<a href="#" class="col-sm-2" id="{{ $person->id }}" data-toggle="modal" data-target="#delete-modal" data-toggle="tooltip" data-placement="bottom" title="Delete this Missing Person Report">
 	          						<span class="fa fa-remove fa-fw">Delete</span>
 	          					</a>
           					@endif
+						</div>
+						<!-- Modal -->
+						<div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      	<div class="modal-header">
+						        	<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						        	<h4 class="modal-title" id="myModalLabel">Why do you want to Delete this Missing Person Report?</h4>
+						      	</div>
+						      	{{ Form::open(array('class'	 => 'form-horizontal',
+													'id'     => 'why-delete-form')); }}
+						      	<div class="modal-body">
+						        
+						        	{{ Form::hidden('fip-id', $person->id); }}
+						        	<div class="form-group">
+										{{ Form::label('why', 'Why : ', array('class' => 'control-label col-sm-4')); }}
+										<div class="col-sm-8">
+											{{ Form::text('why', '', array('class' => 'form-control',
+													   					'id' => 'why',
+													   					'placeholder' => 'Enter your reason for deleting this report here')); }}
+											<span class="help-block"></span>
+										</div>
+									</div>
+						      	</div>
+						      	<div class="modal-footer">
+						        	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+						        	{{ Form::button('Delete Report', array('class' => 'btn btn-danger',
+						        											'id' => 'delete-fip-btn')); }}
+						      	</div>
+						      	{{ Form::close(); }}
+						    </div>
+						  </div>
 						</div>
 		       		@endforeach
 		        </ul>

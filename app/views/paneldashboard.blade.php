@@ -49,7 +49,7 @@
 										<div class="panel panel-default">
 											<div class="panel-heading find-people-table">
 												<div class="row">
-							          				<a class="col-md-1 remove-fip-link" id="{{ $person->id }}" href="#" data-toggle="tooltip" data-placement="bottom" title="Delete this Missing Person Report">
+							          				<a class="col-md-1" id="{{ $person->id }}" href="#" data-toggle="modal" data-target="#delete-modal" data-toggle="tooltip" data-placement="bottom" title="Delete this Missing Person Report">
 							          					<span class="fa fa-remove fa-fw">Delete</span>
 							          				</a>
 							          				<span class="col-md-1">
@@ -72,6 +72,38 @@
 													<span class="col-md-2">{{ $person->getLastName() }}</span>
 													<span class="col-md-3">{{ $person->age }}</span>
 							     				</div>
+							     				<!-- Modal -->
+												<div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+												  <div class="modal-dialog">
+												    <div class="modal-content">
+												      	<div class="modal-header">
+												        	<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+												        	<h4 class="modal-title" id="myModalLabel">Why do you want to Delete this Missing Person Report?</h4>
+												      	</div>
+												      	{{ Form::open(array('class'	 => 'form-horizontal',
+																			'id'     => 'why-delete-form')); }}
+												      	<div class="modal-body">
+												        
+												        	{{ Form::hidden('fip-id', $person->id); }}
+												        	<div class="form-group">
+																{{ Form::label('why', 'Why : ', array('class' => 'control-label col-sm-4')); }}
+																<div class="col-sm-8">
+																	{{ Form::text('why', '', array('class' => 'form-control',
+																			   					'id' => 'why',
+																			   					'placeholder' => 'Enter your reason for deleting this report here')); }}
+																	<span class="help-block"></span>
+																</div>
+															</div>
+												      	</div>
+												      	<div class="modal-footer">
+												        	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+												        	{{ Form::button('Delete Report', array('class' => 'btn btn-danger',
+						        																	  'id' => 'delete-fip-btn')); }}
+												      	</div>
+												      	{{ Form::close(); }}
+												    </div>
+												  </div>
+												</div>
 											</div>
 											<div id="C{{ $person->id }}" class="panel-collapse collapse"> <!-- adding class in makes default open -->
 												<div class="panel-body">

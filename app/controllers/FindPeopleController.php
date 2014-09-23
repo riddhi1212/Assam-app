@@ -97,18 +97,20 @@ class FindPeopleController extends BaseController {
     // POST to /deletefip
     public function delete() {
         $fip_id = Input::get( 'fip-id' );
+        $why = Input::get('why');
 
         Log::info("===========================in FindPeopleController delete [fip_id] is =>");
         Log::info($fip_id);
+        Log::info($why);
 
         Match::deleteMatchesForFip($fip_id);
-        FindPeople::find($fip_id)->delete();
 
-        $response = array(
-            'status' => 'success',
-        );
+        $fip = FindPeople::find($fip_id);
+        $fip->why = $why;
+        $fip->save();
+        $fip->delete();
 
-        return Response::json( $response );
+        return Redirect::to('dashboard');
     }
 
 

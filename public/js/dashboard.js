@@ -1,24 +1,49 @@
 var main = function() {
+	
+
 	// ------------------
-	// Remove-fip Button click
+	// delete Modal after hiding
 	// ------------------
 
-	$('.remove-fip-link').click(function(){
+	// $('#myModal').on('hidden.bs.modal', function (e) {
+	
+	// 	var id = $(this).attr('id');
+	// 	var fip_data = { "fip-id" : id }; // this is a JS obj
+
+	// 	console.log("Sending fip_data to backend : ");
+	// 	console.log(fip_data);
+
+	// 	// now POST to server
+	// 	$.ajax({
+	// 			type:"post",
+	// 			url: "/deletefip",
+	// 			data: fip_data,
+	// 			success:function(json) {
+	// 				// Simply removing the parent doesn't work because this is a collapsible panel
+	// 				location.reload();
+	// 			},
+	// 			error:function() {
+	// 				alert("Error");
+	// 			}
+	// 	});
+
+	// })
+
+
+	// ------------------
+	// Remove-fip Button click (from inside Modal)
+	// ------------------
+
+	$('#delete-fip-btn').click(function(){
 
 		// Any checks ??
 
-
-		var id = $(this).attr('id');
-		var fip_data = { "fip-id" : id }; // this is a JS obj
-
-		console.log("Sending fip_data to backend : ");
-		console.log(fip_data);
 
 		// now POST to server
 		$.ajax({
 				type:"post",
 				url: "/deletefip",
-				data: fip_data,
+				data: $('#why-delete-form').serialize(),
 				success:function(json) {
 					// Simply removing the parent doesn't work because this is a collapsible panel
 					location.reload();
@@ -29,6 +54,29 @@ var main = function() {
 		});
 	
 	});
+
+    $('#delete-modal').on('show.bs.modal', function (e) {
+        $('#delete-fip-btn').addClass('disabled');
+    })
+
+
+    $('#why').keyup(function() {
+        var value = $(this).val();
+        var form_group_elem = $(this).parent().parent();
+
+        if (value.length == 0) {
+            form_group_elem.removeClass('has-success');
+            form_group_elem.addClass('has-error');
+            form_group_elem.find(".help-block").text("This field cannot be left empty.");
+            $('#delete-fip-btn').addClass('disabled');
+        } else {
+            form_group_elem.addClass('has-success');
+            form_group_elem.removeClass('has-error');
+            form_group_elem.find(".help-block").empty();
+            $('#delete-fip-btn').removeClass('disabled');
+        }
+
+    });
 
 
 	// ------------------
