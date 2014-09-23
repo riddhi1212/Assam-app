@@ -74,50 +74,73 @@ class Helper {
             Log::info("*******Find first name count is : ");
             Log::info($find_first_name_count);
 
-            $find_first_name = $find_first_name_arr[0];
+            $first = $find_first_name_arr[0];
+            $second = $find_first_name_arr[1];
+            $last = $find_last_name;
+            $first_second = $first . ' ' . $second;
+            $first_second_last = $first_second . ' ' . $last;
+
+            $results_first_second_last = DB::table($table_name)->whereRaw('(    ( first_name = ? and last_name = "" )
+                                                                             or ( first_name = ? and last_name = "" )
+                                                                             or ( first_name = ? and last_name = "" )
+                                                                             or ( first_name = ? and last_name = ? )
+                                                                             or ( first_name = ? and last_name = ? )
+                                                                             or ( first_name = ? and last_name = ? )
+                                                                             or ( first_name = ? and last_name = ? )
+                                                                             or ( first_name LIKE ? and last_name = ? )
+                                                                             or ( first_name LIKE ? and last_name = ? )
+                                                                             or ( first_name LIKE ? and last_name = ? )
+                                                                             or ( first_name = ? )
+                                                                             or ( first_name LIKE ? )
+                                                                             or ( first_name LIKE ? )
+                                                                             or ( first_name LIKE ? )
+                                                                             or ( first_name LIKE ? and last_name = ? )
+                                                                         )', array(
+                                                                            $first,
+                                                                            $second,
+                                                                            $last,
+                                                                            $first, $second,
+                                                                            $first, $last,
+                                                                            $second, $last,
+                                                                            $first_second, $last,  // equal to first_second
+                                                                            '% ' . $first_second, $last,  // starts with first_second
+                                                                            '% ' . $first_second . ' %', $last, // middle is first_second
+                                                                            $first_second . ' %', $last, // ends with first_second
+                                                                            $first_second_last,
+                                                                            $first_second_last . ' %', // starts with
+                                                                            ' %' . $first_second_last . ' %', // middle
+                                                                            ' %' . $first_second_last,  // ends with
+                                                                            $first . ' % ' . $second, $last
+                                                                        ));
+
 
             if ($find_first_name_count === 2) {
+                Log::info($first);
+                Log::info($second);
+                Log::info($last);
 
-                $find_middle_name = $find_first_name_arr[1];
-                $find_first_name_with_space = $find_first_name . ' ' . $find_middle_name;
-
-                $full_phrase = $find_first_name_with_space . ' ' . $find_last_name;
-
-                Log::info($find_first_name);
-                Log::info($find_middle_name);
-
-                return DB::table($table_name)->whereRaw('(      ( first_name = ? and last_name = "" )
-                                                             or ( first_name = ? and last_name = "" )
-                                                             or ( first_name = ? and last_name = "" )
-                                                             or ( first_name = ? and last_name = ? )
-                                                             or ( first_name = ? and last_name = ? )
-                                                             or ( first_name = ? and last_name = ? )
-                                                             or ( first_name = ? and last_name = ? )
-                                                             or ( first_name = ? )
-                                                             or ( first_name LIKE ? )
-                                                             or ( first_name LIKE ? )
-                                                             or ( first_name LIKE ? )
-                                                         )', array(
-                                                            $find_first_name,
-                                                            $find_middle_name,
-                                                            $find_last_name,
-                                                            $find_first_name, $find_middle_name,
-                                                            $find_first_name, $find_last_name,
-                                                            $find_middle_name, $find_last_name,
-                                                            $find_first_name_with_space, $find_last_name,
-                                                            $full_phrase,
-                                                            $full_phrase . ' %', // starts with
-                                                            ' %' . $full_phrase . ' %', // middle
-                                                            ' %' . $full_phrase  // ends with
-                                                        ));
+                return $results_first_second_last;
 
             } else {
-                Log::info("******* [:(] Currently NOT handling Find first name count of : ");
+                Log::info("******* [:(] BIG Find first name count of : ");
                 Log::info($find_first_name_count);
+
+                // first_name_count is 3 or more
+                $third = $find_first_name_arr[2];
+                $first_third = $first . ' ' . $third;
+
+                return $results_first_second_last->orWhereRaw('   ( first_name = ? and last_name = "" )
+                                                               or ( first_name = ? and last_name = ? )
+                                                               or ( first_name = ? and last_name = ? )
+                                                               or ( first_name = ? and last_name = ? )
+                                                            ', array(
+                                                                    $third,
+                                                                    $third, $last,
+                                                                    $first_second, $third,
+                                                                    $first_third, $last
+                                                            ));
             }
         }
-
-
     }
 
     // Returns Builder obj
@@ -184,7 +207,9 @@ class Helper {
             -   Arif Ali        19 (????)       DONE
             -   (first name spaces)
             -   Mohd Arif Ali                   DONE
-            -   Mohd Arif Ali Khan              :(
+            -   Mohd Arif Ali Khan              DONE
+            -   Mohd Arif Ahmed Ali             DONE
+            -   Mohd Khan Arif Ali              DONE     // starts_with first. ends_with second. last
         -   should not match
             -   Mohd Basher     19
             -   Ali Mohd        19
@@ -196,7 +221,7 @@ class Helper {
             -   Abdul Arif Mohd         19
             -   Arif Ali Mohd           19
 
-    (Mrs Bashir Ahmad Banu)
+    (Mrs Bashir Ahemed Banu)
     Dr Sp Sandeep Kaur               (Dr Sandeep Kaur)
         -   try listing out should matches
             -   Dr
@@ -224,17 +249,18 @@ class Helper {
             -   Sp Kaur
             -   Dr Sp Kaur
         -   Put together without repetitions            matched-by          matches
-            -   Dr                                         DONE
-            -   Sp                                         DONE
-            -   Sandeep                                    DONE
-            -   Kaur                                       DONE
-            -   Dr Sp                                      DONE
-            -   Dr Sandeep                                  :(
-            -   Sp Kaur                                    DONE
-            -   Dr Kaur                                     DONE
-            -   Sandeep Kaur                                DONE
-            -   Dr Sp Kaur                                   :()
-            -   Dr Sandeep Kaur                             :()
+            -   Dr                                         DONE             DONE
+            -   Sp                                         DONE             DONE
+            -   Sandeep                                    DONE             DONE
+            -   Kaur                                       DONE             DONE
+            -   Dr Sp                                      DONE             DONE
+            -   Dr Sandeep        :()                       :(              :()
+            -   Sp Kaur                                    DONE             DONE
+            -   Dr Kaur                                    DONE             DONE
+            -   Sandeep Kaur                               DONE             DONE
+            -   Dr Sp Kaur                                 DONE             DONE
+            -   Dr Sandeep Kaur                            DONE             DONE
+            -   Dr Sp Sandeep                              DONE             DONE
 
         -   should not match
             -   everything else
