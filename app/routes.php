@@ -156,7 +156,7 @@ Route::get('/updates', array(
     'as' => 'updates',
     'uses' => function()
 				{
-					$army_updates_pag = ArmyUpdates::orderBy('s_no','asc')->paginate(5);
+					$army_updates_pag = ArmyUpdates::orderBy('s_no','asc')->paginate(ArmyUpdates::SHOW_PER_PAGE);
 					return View::make('armyupdates',[ 'army_updates_pag'  => $army_updates_pag ]);
 				}
 ) );

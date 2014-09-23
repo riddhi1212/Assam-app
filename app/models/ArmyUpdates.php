@@ -7,6 +7,8 @@ class ArmyUpdates extends Eloquent {
 
     const TABLE_NAME = 'ArmyUpdatesTable';
 
+    const SHOW_PER_PAGE = 25;
+
 	/**
 	 * The database table used by the model.
 	 *
