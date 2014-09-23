@@ -90,21 +90,27 @@
             P<br>
           </div>
         </a>
-
         @yield('content')
-
         <div id="footer">
             <div class="container">
                 <span>PLEASE NOTE: All data entered will be available to the public and viewable and usable by anyone. We do not review or verify the accuracy of this data.</span>
             </div>
         </div>
 
-        <br/>
         {{ HTML::script('https://code.jquery.com/jquery-1.11.1.min.js'); }}
         {{ HTML::script('http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.js'); }}
 
         <script>
           $(document).ready(function() {
+
+              // ON LOADmake body margin-bottom = footer height
+              $('body').css('margin-bottom', $('#footer').css('height'));
+              console.log($('body').css('margin-bottom'));
+
+              $( window ).resize(function() {
+                $('body').css('margin-bottom', $('#footer').css('height'));
+                console.log($('body').css('margin-bottom'));
+              });
 
               var url = $(location).attr('href');
               var jq = "a[href='" + url + "']";
