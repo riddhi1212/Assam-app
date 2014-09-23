@@ -24,18 +24,21 @@
     					<label for="updates-sno" class="control-label col-sm-2">S.no.</label>
     					<div class="col-sm-10">
       						<input type="text" class="form-control" id="updates-sno" name="updates-sno" placeholder="Enter Serial Number">
+    						<span class="help-block"></span>
     					</div>
   					</div>
 			        <div class="form-group">
     					<label for="updates-name" class="control-label col-sm-2">Name</label>
     					<div class="col-sm-10">
       						<input type="text" class="form-control" id="updates-name" name="updates-name" placeholder="Enter Name">
+    						<span class="help-block"></span>
     					</div>
   					</div>
   					<div class="form-group">
     					<label for="updates-age" class="control-label col-sm-2">Age</label>
     					<div class="col-sm-10">
       						<input type="text" class="form-control" id="updates-age" name="updates-age" placeholder="Enter Age">
+    						<span class="help-block"></span>
     					</div>
   					</div>
 			        <button type="button" class="btn btn-primary btn-block" id="army-updates-search-btn">Search</button>

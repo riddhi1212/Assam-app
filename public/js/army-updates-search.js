@@ -1,5 +1,97 @@
 var main = function() {
 
+	$('#updates-name').keyup(function() {
+		var value = $(this).val();
+		var form_group_elem = $(this).parent().parent();
+
+		if (value == "") {
+			form_group_elem.removeClass('has-error');
+			form_group_elem.removeClass('has-success');
+			form_group_elem.find(".help-block").empty();
+			$('#army-updates-search-btn').removeClass('disabled');
+			return;
+		}
+
+		var patt = new RegExp(/^[a-zA-Z ]+$/);
+		var res = patt.test(value);
+
+		if (!res) {
+			form_group_elem.removeClass('has-success');
+			form_group_elem.addClass('has-error');
+			form_group_elem.find(".help-block").text("Name can only have alphabets and spaces");
+			$('#army-updates-search-btn').addClass('disabled');
+		} else {
+			form_group_elem.removeClass('has-error');
+			form_group_elem.addClass('has-success');
+			form_group_elem.find(".help-block").empty();
+			$('#army-updates-search-btn').removeClass('disabled');
+		}
+	});
+
+	$('#updates-age').keyup(function() {
+		var value = $(this).val();
+		var form_group_elem = $(this).parent().parent();
+		
+		if (value == "") {
+			form_group_elem.removeClass('has-error');
+			form_group_elem.removeClass('has-success');
+			form_group_elem.find(".help-block").empty();
+			$('#army-updates-search-btn').removeClass('disabled');
+			return;
+		}
+		if (parseInt(value) < 0 || parseInt(value) > 100) {
+			form_group_elem.addClass('has-error');
+			form_group_elem.removeClass('has-success');
+			form_group_elem.find(".help-block").text("Age has to be between 0 and 100");
+			$('#army-updates-search-btn').addClass('disabled');
+			return;
+		}
+
+		var patt = new RegExp(/^[0-9]+$/);
+		var res = patt.test(value);
+
+		if (!res) {
+			form_group_elem.removeClass('has-success');
+			form_group_elem.addClass('has-error');
+			form_group_elem.find(".help-block").text("Age can only have digits");
+			$('#army-updates-search-btn').addClass('disabled');
+		} else {
+			form_group_elem.removeClass('has-error');
+			form_group_elem.addClass('has-success');
+			form_group_elem.find(".help-block").empty();
+			$('#army-updates-search-btn').removeClass('disabled');
+		}
+	});
+
+	$('#updates-sno').keyup(function() {
+		var value = $(this).val();
+		var form_group_elem = $(this).parent().parent();
+		
+		if (value == "") {
+			form_group_elem.removeClass('has-error');
+			form_group_elem.removeClass('has-success');
+			form_group_elem.find(".help-block").empty();
+			$('#army-updates-search-btn').removeClass('disabled');
+			return;
+		}
+
+		var patt = new RegExp(/^[0-9]+$/);
+		var res = patt.test(value);
+
+		if (!res) {
+			form_group_elem.removeClass('has-success');
+			form_group_elem.addClass('has-error');
+			form_group_elem.find(".help-block").text("Serial number can only have digits");
+			$('#army-updates-search-btn').addClass('disabled');
+		} else {
+			form_group_elem.removeClass('has-error');
+			form_group_elem.addClass('has-success');
+			form_group_elem.find(".help-block").empty();
+			$('#army-updates-search-btn').removeClass('disabled');
+		}
+	});
+
+
 	// ------------------
 	// Form Button Clicks
 	// ------------------

@@ -115,12 +115,13 @@ class ArmyUpdates extends Eloquent {
         }
 
 
-        $results =  array();
+        $results =  ArmyUpdates::where('s_no', '=', 0); // This returns an empty Builder obj // TODO : figure out better way
         $explanation = "";
         if ($sno) {
             // This can only return one row (I think . TODO: check assumption)
             $results = ArmyUpdates::where('s_no', '=', $find_sno);
-            $explanation = "Do not search on 'S.no.' and Another field together. 'S.no.' is unique for every update, so it will never match 2 records. This search is returning results for 'S.no.' = ".$updates_sno.".";
+
+            $explanation = "Do not search on 'S.no.' and Another field together. 'S.no.' is unique for every update, so it will never match 2 records. This search is returning results for 'S.no.' = ".$find_sno.".";
         } elseif ($name && !$age) {
             // Only Name Specified
 
