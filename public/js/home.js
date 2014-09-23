@@ -105,29 +105,28 @@ var main = function() {
 				url:$("#found-people-form").prop('action'),
 				data:$("#found-people-form").serialize(),
 				success:function(json) {
-				   // Display it on screen now that it has been POSTed to the DB
-				   // TODO: change to reloading from DB
+					location.reload();
 
-					var div = $('<div>').addClass('row');
-					$('<span>').addClass('col-md-4').text(json.fname).appendTo(div);
-					$('<span>').addClass('col-md-4').text(json.lname).appendTo(div);
-					$('<span>').addClass('col-md-4').text(json.age).appendTo(div); // NOTE: by not saved to DB yet
-					$('<li>').append(div).addClass('list-group-item').prependTo('.found-people-list'); 		
-					// // Instead of
-					// $('<li>').text(name).addClass('list-group-item').prependTo('.found-people-list');
+					// var div = $('<div>').addClass('row');
+					// $('<span>').addClass('col-md-4').text(json.fname).appendTo(div);
+					// $('<span>').addClass('col-md-4').text(json.lname).appendTo(div);
+					// $('<span>').addClass('col-md-4').text(json.age).appendTo(div); // NOTE: by not saved to DB yet
+					// $('<li>').append(div).addClass('list-group-item').appendTo('#found-people-list-header'); 		
+					// // // Instead of
+					// // $('<li>').text(name).addClass('list-group-item').prependTo('.found-people-list');
 
-					$('#found-name').val('');
-					$('#found-age').val('');
-					$('#found-tel').val('');
-					$('#found-by').val('');
+					// $('#found-name').val('');
+					// $('#found-age').val('');
+					// $('#found-tel').val('');
+					// $('#found-by').val('');
 
-					// increment tracker
-					$("#found-count").text(parseInt($("#found-count").text()) + 1);
+					// // increment tracker
+					// $("#found-count").text(parseInt($("#found-count").text()) + 1);
 
-					resetNavLinks(json);
+					// resetNavLinks(json);
 
-					// hide guest-user div tags
-					$('.guest-user').empty();
+					// // hide guest-user div tags
+					// $('.guest-user').empty();
 				},
 				error:function() {
 					alert("Error");
@@ -145,26 +144,26 @@ var main = function() {
 				url:$("#find-people-form").prop('action'),
 				data:$("#find-people-form").serialize(),
 				success:function(json) {
-				   // Display it on screen now that it has been POSTed to the DB
-				   // TODO: change to reloading from DB
+					location.reload();
 
-				   	var div = $('<div>').addClass('row');
-					$('<span>').addClass('col-md-4').text(json.fname).appendTo(div);
-					$('<span>').addClass('col-md-4').text(json.lname).appendTo(div);
-					$('<span>').addClass('col-md-4').text(json.age).appendTo(div);
-					div.addClass('list-group-item').addClass('row').prependTo('.find-people-list');
+				 //   	var div = $('<div>').addClass('row');
+					// $('<span>').addClass('col-md-4').text(json.fname).appendTo(div);
+					// $('<span>').addClass('col-md-4').text(json.lname).appendTo(div);
+					// $('<span>').addClass('col-md-4').text(json.age).appendTo(div);
+					// div = div.addClass('list-group-item').addClass('row');
+					// $('#find-people-list-header').after(div);
 
-					$('#find-name').val('');
-					$('#find-age').val('');
-					$('#find-tel').val('');
+					// $('#find-name').val('');
+					// $('#find-age').val('');
+					// $('#find-tel').val('');
 
-					// increment tracker
-					$("#find-count").text(parseInt($("#find-count").text()) + 1);
+					// // increment tracker
+					// $("#find-count").text(parseInt($("#find-count").text()) + 1);
 
-					resetNavLinks(json);
+					// resetNavLinks(json);
 
-					// hide guest-user div tags
-					$('.guest-user').empty();
+					// // hide guest-user div tags
+					// $('.guest-user').empty();
 				},
 				error:function() {
 					alert("Error");

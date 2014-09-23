@@ -37,12 +37,7 @@
     					</div>
   					</div>
   					<div class="form-group">
-  						<div class="col-sm-4">
-	  						<select class="form-control">
-						  		<option>Father name</option>
-						  		<option>Spouse name</option>
-							</select>
-						</div>
+  						<label for="found-age" class="control-label col-sm-2">Father's Name</label>
 						<div class="col-sm-8">
       						<input type="text" class="form-control" id="found-father" name="found-father" placeholder="Enter Father name">
     					</div>
@@ -97,7 +92,7 @@
 			      <div class="found-people-display">
 					@if ($found_people_list)
 			      		<ul class="found-people-list list-group">
-				       		<div class="row list-group-item list-group-item-info">
+				       		<div class="row list-group-item list-group-item-info" id="found-people-list-header">
 				       			<span class="col-sm-3">First Name</span>
 				       			<span class="col-sm-3">Last Name</span>
 				       			<span class="col-sm-1">Age</span>
@@ -178,7 +173,7 @@
 			      <div class="find-people-display">
 			      	@if ($find_people_list)
 			      		<ul class="find-people-list list-group">
-				       		<div class="row list-group-item list-group-item-info">
+				       		<div class="row list-group-item list-group-item-info" id="find-people-list-header">
 				       			<span class="col-sm-3">First Name</span>
 				       			<span class="col-sm-3">Last Name</span>
 				       			<span class="col-sm-1">Age</span>

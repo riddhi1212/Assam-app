@@ -41,7 +41,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav navbar-left">
                 <li><a class="navbar-link" href={{ route('updates') }}><span class="fa fa-search fa-fw fa-lg"></span>ARMY Updates</a></li>
-                <li><a class="navbar-link" href={{ route('find.and.found') }}>Find & Found</a></li>
+                <li><a class="navbar-link" href={{ route('find.and.found') }}><span class="fa fa-search fa-fw fa-lg"></span>Find & Found</a></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle navbar-link" id="vol" data-toggle="dropdown"><span class="fa fa-clock-o fa-fw fa-lg"></span>Volunteer<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
