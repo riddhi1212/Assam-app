@@ -41,6 +41,10 @@
 						<span class="col-md-8">{{ $fop->age }}</span>
 					</div>
 					<div class="list-group-item row">
+						<span class="col-md-4">Father's name : </span>
+						<span class="col-md-8">{{ $fop->father_name }}</span>
+					</div>
+					<div class="list-group-item row">
 						<span class="col-md-4">Photo : </span>
 						<span class="col-md-8">
 							<div class="thumbnail">
@@ -68,6 +72,10 @@
 					<div class="list-group-item row">
 						<span class="col-md-4">Mobile : </span>
 						<span class="col-md-8">{{ $finder->mobile }}</span>
+					</div>
+					<div class="list-group-item row">
+						<span class="col-md-4">Affiliation : </span>
+						<span class="col-md-8">{{ $finder->affiliation }}</span>
 					</div>
 	          	</ul>
 	      	</div>

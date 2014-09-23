@@ -17,6 +17,7 @@ class FoundPeopleController extends BaseController {
  
         $found_name = Input::get( 'found-name' );
         $found_age = Input::get( 'found-age' );
+        $found_father_name = Input::get( 'found-father-name' );
 
         Log::info("===========================in FoundPeopleController create [start]");
         Log::info($found_name);
@@ -51,7 +52,7 @@ class FoundPeopleController extends BaseController {
         Auth::user()->setAffiliation(Input::get('found-by'));
 
         // TODO: check for duplicates before creating another record
-        $fop = FoundPeople::createNewForFinder($found_name, $found_age, Auth::user()->id);
+        $fop = FoundPeople::createNewForFinder($found_name, $found_age, $found_father_name, Auth::user()->id);
 
 
         Log::info("========[in FouldPeopleController -> fop is]==========");

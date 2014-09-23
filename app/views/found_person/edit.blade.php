@@ -37,6 +37,12 @@
 					</div>
 				</div>
 				<div class="form-group">
+					<label for="fop-father-name" class="control-label col-sm-4">Father's Name : </label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="fop-father-name" name="fop-father-name" value="{{ $fop->father_name }}">
+					</div>
+				</div>
+				<div class="form-group">
 					<label for="fop-photo" class="control-label col-sm-4">Current Photo : </label>
 					<div class="col-md-8">
 						<div class="thumbnail">

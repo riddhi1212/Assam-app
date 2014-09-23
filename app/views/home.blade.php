@@ -37,18 +37,12 @@
     					</div>
   					</div>
   					<div class="form-group">
-  						<label for="found-age" class="control-label col-sm-2">Father's Name</label>
+  						<label for="found-father-name" class="control-label col-sm-2">Father's Name</label>
 						<div class="col-sm-8">
-      						<input type="text" class="form-control" id="found-father" name="found-father" placeholder="Enter Father name">
+      						<input type="text" class="form-control" id="found-father-name" name="found-father-name" placeholder="Enter Father's name of Found Person">
     					</div>
 					</div>
-  					<div class="form-group">
-    					<label for="found-tel" class="control-label col-sm-2">Tel#</label>
-    					<div class="col-sm-10">
-      						<input type="text" class="form-control" id="found-tel" name="found-tel" placeholder="Enter Telephone Number">
-    					</div>
-  					</div>
-  					@if ( Auth::user() and Auth::user()->hasNoAffiliation() )
+  					@if ( Auth::guest() or (Auth::user() and Auth::user()->hasNoAffiliation()) )
   						<div class="form-group">
 							{{ Form::label('found-by', 'I belong to :', array('class' => 'control-label col-sm-2')); }}
 							<div class="col-sm-8">

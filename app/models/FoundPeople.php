@@ -78,12 +78,13 @@ class FoundPeople extends Eloquent {
 	// ===============================================================
 
     // returns created $fop
-    public static function createNewForFinder($name, $age, $finder_id) {
+    public static function createNewForFinder($name, $age, $father_name, $finder_id) {
         $fop = new FoundPeople;
 
         Helper::setFirstAndLastNameFor($name, $fop);
 
         $fop->age = $age;
+        $fop->father_name = $father_name;
         $fop->finder_id = $finder_id;
         $fop->save();
         return $fop;

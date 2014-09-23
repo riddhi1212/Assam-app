@@ -46,7 +46,7 @@
 						</div>
 					</div>
 
-					@if (true)
+					@if (Auth::guest())
 					<div class="guest-user">
 						<div class="form-group">
 							{{ Form::label('guest-first-name', 'My first name :', array('class' => 'control-label col-sm-4')); }}

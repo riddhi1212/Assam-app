@@ -23,6 +23,7 @@ class CreateFoundPeopleTable extends Migration {
 			$table->string('last_name')->nullable();
 			$table->boolean('first_name_has_spaces')->default(false);
 			$table->integer('age')->unsigned();
+			$table->string('father_name');
 			
 			// Other optional info fields
 			$table->string('photo_url')->nullable();
