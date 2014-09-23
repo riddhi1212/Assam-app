@@ -49,21 +49,21 @@
 					@if (Auth::guest())
 					<div class="guest-user">
 						<div class="form-group">
-							{{ Form::label('guest-first-name', 'My first name :', array('class' => 'control-label col-sm-4')); }}
+							{{ Form::label('guest-first-name', 'Your first name :', array('class' => 'control-label col-sm-4')); }}
 							<div class="col-sm-8">
 								{{ Form::text('guest-first-name', 'Enter your first name', array('class' => 'form-control',
 																						            'id' => 'guest-first-name')); }}
 							</div>
 						</div>
 						<div class="form-group">
-							{{ Form::label('guest-last-name', 'My last name :', array('class' => 'control-label col-sm-4')); }}
+							{{ Form::label('guest-last-name', 'Your last name :', array('class' => 'control-label col-sm-4')); }}
 							<div class="col-sm-8">
 								{{ Form::text('guest-last-name', 'Enter your last name', array('class' => 'form-control',
 																						          'id' => 'guest-last-name')); }}
 							</div>
 						</div>
 						<div class="form-group">
-							{{ Form::label('guest-mobile', 'My mobile number :', array('class' => 'control-label col-sm-4')); }}
+							{{ Form::label('guest-mobile', 'Your mobile number :', array('class' => 'control-label col-sm-4')); }}
 							<div class="col-sm-8">
 								{{ Form::text('guest-mobile', 'Enter your mobile number', array('class' => 'form-control',
 																						           'id' => 'guest-mobile')); }}
