@@ -5,7 +5,6 @@ class DonationCauseController extends BaseController {
 	public function create() {
 		$dc_name = Input::get( 'dc-name' );
         $dc_desc = Input::get( 'dc-desc' );
-        $dc_img_url = Input::get( 'dc-img-url' );
 
         $dc_donation_url = Input::get( 'dc-donation-url' );
         $dc_instructions = Input::get( 'dc-instructions' );
@@ -34,7 +33,10 @@ class DonationCauseController extends BaseController {
             Auth::user()->makeDonationCauseAdder();
         }
 
-        DonationCause::createNewForPoster($dc_name, $dc_desc, $dc_img_url, $dc_donation_url, $dc_instructions, Auth::user()->id);
+        // Storing the image
+        $dc_img_file = Input::file( 'dc-img-file' );
+
+        DonationCause::createNewForPosterFromImgFile($dc_name, $dc_desc, $dc_img_file, $dc_donation_url, $dc_instructions, Auth::user()->id);
 
         return Redirect::route('donate');
 	}
@@ -45,7 +47,12 @@ class DonationCauseController extends BaseController {
         $dc_id = Input::get( 'dc-id' );
         $dc_name = Input::get( 'dc-name' );
         $dc_desc = Input::get( 'dc-desc' );
-        $dc_img_url = Input::get( 'dc-img-url' );
+
+        // Storing the image
+        $dc_img_file = Input::file( 'dc-img-file' );
+        $dc_img_url = Helper::moveImgFileAndGetURL($dc_img_file, $dc_id);
+
+        Log::info($dc_img_url);
 
         $dc_donation_url = Input::get( 'dc-donation-url' );
         $dc_instructions = Input::get( 'dc-instructions' );
@@ -60,5 +67,7 @@ class DonationCauseController extends BaseController {
         DonationCause::find($id)->delete();
         return Redirect::to('dashboard');
     }
+
+
 
 }

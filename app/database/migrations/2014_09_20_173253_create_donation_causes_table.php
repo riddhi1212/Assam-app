@@ -19,7 +19,7 @@ class CreateDonationCausesTable extends Migration {
 
 			$table->string('name');
 			$table->text('description');
-			$table->string('img_url');
+			$table->string('img_url')->nullable();
 			$table->string('donation_url');
 
         	// TODO : add tag like 'Bank', 'NGO', 'Other' and color code while displaying

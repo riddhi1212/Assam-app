@@ -18,7 +18,7 @@
 	<div class="row">
 		<div class="col-md-8">
 			<h2>Donation Cause details :</h2>
-	      	<form class="form-horizontal" id="add-donation-cause-form" method="post" action={{ route('donation.channel.edit') }}>
+	      	<form class="form-horizontal" id="add-donation-cause-form" method="post" action={{ route('donation.channel.edit') }} enctype="multipart/form-data">
 	        	{{ Form::hidden('dc-id', $dc->id); }}
 	        	<div class="form-group">
 					<label for="dc-name" class="control-label col-sm-4">Name of Organisation Collecting Donations</label>
@@ -37,13 +37,25 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="dc-img-url" class="control-label col-sm-4">Organisation Logo URL</label>
-					<div class="col-sm-8">
-							<input type="text" class="form-control" id="dc-img-url" name="dc-img-url" value="{{ $dc->img_url }}">
+					<label for="dc-photo" class="control-label col-sm-4">Current Organisation Logo : </label>
+					<div class="col-md-8">
+						<div class="thumbnail">
+							@if ($dc->img_url)
+								<img src="{{ $dc->img_url }}" class="img-responsive">
+							@else
+								<img src="http://dummyimage.com/250x120&text=No image specified" class="img-responsive">
+							@endif
+						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="dc-donation-url" class="control-label col-sm-4">Online Donation URL</label>
+					<label for="dc-img-file" class="control-label col-sm-4">Change Logo Image : </label>
+					<div class="col-sm-8">
+						{{ Form::file('dc-img-file') }}
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="dc-donation-url" class="control-label col-sm-4">Online Donation URL : </label>
 					<div class="col-sm-8">
 							<input type="text" class="form-control" id="dc-donation-url" name="dc-donation-url" value="{{ $dc->donation_url }}">
 					</div>

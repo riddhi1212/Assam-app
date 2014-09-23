@@ -18,16 +18,16 @@
 	<div class="row">
 		<div class="col-md-8">
 			<h2>Donation Cause details :</h2>
-	      	<form class="form-horizontal" id="add-donation-cause-form" method="post" action={{ route('donation.channel.add') }}>
+	      	<form class="form-horizontal" id="add-donation-cause-form" method="post" action={{ route('donation.channel.add') }} enctype="multipart/form-data">
 	        	<div class="form-group">
-					<label for="dc-name" class="control-label col-sm-4">Name of Organisation Collecting Donations</label>
+					<label for="dc-name" class="control-label col-sm-4">Name of Organisation Collecting Donations : </label>
 					<div class="col-sm-8">
 						<input type="text" class="form-control" id="dc-name" name="dc-name" placeholder="Enter Name">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="dc-desc" class="control-label col-sm-4">
-						Description
+						Description : 
 						(what donation type you want: e.g. money/supplies)
 						(where it is going: e.g. PMRF / NGO)
 					</label>
@@ -36,13 +36,13 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="dc-img-url" class="control-label col-sm-4">Organisation Logo URL</label>
+					<label for="dc-img-file" class="control-label col-sm-4">Organisation Logo Image : </label>
 					<div class="col-sm-8">
-							<input type="text" class="form-control" id="dc-img-url" name="dc-img-url" placeholder="Enter URL to image of organisation">
+						{{ Form::file('dc-img-file') }}
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="dc-donation-url" class="control-label col-sm-4">Online Donation URL</label>
+					<label for="dc-donation-url" class="control-label col-sm-4">Online Donation URL : </label>
 					<div class="col-sm-8">
 							<input type="text" class="form-control" id="dc-donation-url" name="dc-donation-url" placeholder="Enter Online Donation URL OR Instructions below">
 					</div>

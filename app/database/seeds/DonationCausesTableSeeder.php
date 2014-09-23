@@ -19,7 +19,7 @@ class DonationCausesTableSeeder extends Seeder {
         $dc_adder_user = User::find(1); // finding Riddhi
         $dc_adder_user->makeDonationCauseAdder();
         
-        DonationCause::createNewForPoster("HDFC Bank",
+        DonationCause::createNewForPosterFromUploadedImgURL("HDFC Bank",
                                           "Direct link for Online Donation option to Prime Minister Modi's National Relief Fund.",
                                           "images/hdfcbanklogo.jpg",
                                           "http://www.hdfcbank.com/personal/donate-online/donate-to-charity-inner/1332166924",
@@ -29,7 +29,7 @@ class DonationCausesTableSeeder extends Seeder {
         // http://freshersplane.com/wp-content/uploads/2011/08/HDFC-Bank.jpg
 
 
-        DonationCause::createNewForPoster("Yes Bank",
+        DonationCause::createNewForPosterFromUploadedImgURL("Yes Bank",
                                           "Direct link for Online Donation option to Prime Minister Modi's National Relief Fund.",
                                           "images/yesbanklogo.jpg",
                                           "http://www.yesbank.in/branch-banking/yes-touch/prime-minister-national-relief-fund.html",
@@ -37,7 +37,7 @@ class DonationCausesTableSeeder extends Seeder {
                                           $dc_adder_user->id
                                         );
 
-        DonationCause::createNewForPoster("ICICI Bank",
+        DonationCause::createNewForPosterFromUploadedImgURL("ICICI Bank",
                                           "Direct link for Online Donation option to Prime Minister Modi's National Relief Fund.",
                                           "images/icicibanklogo.jpg",
                                           "https://www.billdesk.com/pgidsk/pgmerc/ICICI_QuickPay/PMNRFICI_quickpay_details.jsp",
@@ -45,7 +45,7 @@ class DonationCausesTableSeeder extends Seeder {
                                           $dc_adder_user->id
                                         );
 
-        DonationCause::createNewForPoster("Axis Bank",
+        DonationCause::createNewForPosterFromUploadedImgURL("Axis Bank",
                                           "Direct link for Online Donation option to Prime Minister Modi's National Relief Fund.",
                                           "images/axisbanklogo.jpg",
                                           "http://www.axisbank.com/personal/make-donations/online_donations/online.aspx",

@@ -28,6 +28,16 @@
 						<span class="col-md-4">Description: </span>
 						<span class="col-md-8">{{ $donation_cause->description }}</span>
 					</div>
+					<div class="list-group-item row">
+						<span class="col-md-4">Current Organisation Logo : </span>
+						<div class="col-md-8 thumbnail">
+							@if ($donation_cause->img_url)
+								<img src="{{ $donation_cause->img_url }}" class="img-responsive">
+							@else
+								<img src="http://dummyimage.com/250x120&text=No image specified" class="img-responsive">
+							@endif
+						</div>
+					</div>
 					@if ($donation_cause->instructions === NULL)
 						<div class="list-group-item row">
 							<span class="col-md-4">Donation URL: </span>

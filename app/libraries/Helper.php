@@ -324,6 +324,24 @@ class Helper {
                                     $contributor->id
                                 );
     }
+
+
+    public static function moveImgFileAndGetURL($dc_img_file, $dc_id) {
+        $dc_img_url = NULL;
+        if ($dc_img_file) {
+            Log::info("inside if statement. So some file was uploaded");
+            $image_file_name = 'DC_id_' . $dc_id . '.' . $dc_img_file->guessClientExtension();
+            $image_file_location = 'images/DC_photos/';
+            $dc_img_file->move($image_file_location, $image_file_name);
+
+            if (Auth::user()->img_url) {
+                // delete old upload
+                unlink(app_path().'/../public/'.Auth::user()->img_url);
+            }
+            $dc_img_url = '/' . $image_file_location . $image_file_name;
+        }
+        return $dc_img_url;
+    }
  
 
 }
