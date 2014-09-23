@@ -31,10 +31,6 @@
 	text-decoration: none;
 }
 
-
-
-
-
 </style>
 
 @stop

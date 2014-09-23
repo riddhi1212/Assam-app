@@ -90,7 +90,7 @@ class ArmyUpdates extends Eloquent {
     }
 
     // returns a results array
-        // TODO explanation
+    // TODO explanation
     // Called from ArmyUpdatesController. No matching capability yet? // TODO can add 'Claim' in future
     public static function searchWithParam($find_sno, $find_name, $find_age) {
         return ArmyUpdates::getBuilderWithParam($find_sno, $find_name, $find_age)->get();

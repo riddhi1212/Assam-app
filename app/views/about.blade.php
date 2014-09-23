@@ -27,7 +27,7 @@
 				<p>I'm passionate about solving problems, and love building things to solve real needs. I always think about how to improve things further.</p>
 				<p>I like meeting like-minded people, so if you're so inclined, drop me a message via the Contact Me form and I'd love to chat further.</p>
 				<p>I built this web-platform in 7 days time, and have barely slept. I will continue to add more features over the next 2 weeks or so. If you want some feature added, please write to me using the Contact Us form with the Purpose field set to Feature Request.</p>
-				<p>This platform also happens to be my very first <u>completely solo</u> adventure into the world of web-development, encompassing everything e.g. Design, CSS, Front-end scripting, Server side programming, Database design, Product management, analytics, deployment and production.
+				<p>This platform also happens to be my very first <u>completely solo</u> adventure into the world of web-development, encompassing everything e.g. Design, CSS, Front-end scripting, Server side programming, Database design, Product management, analytics, testing, deployment and production.
 				It has been an amazing experience so far and I've learnt a lot. I've taught myself around 10-15 new technologies over the last week while trying to implement various kinds of functionality for this platform.
 				</p>
 			</div>

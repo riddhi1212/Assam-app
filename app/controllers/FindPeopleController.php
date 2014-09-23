@@ -82,8 +82,8 @@ class FindPeopleController extends BaseController {
             'status' => 'success',
             'username' => Auth::user()->fname,
             'notificationCount' => $num_matches,
-            'fname' => Helper::getFirstNameFrom($find_name),
-            'lname' => Helper::getLastNameFrom($find_name),
+            'fname' => Helper::getDisplayFirstNameFrom($find_name),
+            'lname' => Helper::getDisplayLastNameFrom($find_name),
             'age'   => $find_age,
             'msgCount' => Auth::user()->messages()->count(),
             'msg' => 'Person inserted in Find-People Table successfully', // figure out how to use this future-TODO

@@ -9,6 +9,11 @@ class ArmyUpdatesTableSeeder extends Seeder {
 	 */
 	public function run()
 	{
+		// Calling appropriate migration directly
+        $aut = new CreateArmyUpdatesTable;
+        $aut->down();
+        $aut->up();
+
         $csvFile = app_path() . '/database/ToSeed/444-816-with-contributer-details.csv';
 		
 		// Format 2
