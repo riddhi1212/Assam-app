@@ -27,13 +27,13 @@
 			        <div class="form-group">
     					<label for="found-name" class="control-label col-sm-2">Name</label>
     					<div class="col-sm-10">
-      						<input type="text" class="form-control" id="found-name" name="found-name" placeholder="Enter Name">
+      						<input type="text" class="form-control" id="found-name" name="found-name" placeholder="Enter Name of Found Person">
     					</div>
   					</div>
   					<div class="form-group">
     					<label for="found-age" class="control-label col-sm-2">Age</label>
     					<div class="col-sm-10">
-      						<input type="text" class="form-control" id="found-age" name="found-age" placeholder="Enter Age">
+      						<input type="text" class="form-control" id="found-age" name="found-age" placeholder="Enter Age of Found Person">
     					</div>
   					</div>
   					<div class="form-group">
@@ -81,11 +81,16 @@
 	  					</div>
 	  				</div>
   					@endif
-			        <button type="button" class="btn btn-primary btn-block" id="found-post-btn">Post</button>
+  					<div class="form-group">
+        				<div class="col-sm-12">
+			        		<button type="submit" class="btn btn-primary btn-block" id="found-post-btn">Post</button>
+			      		</div>
+			      	</div>
 			      </form>
 			      <div class="found-people-display">
 					@if ($found_people_list)
 			      		<ul class="found-people-list list-group">
+			      			<h4>All Found Person Reports : </h4>
 				       		<div class="row list-group-item list-group-item-info" id="found-people-list-header">
 				       			<span class="col-sm-3">First Name</span>
 				       			<span class="col-sm-3">Last Name</span>
@@ -131,13 +136,13 @@
 			        <div class="form-group">
     					<label for="find-name" class="control-label col-sm-2">Name</label>
     					<div class="col-sm-10">
-      						<input type="text" class="form-control" id="find-name" name="find-name" placeholder="Enter Name">
+      						<input type="text" class="form-control" id="find-name" name="find-name" placeholder="Enter Name of Missing Person">
     					</div>
   					</div>
   					<div class="form-group">
     					<label for="find-age" class="control-label col-sm-2">Age</label>
     					<div class="col-sm-10">
-      						<input type="text" class="form-control" id="find-age" name="find-age" placeholder="Enter Age">
+      						<input type="text" class="form-control" id="find-age" name="find-age" placeholder="Enter Age of Missing Person">
     					</div>
   					</div>
   					@if ( Auth::guest() )
@@ -162,11 +167,16 @@
 	  					</div>
 	  				</div>
   					@endif
-			        <button type="button" class="btn btn-primary btn-block" id="find-post-btn">Post</button>
+				    <div class="form-group">
+        				<div class="col-sm-12">
+			        		<button type="submit" class="btn btn-primary btn-block" id="find-post-btn">Post</button>
+			      		</div>
+			      	</div>
 			      </form>
 			      <div class="find-people-display">
 			      	@if ($find_people_list)
 			      		<ul class="find-people-list list-group">
+			      			<h4>All Missing Person Reports : </h4>
 				       		<div class="row list-group-item list-group-item-info" id="find-people-list-header">
 				       			<span class="col-sm-3">First Name</span>
 				       			<span class="col-sm-3">Last Name</span>

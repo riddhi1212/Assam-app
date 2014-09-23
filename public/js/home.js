@@ -22,6 +22,233 @@ var resetNavLinks = function(json) {
 var main = function() {
 	console.log("in main");
 
+
+	// --------------------
+	// Validation
+	// --------------------
+
+	$('#find-people-form').bootstrapValidator({
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            'find-name': {
+                message: 'The name is not valid',
+                validators: {
+                    notEmpty: {
+                        message: 'The Missing Person name is required and cannot be empty'
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z ]+$/,
+                        message: 'The Missing Person name can only consist of alphabets and spaces'
+                    }
+                }
+            },
+            'find-age': {
+                validators: {
+                    notEmpty: {
+                        message: 'The Missing Person age is required and cannot be empty'
+                    },
+                    digits: {
+                        message: 'The Missing Person age can only contain digits'
+                    },
+                    between: {
+                        min: 0,
+                        max: 100,
+                        message: 'The Missing Person age must be between 0 and 100'
+                    }
+                }
+            },
+            'looker-first-name': {
+                validators: {
+                    notEmpty: {
+                        message: 'Your first name is required and cannot be empty'
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z ]+$/,
+                        message: 'Your first name can only consist of alphabets and spaces'
+                    }
+                }
+            },
+            'looker-last-name': {
+                validators: {
+                    notEmpty: {
+                        message: 'Your last name is required and cannot be empty'
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z ]+$/,
+                        message: 'Your last name can only consist of alphabets and spaces'
+                    }
+                }
+            },
+            'looker-mobile': {
+                validators: {
+                    notEmpty: {
+                        message: 'Your mobile number is required and cannot be empty'
+                    },
+                    digits: {
+                        message: 'Your mobile number can only contain digits'
+                    },
+                    regexp: {
+                    	regexp: /^\d{10}$/,
+                    	message: 'Your mobile number needs to have 10 digits'
+                    }
+                }
+            }
+        }
+    }).on('success.form.bv', function(e) {
+        // Prevent form submission
+        e.preventDefault();
+
+        // Get the form instance
+        var $form = $(e.target);
+
+        // Get the BootstrapValidator instance
+        var bv = $form.data('bootstrapValidator');
+
+        console.log("Sending data to backend now");
+
+		// now POST to server
+		$.ajax({
+				type: "post",
+				url: $form.prop('action'),
+				data: $form.serialize(),
+				success:function(json) {
+					location.reload();
+				},
+				error:function() {
+					alert("Error");
+				}
+		});
+
+    });
+
+
+	$('#found-people-form').bootstrapValidator({
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            'found-name': {
+                message: 'The name is not valid',
+                validators: {
+                    notEmpty: {
+                        message: 'The Found Person name is required and cannot be empty'
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z ]+$/,
+                        message: 'The Found Person name can only consist of alphabets and spaces'
+                    }
+                }
+            },
+            'found-age': {
+                validators: {
+                    notEmpty: {
+                        message: 'The Found Person age is required and cannot be empty'
+                    },
+                    digits: {
+                        message: 'The Found Person age can only contain digits'
+                    },
+                    between: {
+                        min: 0,
+                        max: 100,
+                        message: 'The Found Person age must be between 0 and 100'
+                    }
+                }
+            },
+            'found-father-name': {
+                message: 'The name is not valid',
+                validators: {
+                    notEmpty: {
+                        message: 'The Father\'s name of Found Person is required and cannot be empty'
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z ]+$/,
+                        message: 'The Father\'s name can only consist of alphabets and spaces'
+                    }
+                }
+            },
+            'finder-first-name': {
+                validators: {
+                    notEmpty: {
+                        message: 'Your first name is required and cannot be empty'
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z ]+$/,
+                        message: 'Your first name can only consist of alphabets and spaces'
+                    }
+                }
+            },
+            'finder-last-name': {
+                validators: {
+                    notEmpty: {
+                        message: 'Your last name is required and cannot be empty'
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z ]+$/,
+                        message: 'Your last name can only consist of alphabets and spaces'
+                    }
+                }
+            },
+            'finder-mobile': {
+                validators: {
+                    notEmpty: {
+                        message: 'Your mobile number is required and cannot be empty'
+                    },
+                    digits: {
+                        message: 'Your mobile number can only contain digits'
+                    },
+                    regexp: {
+                    	regexp: /^\d{10}$/,
+                    	message: 'Your mobile number needs to have 10 digits'
+                    }
+                }
+            }
+        }
+    }).on('success.form.bv', function(e) {
+        // Prevent form submission
+        e.preventDefault();
+
+        // Get the form instance
+        var $form = $(e.target);
+
+        // Get the BootstrapValidator instance
+        var bv = $form.data('bootstrapValidator');
+
+        console.log("Sending data to backend now");
+
+		// now POST to server
+		$.ajax({
+				type: "post",
+				url: $form.prop('action'),
+				data: $form.serialize(),
+				success:function(json) {
+					location.reload();
+				},
+				error:function() {
+					alert("Error");
+				}
+		});
+
+    });
+
+
+
+
+
+
+
+
+
+
+
+
 	// ------------------
 	// Remove FIP Link click
 	// ------------------
@@ -90,87 +317,49 @@ var main = function() {
 	// Form Button Clicks
 	// ------------------
 
-	$('#found-post-btn').click(function(){
-		var name = $('#found-name').val();
+	// $('#found-post-btn').click(function(){
+	// 	var name = $('#found-name').val();
 
-		if (name.length === 0) return;
+	// 	if (name.length === 0) return;
 
-		var age = $('#found-age').val();
-		var tel = $('#found-tel').val();
-		var by = $('#found-by').val();
+	// 	var age = $('#found-age').val();
+	// 	var tel = $('#found-tel').val();
+	// 	var by = $('#found-by').val();
 
-		// now POST to server
-		$.ajax({
-				type:"post",
-				url:$("#found-people-form").prop('action'),
-				data:$("#found-people-form").serialize(),
-				success:function(json) {
-					location.reload();
+	// 	// now POST to server
+	// 	$.ajax({
+	// 			type:"post",
+	// 			url:$("#found-people-form").prop('action'),
+	// 			data:$("#found-people-form").serialize(),
+	// 			success:function(json) {
+	// 				location.reload();
+	// 			},
+	// 			error:function() {
+	// 				alert("Error");
+	// 			}
+	// 	});
 
-					// var div = $('<div>').addClass('row');
-					// $('<span>').addClass('col-md-4').text(json.fname).appendTo(div);
-					// $('<span>').addClass('col-md-4').text(json.lname).appendTo(div);
-					// $('<span>').addClass('col-md-4').text(json.age).appendTo(div); // NOTE: by not saved to DB yet
-					// $('<li>').append(div).addClass('list-group-item').appendTo('#found-people-list-header'); 		
-					// // // Instead of
-					// // $('<li>').text(name).addClass('list-group-item').prependTo('.found-people-list');
+	// });
 
-					// $('#found-name').val('');
-					// $('#found-age').val('');
-					// $('#found-tel').val('');
-					// $('#found-by').val('');
 
-					// // increment tracker
-					// $("#found-count").text(parseInt($("#found-count").text()) + 1);
+	// $('#find-post-btn').click(function(){
+	// 	var name = $('#find-name').val();
+	// 	if (name.length === 0) return;
 
-					// resetNavLinks(json);
-
-					// // hide guest-user div tags
-					// $('.guest-user').empty();
-				},
-				error:function() {
-					alert("Error");
-				}
-		});
-
-	});
-	$('#find-post-btn').click(function(){
-		var name = $('#find-name').val();
-		if (name.length === 0) return;
-
-		// now POST to server
-		$.ajax({
-				type:"post",
-				url:$("#find-people-form").prop('action'),
-				data:$("#find-people-form").serialize(),
-				success:function(json) {
-					location.reload();
-
-				 //   	var div = $('<div>').addClass('row');
-					// $('<span>').addClass('col-md-4').text(json.fname).appendTo(div);
-					// $('<span>').addClass('col-md-4').text(json.lname).appendTo(div);
-					// $('<span>').addClass('col-md-4').text(json.age).appendTo(div);
-					// div = div.addClass('list-group-item').addClass('row');
-					// $('#find-people-list-header').after(div);
-
-					// $('#find-name').val('');
-					// $('#find-age').val('');
-					// $('#find-tel').val('');
-
-					// // increment tracker
-					// $("#find-count").text(parseInt($("#find-count").text()) + 1);
-
-					// resetNavLinks(json);
-
-					// // hide guest-user div tags
-					// $('.guest-user').empty();
-				},
-				error:function() {
-					alert("Error");
-				}
-		});
+	// 	// now POST to server
+	// 	$.ajax({
+	// 			type:"post",
+	// 			url:$("#find-people-form").prop('action'),
+	// 			data:$("#find-people-form").serialize(),
+	// 			success:function(json) {
+	// 				location.reload();
+	// 			},
+	// 			error:function() {
+	// 				alert("Error");
+	// 			}
+	// 	});
 	
-	});
+	// });
 }
 
 $(document).ready(main);

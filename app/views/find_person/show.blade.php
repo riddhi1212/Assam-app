@@ -77,6 +77,7 @@
 				<a href="{{ route('find.person.edit', $fip->id) }}">
 					<span class="fa fa-pencil fa-fw fa-lg">Edit</span>
 				</a>
+				<h5>To upload a photo and add a description.</h5>
 			</div>
 		@endif
 	</div>

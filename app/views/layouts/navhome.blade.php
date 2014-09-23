@@ -8,6 +8,7 @@
         <title>Kashmiri Floods 2014 Missing Person Finder</title>
         {{ HTML::style('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'); }}
         {{ HTML::style('//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'); }}
+        {{ HTML::style("//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.1/css/bootstrapValidator.min.css"); }}
         {{ HTML::style('css/layouts/nav.css'); }}
         @yield('head')
         <script>
@@ -99,6 +100,7 @@
 
         {{ HTML::script('https://code.jquery.com/jquery-1.11.1.min.js'); }}
         {{ HTML::script('http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.js'); }}
+        {{ HTML::script('//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.1/js/bootstrapValidator.min.js'); }}
 
         <script>
           $(document).ready(function() {
