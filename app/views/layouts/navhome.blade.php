@@ -105,13 +105,18 @@
         <script>
           $(document).ready(function() {
 
-              // ON LOADmake body margin-bottom = footer height
+              // ON LOAD make body margin-bottom = footer height
+              // and make body padding-top = navbar height
               $('body').css('margin-bottom', $('#footer').css('height'));
+              $('body').css('padding-top', $('.navbar').css('height'));
               console.log($('body').css('margin-bottom'));
-
+              console.log($('body').css('padding-top'));
+              
               $( window ).resize(function() {
                 $('body').css('margin-bottom', $('#footer').css('height'));
+                $('body').css('padding-top', $('.navbar').css('height'));
                 console.log($('body').css('margin-bottom'));
+                console.log($('body').css('padding-top'));
               });
 
               var url = $(location).attr('href');
