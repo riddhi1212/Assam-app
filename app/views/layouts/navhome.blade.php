@@ -42,13 +42,20 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav navbar-left">
                 <li><a class="navbar-link" href={{ route('updates') }}><span class="fa fa-search fa-fw fa-lg"></span>ARMY Updates</a></li>
-                <li><a class="navbar-link" href={{ route('find.and.found') }}><span class="fa fa-search fa-fw fa-lg"></span>Find & Found</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle navbar-link" id="updates" data-toggle="dropdown"><span class="fa fa-search fa-fw fa-lg"></span>Find & Found<span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href={{ route('missing.person.report') }} data-parent="updates"><span class="fa fa-male fa-fw fa-lg"></span>Lodge Missing Person Report</a></li>
+                    <li class="divider"></li>
+                    <li><a href={{ route('found.person.report') }} data-parent="updates"><span class="fa fa-smile-o fa-fw fa-lg"></span>Post Found Person Report</a></li>
+                  </ul>
+                </li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle navbar-link" id="vol" data-toggle="dropdown"><span class="fa fa-clock-o fa-fw fa-lg"></span>Volunteer<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
-                    <li><a href={{ route('contributor.add.form') }} data-parent="vol">Contribute Now!</a></li>
+                    <li><a href={{ route('contributor.add.form') }} data-parent="vol"><span class="fa fa-thumbs-o-up fa-fw fa-lg"></span>Contribute Now!</a></li>
                     <li class="divider"></li>
-                    <li><a href={{ route('contributors') }} data-parent="vol">View Contributors</a></li>
+                    <li><a href={{ route('contributors') }} data-parent="vol"><span class="fa fa-eye fa-fw fa-lg"></span>View Contributors</a></li>
                   </ul>
                 </li>
                 <li><a class="navbar-link" href={{ route('donate') }}><span class="fa fa-rupee fa-fw fa-lg"></span>Donate</a></li>

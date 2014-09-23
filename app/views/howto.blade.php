@@ -38,7 +38,7 @@
 						</li>
 						<li>
 							<div>
-								<h4>Submit Missing Person Reports and Found Person Reports <a href={{ route('find.and.found') }}>here</a></h4>
+								<h4>Submit Missing Person Reports <a href={{ route('missing.person.report') }}>here</a> and Found Person Reports <a href={{ route('found.person.report') }}>here</a></h4>
 								<p>Many people are commenting on the Indian ARMY Facebook Account uploaded pictures and posting info about Missing persons.</p>
 								<p>This website allows people to post Missing Person Reports and Found Person Reports, and searches are automatically run and people are automatically notified when someone Finds a person they were Looking for. </p>
 							</div>

@@ -61,15 +61,21 @@ Route::post('contact', array(
     'uses' => 'UsersController@contactMe'
 ) );
 
-Route::get('/findandfound', array(
-    'as' => 'find.and.found',
+Route::get('find/report', array(
+    'as' => 'missing.person.report',
+    'uses' => function()
+				{
+					$find_people_list = FindPeople::orderBy('created_at','dsc')->get();
+					return View::make('find_person/list',[ 'find_people_list' => $find_people_list ]);
+				}
+) );
+
+Route::get('found/report', array(
+    'as' => 'found.person.report',
     'uses' => function()
 				{
 					$found_people_list = FoundPeople::orderBy('created_at','dsc')->get();
-					$find_people_list = FindPeople::orderBy('created_at','dsc')->get();
-					return View::make('home',[ 'found_people_list' => $found_people_list, 
-											   'find_people_list' => $find_people_list  
-											 ]);
+					return View::make('found_person/list',[ 'found_people_list' => $found_people_list ]);
 				}
 ) );
 
