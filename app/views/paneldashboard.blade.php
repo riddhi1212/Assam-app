@@ -227,6 +227,8 @@
 
         <script>
 
+        	$('#auth-username').parent().addClass('active-link');
+
 		    $('#dashboard-tab a').click(function (e) {
 		        e.preventDefault();
 		        $(this).tab('show');
@@ -234,6 +236,7 @@
 
 		    // store the currently selected tab in the hash value
 		    $("ul.nav-tabs > li > a").on("shown.bs.tab", function (e) {
+		    	$('#auth-username').parent().addClass('active-link');
 		        var id = $(e.target).attr("href").substr(1);
 		        window.location.hash = id;
 		        localStorage.setItem('dashboard-hash', window.location.hash);

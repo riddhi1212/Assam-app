@@ -18,76 +18,13 @@
 				<h1>About Me</h1>
 				<p>Developer:...</p>
 				<p>...</p>
-				<h2>Contact Me :</h2>
-
-				{{ Form::open(array('action' => 'UsersController@contactMe',
-									'method' => 'post',
-									'class'	 => 'form-horizontal',
-									'id'     => 'contact-me-form')) }}
-
-
-					<div class="form-group">
-						{{ Form::label('purpose', 'Purpose:', array('class' => 'control-label col-sm-4')); }}
-						<div class="col-sm-8">
-							{{ Form::select('purpose', array(
-														   'feedback' => 'Feedback',
-														   'feature' => 'Feature Request',
-														   'error' => 'Error Report',
-														   'help' => 'I need help',
-														   'dev' => 'I am a developer and want to contribute',
-														   'other' => 'Other'),
-													   array('class' => 'form-control',
-																'id' => 'purpose') ); }}
-						</div>
-					</div>
-
-					<div class="form-group">
-						{{ Form::label('comments', 'Comments', array('class' => 'control-label col-sm-4')); }}
-						<div class="col-sm-8">
-							{{ Form::textarea('comments', 'Enter your text here', array('class' => 'form-control',
-																						   'id' => 'comments')); }}
-						</div>
-					</div>
-
-					@if (true)
-					<div class="guest-user">
-						<div class="form-group">
-							{{ Form::label('guest-first-name', 'My first name :', array('class' => 'control-label col-sm-4')); }}
-							<div class="col-sm-8">
-								{{ Form::text('guest-first-name', 'Enter your first name', array('class' => 'form-control',
-																						            'id' => 'guest-first-name')); }}
-							</div>
-						</div>
-						<div class="form-group">
-							{{ Form::label('guest-last-name', 'My last name :', array('class' => 'control-label col-sm-4')); }}
-							<div class="col-sm-8">
-								{{ Form::text('guest-last-name', 'Enter your last name', array('class' => 'form-control',
-																						          'id' => 'guest-last-name')); }}
-							</div>
-						</div>
-						<div class="form-group">
-							{{ Form::label('guest-mobile', 'My mobile number :', array('class' => 'control-label col-sm-4')); }}
-							<div class="col-sm-8">
-								{{ Form::text('guest-mobile', 'Enter your mobile number', array('class' => 'form-control',
-																						           'id' => 'guest-mobile')); }}
-							</div>
-						</div>
-					</div>
-					@endif
-
-					{{ Form::button('Contact Me', array('class' => 'btn btn-primary btn-block',
-														   'id' => 'contact-me-btn' )); }}
-
-				{{ Form::close() }}
-
-				<h4>Or email me at kashmirfloods2014@gmail.com.</h4>
 			</div>
 		</div> <!-- row -->
 	</div> <!-- container -->
 
 	<div class="stripe created-using">
 		<div class="container">
-			<p>This site was created using Bootstrap, Laravel, Homestead, Vagrant and Forge.</p>
+			<p>This site was created using jQuery, Bootstrap, Laravel, Homestead, Vagrant and Forge, and is hosted on Digital Ocean.</p>
 		</div>
 	</div>
 

@@ -79,9 +79,17 @@ body {
 /* nav bar */
 
 .active-link {
-    color: rgb(255,101,130);
-    background: rgb(100,82,81);
+    background-color: rgb(100,82,81);
  }
+
+ .dropdown-menu > li > .active-link {
+    color: white;
+ }
+
+ .dropdown-menu > li > a:hover {
+    color: #ff6582;
+ }
+
 
 .navbar-default {
   background-color: #18091e;
@@ -127,11 +135,14 @@ body {
   color: #ecf0f1;
 }
 
-
-
 .navbar-default .navbar-link:hover {
   color: #ff6582;
 }
+
+/* Makes dropdown display on hover as well as click*/
+.dropdown:hover .dropdown-menu {
+    display: block;
+ }
 
 
 @media (max-width: 767px) {

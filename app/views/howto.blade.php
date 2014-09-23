@@ -65,7 +65,7 @@
 						</li>
 						<li>
 							<div>
-								<h4>For any questions, you can <span class="fa fa-pencil-square-o fa-fw fa-lg"></span>Contact Me <a href={{ route('about') }}>here</a></h4>
+								<h4>For any questions, you can <span class="fa fa-pencil-square-o fa-fw fa-lg"></span>Contact Me <a href={{ route('contact.me') }}>here</a></h4>
 							</div>
 						</li>
 					</ul>

@@ -34,34 +34,24 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href={{ route('howto') }}>Home</a>
+              <a class="navbar-brand" href={{ route('howto') }}><span class="fa fa-home fa-fw fa-lg"></span>Home</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav navbar-left">
-                <li><a class="navbar-link" href={{ route('updates') }}>ARMY Updates</a></li>
+                <li><a class="navbar-link" href={{ route('updates') }}><span class="fa fa-search fa-fw fa-lg"></span>ARMY Updates</a></li>
                 <li><a class="navbar-link" href={{ route('find.and.found') }}>Find & Found</a></li>
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle navbar-link" data-toggle="dropdown">Volunteer<span class="caret"></span></a>
+                  <a href="#" class="dropdown-toggle navbar-link" id="vol" data-toggle="dropdown"><span class="fa fa-clock-o fa-fw fa-lg"></span>Volunteer<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
-                    <li><a href={{ route('contributor.add.form') }}>Contribute Now!</a></li>
+                    <li><a href={{ route('contributor.add.form') }} data-parent="vol">Contribute Now!</a></li>
                     <li class="divider"></li>
-                    <li><a href={{ route('contributors') }}>View Contributors</a></li>
+                    <li><a href={{ route('contributors') }} data-parent="vol">View Contributors</a></li>
                   </ul>
                 </li>
-                <li><a class="navbar-link" href={{ route('donate') }}>Donate</a></li>
-<!--                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle navbar-link" data-toggle="dropdown">Leaderboards<span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Top Volunteers</a></li>
-                    <li><a href="#">Top Donors</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">All Volunteers</a></li>
-                    <li><a href="#">All Donors</a></li>
-                  </ul>
-                </li> -->
-                <li><a class="navbar-link" href={{ route('siteimpact') }}>Our Impact</a></li>
+                <li><a class="navbar-link" href={{ route('donate') }}><span class="fa fa-rupee fa-fw fa-lg"></span>Donate</a></li>
+                <li><a class="navbar-link" href={{ route('siteimpact') }}><span class="fa fa-bar-chart fa-fw fa-lg"></span>Our Impact</a></li>
               </ul>
 
               <ul class="nav navbar-nav navbar-right" id="right-nav-section">
@@ -74,24 +64,32 @@
                   </li>
                 @endif
                 @if ( Auth::check() )
-                  <li id="log-text"><a class="navbar-link" href={{ route('logout') }}>Log Out</a></li>
+                  <li id="log-text"><a class="navbar-link" href={{ route('logout') }}><span class="fa fa-sign-out fa-fw fa-lg"></span>Log Out</a></li>
                 @else
-                  <li id="log-text"><a class="navbar-link" href={{ route('login') }}>Log In</a></li>
+                  <li id="log-text"><a class="navbar-link" href={{ route('login') }}><span class="fa fa-sign-in fa-fw fa-lg"></span>Log In</a></li>
                 @endif
-                <li><a class="navbar-link" href={{ route('about') }}>Contact Me</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle navbar-link" id="about" data-toggle="dropdown">Contact<span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href={{ route('about') }} data-parent="about"><span class="fa fa-female fa-fw fa-lg"></span>About Me</a></li>
+                    <li class="divider"></li>
+                    <li><a href={{ route('contact.me') }} data-parent="about"><span class="fa fa-pencil fa-fw fa-lg"></span>Contact Me</a></li>
+                  </ul>
+                </li>
               </ul>
             </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->
         </nav>
 
-        <div class="floating-help pull-left">
-          <a href={{ route('about') }}>
-          H<br>
-          E<br>
-          L<br>
-          P<br>
-          </a>
-        </div>
+        
+        <a href={{ route('contact.me') }}>
+          <div class="floating-help pull-left">
+            H<br>
+            E<br>
+            L<br>
+            P<br>
+          </div>
+        </a>
 
         @yield('content')
 
@@ -113,7 +111,22 @@
 
               console.log(jq);
 
-              $(jq).addClass("active-link");
+              var jq2 = jq.split('#')[0];
+
+              var make_active_elem = $(jq2);
+
+              make_active_elem.addClass("active-link");
+
+              console.log(make_active_elem);
+
+              var data_parent = $(jq).data('parent');
+
+              console.log(data_parent);
+
+              if (data_parent) {
+                console.log("adding active-link to data_parent id");
+                $('#'+data_parent).addClass("active-link");
+              }
 
               
 

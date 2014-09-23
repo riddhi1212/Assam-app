@@ -48,7 +48,15 @@ Route::get('/about', array(
 				}
 ) );
 
-Route::post('/about', array(
+Route::get('contact', array(
+    'as' => 'contact.me',
+    'uses' => function()
+				{
+					return View::make('contact');
+				}
+) );
+
+Route::post('contact', array(
     'as' => 'contact.me',
     'uses' => 'UsersController@contactMe'
 ) );
