@@ -1,12 +1,55 @@
 @extends('layouts/navhome')
 
 
+@section('head')
+
+<style>
+
+
+#chart_div {
+	width: auto;
+	height: 500px;
+}
+
+.loading {
+	cursor: progress;
+	line-height: 500px;
+  	text-align: center;
+}
+
+.has-spinner {
+  	display: inline-block;
+  	vertical-align: middle;
+  	line-height: normal; 
+}
+
+.spinner {
+	display: inline-block;
+}
+
+#spinner-text {
+	text-decoration: none;
+}
+
+
+
+
+
+</style>
+
+@stop
+
 @section('content')
 		<div id="wrap">
 
 			<div class="info">
 				<div class="container">
-					<div id="chart_div" style="width: auto; height: 500px;"></div>
+					<div id="chart_div" class="loading">
+						<a class="has-spinner">
+					    	<span class="spinner"><span class="fa fa-spinner fa-spin fa-3x"></span></span>
+					    	<span id="spinner-text">Loading Histogram of Rescued people by Age</span>
+					  	</a>
+					</div>
 					<div class="stripe">
 						<div class="container">
 							<h3>Site Stats</h3>
@@ -47,9 +90,14 @@
   		google.load("visualization", "1", {packages:["corechart"]});
   		google.setOnLoadCallback(drawChart);
 
-
       	function drawChart() {
+
+      		$('#spinner-text').text('Google visualization library loaded.');
+
       	    $.getJSON("AUdata", function(data) {
+      			
+				$('#spinner-text').text('Server responded with data.');
+
       			var au = data;
 
 		      	var newdata = [];
@@ -71,6 +119,8 @@
 			        hAxis: { title: 'Ages of Rescued people' },
 			        vAxis: { title: 'Number of Rescued people' }
 			    };
+
+			    $('#chart_div').empty().removeClass('loading');
 
 		        var chart = new google.visualization.Histogram(document.getElementById('chart_div'));
 		        chart.draw(data, options);
