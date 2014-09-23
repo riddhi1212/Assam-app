@@ -1,10 +1,6 @@
 <?php
 
 class ArmyUpdatesController extends BaseController {   
-
-    // public function add() {
-    //     return View::make( 'options/new' );
-    // }
     
     // This is the function a form button will POST to
     public function search() {
@@ -29,14 +25,11 @@ class ArmyUpdatesController extends BaseController {
 
         $results = ArmyUpdates::searchWithParam($updates_sno, $updates_name, $updates_age);
 
-        $explanation = "This has to be replaced. TODO TODO . Just checking refactoring for now !!! ";
-
         Log::info("===[AU Search Results]===");
         Log::info(json_encode($results));
 
         $response = array(
             'status' => 'success',
-            'explanation' => $explanation,
             'results' => json_encode($results)
         );
  

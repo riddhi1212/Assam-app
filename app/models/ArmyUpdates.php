@@ -127,17 +127,6 @@ class ArmyUpdates extends Eloquent {
         } elseif ($name && !$age) {
             // Only Name Specified
 
-           // $results = ArmyUpdates::where('first-name', '=', $updates_name)->get();
-            // search over last name too
-            // $results = DB::table('ARMY-Updates')
-            //                     ->where('first-name', '=', $updates_name)
-            //                     ->orWhere('last-name', '=', $updates_name)
-            //                     ->get();
-
-                // $results = ArmyUpdates::whereRaw(' first_name LIKE ? and last_name LIKE ? ', array(
-                //                                     '%'.$find_first_name.'%', '%'.$find_last_name.'%'
-                //                                 ));
-
             $results = Helper::searchTableForName(ArmyUpdates::TABLE_NAME, $find_name);
 
             // TODO : separate out exact matches and substr matches and disp them separately
@@ -149,15 +138,6 @@ class ArmyUpdates extends Eloquent {
 
         } elseif ($name && $age) {
             // Name, Age Specified
-            // $results = ArmyUpdates::where('age', '=', $updates_age)
-            //                         ->where('first-name', '=', $updates_name)
-            //                         ->get();
-            //                         //TODO : last name search!
-
-
-            // $results = ArmyUpdates::whereRaw('( first_name LIKE ? and last_name LIKE ? ) and age = ?', array(
-            //                             '%'.$find_first_name.'%', '%'.$find_last_name.'%', $find_age
-            //                         ));
 
             $results = Helper::searchTableForNameAndAge(ArmyUpdates::TABLE_NAME, $find_name, $find_age);
 

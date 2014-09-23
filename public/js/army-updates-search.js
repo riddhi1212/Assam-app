@@ -1,94 +1,140 @@
+
+
+var checkSno = function() {
+	var value = $('#updates-sno').val();
+	var form_group_elem = $('#updates-sno').parent().parent();
+	
+	if (value == "") {
+		form_group_elem.removeClass('has-error');
+		form_group_elem.removeClass('has-success');
+		form_group_elem.find(".help-block").empty();
+		return true;
+	} else {
+		if ($('#updates-name').val().length > 0 || $('#updates-age').val().length > 0) {
+			form_group_elem.removeClass('has-success');
+			form_group_elem.addClass('has-error');
+			form_group_elem.find(".help-block").text("Serial number is unique. Remove Name and Age and then search by Serial number.");
+			return false;
+		}
+	}
+
+	var patt = new RegExp(/^[0-9]+$/);
+	var res = patt.test(value);
+
+	if (!res) {
+		form_group_elem.removeClass('has-success');
+		form_group_elem.addClass('has-error');
+		form_group_elem.find(".help-block").text("Serial number can only have digits");
+		return false;
+	} else {
+		form_group_elem.removeClass('has-error');
+		form_group_elem.addClass('has-success');
+		form_group_elem.find(".help-block").empty();
+		return true;
+	}
+}
+
+var checkName = function() {
+	var value = $('#updates-name').val();
+	var form_group_elem = $('#updates-name').parent().parent();
+
+	if (value == "") {
+		form_group_elem.removeClass('has-error');
+		form_group_elem.removeClass('has-success');
+		form_group_elem.find(".help-block").empty();
+		return true;
+	} else {
+		if ($('#updates-sno').val().length > 0) {
+			form_group_elem.removeClass('has-success');
+			form_group_elem.addClass('has-error');
+			form_group_elem.find(".help-block").text("You cannot search by Name if you are also searching by Serial number.");
+			return false;
+		}
+	}
+
+	var patt = new RegExp(/^[a-zA-Z ]+$/);
+	var res = patt.test(value);
+
+	if (!res) {
+		form_group_elem.removeClass('has-success');
+		form_group_elem.addClass('has-error');
+		form_group_elem.find(".help-block").text("Name can only have alphabets and spaces");
+		return false;
+	} else {
+		form_group_elem.removeClass('has-error');
+		form_group_elem.addClass('has-success');
+		form_group_elem.find(".help-block").empty();
+		return true;
+	}
+}
+
+var checkAge = function() {
+	var value = $('#updates-age').val();
+	var form_group_elem = $('#updates-age').parent().parent();
+
+	if (value == "") {
+		form_group_elem.removeClass('has-error');
+		form_group_elem.removeClass('has-success');
+		form_group_elem.find(".help-block").empty();
+		return true;
+	} else {
+		if ($('#updates-sno').val().length > 0) {
+			form_group_elem.removeClass('has-success');
+			form_group_elem.addClass('has-error');
+			form_group_elem.find(".help-block").text("You cannot search by Age if you are also searching by Serial number.");
+			return false;
+		}
+	}
+
+	if (parseInt(value) < 0 || parseInt(value) > 100) {
+		form_group_elem.addClass('has-error');
+		form_group_elem.removeClass('has-success');
+		form_group_elem.find(".help-block").text("Age has to be between 0 and 100");
+		$('#army-updates-search-btn').addClass('disabled');
+		return;
+	}
+
+	var patt = new RegExp(/^[0-9]+$/);
+	var res = patt.test(value);
+
+	if (!res) {
+		form_group_elem.removeClass('has-success');
+		form_group_elem.addClass('has-error');
+		form_group_elem.find(".help-block").text("Age can only have digits");
+		$('#army-updates-search-btn').addClass('disabled');
+	} else {
+		form_group_elem.removeClass('has-error');
+		form_group_elem.addClass('has-success');
+		form_group_elem.find(".help-block").empty();
+		$('#army-updates-search-btn').removeClass('disabled');
+	}
+}
+
+var checkOnKeyUp = function() {
+
+	var sno_ok = checkSno();
+	var name_ok = checkName();
+	var age_ok = checkAge();
+
+	if (sno_ok && name_ok && age_ok) {
+		$('#army-updates-search-btn').removeClass('disabled');
+	} else {
+		$('#army-updates-search-btn').addClass('disabled');
+	}
+}
+
 var main = function() {
 
 	$('#updates-name').keyup(function() {
-		var value = $(this).val();
-		var form_group_elem = $(this).parent().parent();
-
-		if (value == "") {
-			form_group_elem.removeClass('has-error');
-			form_group_elem.removeClass('has-success');
-			form_group_elem.find(".help-block").empty();
-			$('#army-updates-search-btn').removeClass('disabled');
-			return;
-		}
-
-		var patt = new RegExp(/^[a-zA-Z ]+$/);
-		var res = patt.test(value);
-
-		if (!res) {
-			form_group_elem.removeClass('has-success');
-			form_group_elem.addClass('has-error');
-			form_group_elem.find(".help-block").text("Name can only have alphabets and spaces");
-			$('#army-updates-search-btn').addClass('disabled');
-		} else {
-			form_group_elem.removeClass('has-error');
-			form_group_elem.addClass('has-success');
-			form_group_elem.find(".help-block").empty();
-			$('#army-updates-search-btn').removeClass('disabled');
-		}
+		checkOnKeyUp();
 	});
 
 	$('#updates-age').keyup(function() {
-		var value = $(this).val();
-		var form_group_elem = $(this).parent().parent();
-		
-		if (value == "") {
-			form_group_elem.removeClass('has-error');
-			form_group_elem.removeClass('has-success');
-			form_group_elem.find(".help-block").empty();
-			$('#army-updates-search-btn').removeClass('disabled');
-			return;
-		}
-		if (parseInt(value) < 0 || parseInt(value) > 100) {
-			form_group_elem.addClass('has-error');
-			form_group_elem.removeClass('has-success');
-			form_group_elem.find(".help-block").text("Age has to be between 0 and 100");
-			$('#army-updates-search-btn').addClass('disabled');
-			return;
-		}
-
-		var patt = new RegExp(/^[0-9]+$/);
-		var res = patt.test(value);
-
-		if (!res) {
-			form_group_elem.removeClass('has-success');
-			form_group_elem.addClass('has-error');
-			form_group_elem.find(".help-block").text("Age can only have digits");
-			$('#army-updates-search-btn').addClass('disabled');
-		} else {
-			form_group_elem.removeClass('has-error');
-			form_group_elem.addClass('has-success');
-			form_group_elem.find(".help-block").empty();
-			$('#army-updates-search-btn').removeClass('disabled');
-		}
+		checkOnKeyUp();
 	});
 
 	$('#updates-sno').keyup(function() {
-		var value = $(this).val();
-		var form_group_elem = $(this).parent().parent();
-		
-		if (value == "") {
-			form_group_elem.removeClass('has-error');
-			form_group_elem.removeClass('has-success');
-			form_group_elem.find(".help-block").empty();
-			$('#army-updates-search-btn').removeClass('disabled');
-			return;
-		}
-
-		var patt = new RegExp(/^[0-9]+$/);
-		var res = patt.test(value);
-
-		if (!res) {
-			form_group_elem.removeClass('has-success');
-			form_group_elem.addClass('has-error');
-			form_group_elem.find(".help-block").text("Serial number can only have digits");
-			$('#army-updates-search-btn').addClass('disabled');
-		} else {
-			form_group_elem.removeClass('has-error');
-			form_group_elem.addClass('has-success');
-			form_group_elem.find(".help-block").empty();
-			$('#army-updates-search-btn').removeClass('disabled');
-		}
+		checkOnKeyUp();
 	});
 
 
@@ -119,8 +165,6 @@ var main = function() {
 
 					var search_text = results.length + ' Matching Search Results Returned';
 					$('.search-text').text(search_text);
-
-					$('.search-explanation').text(json.explanation);
 
 					$.each(results, function(idx, update){
 					     	var div = $('<div>').addClass('row');

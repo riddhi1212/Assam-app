@@ -45,7 +45,6 @@
 			      </form>
 			      <br>
 			      <div class="army-updates-display">
-			      	  <p class="search-explanation"></p>
 			      	  <p class="search-text"></p>
 			      	  <div class="army-updates-pag-links">
 			          	{{ $army_updates_pag->links() }}
