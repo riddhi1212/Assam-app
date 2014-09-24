@@ -72,7 +72,7 @@
 	          	</ul>
 	      	</div>
 		</div>
-		@if ($fip->addedByCurrentUser())
+		@if (Auth::user() and $fip->addedByCurrentUser())
 			<div class="col-md-3">
 				<a href="{{ route('find.person.edit', $fip->id) }}">
 					<span class="fa fa-pencil fa-fw fa-lg">Edit</span>

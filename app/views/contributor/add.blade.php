@@ -8,16 +8,15 @@
 <div id="wrap">
 	<div class="stripe">
 		<div class="container">
-			<p class="pull-left">Congratulations on taking the wonderful step of Volunteering your time:</p>
-			<p class="pull-right">
-				...
-			</p>
+			<h3>Congratulations on taking the wonderful step of Volunteering your time:</h3>
+			<p>I will be adding <strong>detailed instructions</strong> here very soon. Please check again in a day or two.</p>
+<pre>
+Format of CSV file to be uploaded
+| s-no |  first-name  | last-name |  age  |  address | fb-url  |  child  |</pre>
 		</div>
 	</div>
 
-	<pre>
-	Format of CSV file to be uploaded
-	| s-no |  first-name  | last-name |  age  |  address | fb-url  |  child  |</pre>
+
 
 
 	<div class="row">

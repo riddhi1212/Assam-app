@@ -80,7 +80,7 @@
 	          	</ul>
 	      	</div>
 		</div>
-		@if ($fop->addedByCurrentUser())
+		@if (Auth::user() and $fop->addedByCurrentUser())
 			<div class="col-md-3">
 				<a href="{{ route('found.person.edit', $fop->id) }}">
 					<span class="fa fa-pencil fa-fw fa-lg">Edit</span>

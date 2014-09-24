@@ -10,6 +10,8 @@
 	<div class="stripe">
 		<div class="container">
 			<h2>Post your Found Person Reports using this form :</h2>
+			<h5><span class="fa fa-caret-right fa-fw fa-lg"></span>If you are working in the affected areas, and are finding rescued people, PLEASE post about them here.</h5>
+			<h5><span class="fa fa-caret-right fa-fw fa-lg"></span>Your report will help families looking for information about their loved ones.</h5>
 		</div>
 	</div>
 
@@ -84,7 +86,7 @@
 	      		<div class="found-people-display">
 					@if ($found_people_list)
 			      		<ul class="found-people-list list-group">
-			      			<h4>All Found Person Reports : </h4>
+			      			<h4>View All Found Person Reports : </h4>
 			      			<p>Tracking 
 				   	  			<span id="found-count"><b>{{ count($found_people_list) }}</b></span>
 				   	   			Records

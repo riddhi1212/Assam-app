@@ -87,7 +87,6 @@
 	<script>
 
 		$(document).ready(function() {
-			console.log("===========in main ========");
 
 			var desc_height = $("#dc-desc").get(0).scrollHeight;
 			$("#dc-desc").css({"height": desc_height});

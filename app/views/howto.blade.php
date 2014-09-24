@@ -24,6 +24,8 @@
 
 .info {
 	color: white;
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
 
 .info a {
@@ -57,13 +59,6 @@
 	<div id="background">
 	    <img src="images/bg1.jpg" class="stretch" alt="" />
 	</div>
-
-	<div class="upper">
-		<div class="upper-info">
-			<h4><span class="fa fa-arrow-circle-o-down fa-fw fa-lg"></span>If you need help using this site, click on the Red Help button</h4>
-		</div>
-	</div>
-
 	
 	<div class="row push-down">
 		<div class="col-sm-8 col-sm-offset-2 info-bg">

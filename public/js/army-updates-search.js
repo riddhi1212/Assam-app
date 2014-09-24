@@ -86,14 +86,6 @@ var checkAge = function() {
 		}
 	}
 
-	if (parseInt(value) < 0 || parseInt(value) > 100) {
-		form_group_elem.addClass('has-error');
-		form_group_elem.removeClass('has-success');
-		form_group_elem.find(".help-block").text("Age has to be between 0 and 100");
-		$('#army-updates-search-btn').addClass('disabled');
-		return;
-	}
-
 	var patt = new RegExp(/^[0-9]+$/);
 	var res = patt.test(value);
 
@@ -101,12 +93,24 @@ var checkAge = function() {
 		form_group_elem.removeClass('has-success');
 		form_group_elem.addClass('has-error');
 		form_group_elem.find(".help-block").text("Age can only have digits");
-		$('#army-updates-search-btn').addClass('disabled');
+		return false;
 	} else {
 		form_group_elem.removeClass('has-error');
 		form_group_elem.addClass('has-success');
 		form_group_elem.find(".help-block").empty();
-		$('#army-updates-search-btn').removeClass('disabled');
+		return true;
+	}
+
+	if (parseInt(value) < 0 || parseInt(value) > 100) {
+		form_group_elem.addClass('has-error');
+		form_group_elem.removeClass('has-success');
+		form_group_elem.find(".help-block").text("Age has to be between 0 and 100");
+		return false;
+	} else {
+		form_group_elem.removeClass('has-error');
+		form_group_elem.addClass('has-success');
+		form_group_elem.find(".help-block").empty();
+		return true;
 	}
 }
 
@@ -163,8 +167,10 @@ var main = function() {
 
 					$(".army-updates-list").empty();
 
-					var search_text = results.length + ' Matching Search Results Returned';
-					$('.search-text').text(search_text);
+					$('.search-text').empty();
+					var search_text = results.length + ' Matching Search Results Returned.';
+					$('.search-text').append($('<p>').addClass('pull-left').text(search_text));
+					$('.search-text').append($('<a>').attr('href', 'updates').addClass('btn btn-info pull-right').text('View All ARMY Updates Again'));
 
 					$.each(results, function(idx, update){
 					     	var div = $('<div>').addClass('row');

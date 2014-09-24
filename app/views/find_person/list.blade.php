@@ -10,16 +10,15 @@
 	<div class="stripe">
 		<div class="container">
 			<h2>Lodge your Missing Person Reports using this form :</h2>
+			<h5><span class="fa fa-caret-right fa-fw fa-lg"></span>You will be able to view all your Missing Person Reports in your Dashboard.</h5>
+			<h5><span class="fa fa-caret-right fa-fw fa-lg"></span>Your report will automatically be matched with every record in the Army Updates database and in the Found Person Reports database.</h5>
+			<h5><span class="fa fa-caret-right fa-fw fa-lg"></span>Your dashboard will show you all the generated matches so you can Review them.</h5>
 		</div>
 	</div>
 
 	<div class="row">
 	  <div class="col-md-8 col-md-offset-2">
 	    <div class="find-people">
-	      <p>Tracking 
-	   	  <span id="find-count">{{ count($find_people_list) }}</span>
-	   	   Records
-	   	  </p>
 	      <h2>I am looking for :</h2>
 	      <form class="form-horizontal" id="find-people-form" method="post" action={{ route('find.people.create') }}>
 	        <div class="form-group">
@@ -66,6 +65,10 @@
 	      	@if ($find_people_list)
 	      		<ul class="find-people-list list-group">
 	      			<h4>View All Missing Person Reports : </h4>
+	      			<p>Tracking 
+				   	  <span id="find-count">{{ count($find_people_list) }}</span>
+				   	   Records
+				   	</p>
 		       		<div class="row list-group-item list-group-item-info" id="find-people-list-header">
 		       			<span class="col-sm-3">First Name</span>
 		       			<span class="col-sm-3">Last Name</span>

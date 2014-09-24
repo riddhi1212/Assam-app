@@ -48,8 +48,6 @@
 <script>
 	$(document).ready(function() {
 
-		console.log("RELOADED");
-
 		$('#contact-me-btn').click(function(){
 			// now POST to server
 			$.ajax({

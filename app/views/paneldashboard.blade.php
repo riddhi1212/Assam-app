@@ -8,9 +8,7 @@
 <div id="wrap">
 	<div class="stripe">
 		<div class="container">
-			<p class="pull-left">Hi
-				<span>{{ Auth::user()->fname }}</span>
-			</p>
+			<h2>Hi <span>{{ Auth::user()->fname }}</span></h2>
 		</div>
 	</div>
 
@@ -278,8 +276,8 @@
 		    // on load of the page: switch to the currently selected tab
 		    var hash = window.location.hash;
 
-		    console.log("window.location.hash is =>");
-		    console.log(hash); 
+		    // console.log("window.location.hash is =>");
+		    // console.log(hash); 
 
 		    if (hash == "" && localStorage.getItem('dashboard-hash')) {
 		    	console.log("==[empty hash and localStorage]===");
@@ -287,8 +285,8 @@
 		    	console.log(hash);
 		    }
 
-		    console.log('tab to be shown =>');
-		    console.log('#dashboard-tab a[href="' + hash + '"]');
+		    // console.log('tab to be shown =>');
+		    // console.log('#dashboard-tab a[href="' + hash + '"]');
 
 		    $('#dashboard-tab a[href="' + hash + '"]').tab('show');
 

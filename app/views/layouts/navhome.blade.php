@@ -65,8 +65,9 @@
               <ul class="nav navbar-nav navbar-right" id="right-nav-section">
                 @if ( Auth::check() )
                   <li>
-                    <a class="navbar-link" href={{ route('dashboard') }}>Welcome back 
+                    <a class="navbar-link" href={{ route('dashboard') }}> 
                       <span id ="auth-username">{{ Auth::user()->fname }}</span>
+                      's Dashboard
                       <span class="badge" id="notification-count">{{ Auth::user()->numMessages() }}</span>
                     </a>
                   </li>
@@ -89,15 +90,16 @@
           </div><!-- /.container-fluid -->
         </nav>
 
-        
-        <a href={{ route('contact.me') }}>
-          <div class="floating-help pull-left">
-            H<br>
-            E<br>
-            L<br>
-            P<br>
-          </div>
+
+         <a href={{ route('contact.me') }}>
+            <div class="floating-help">     
+              H<br>
+              E<br>
+              L<br>
+              P<br>
+            </div>
         </a>
+
         @yield('content')
         <div id="footer">
             <div class="container">
@@ -116,20 +118,16 @@
               // and make body padding-top = navbar height
               $('body').css('margin-bottom', $('#footer').css('height'));
               $('body').css('padding-top', $('.navbar').css('height'));
-              console.log($('body').css('margin-bottom'));
-              console.log($('body').css('padding-top'));
               
               $( window ).resize(function() {
                 $('body').css('margin-bottom', $('#footer').css('height'));
                 $('body').css('padding-top', $('.navbar').css('height'));
-                console.log($('body').css('margin-bottom'));
-                console.log($('body').css('padding-top'));
               });
 
               var url = $(location).attr('href');
               var jq = "a[href='" + url + "']";
 
-              console.log(jq);
+              //console.log(jq);
 
               var jq2 = jq.split('#')[0];
 
@@ -137,14 +135,14 @@
 
               make_active_elem.addClass("active-link");
 
-              console.log(make_active_elem);
+              //console.log(make_active_elem);
 
               var data_parent = $(jq).data('parent');
 
-              console.log(data_parent);
+              //console.log(data_parent);
 
               if (data_parent) {
-                console.log("adding active-link to data_parent id");
+                //console.log("adding active-link to data_parent id");
                 $('#'+data_parent).addClass("active-link");
               }
 
