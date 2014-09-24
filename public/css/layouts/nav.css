@@ -1,7 +1,6 @@
 .stripe {
-	margin-top: 5px;
+	margin-top: 10px;
 	margin-bottom: 10px;
-  padding-top: 10px;
 	background-color: #f5f5f5;
 }
 
@@ -52,6 +51,10 @@ body {
   margin-bottom: 60px;
 }
 
+#wrap {
+  padding-bottom: 10px;
+}
+
 #footer {
   position: absolute;
   bottom: 0;
@@ -79,7 +82,7 @@ body {
 /* nav bar */
 
 .active-link {
-    background-color: rgb(100,82,81);
+    background-color: rgb(80,40,40);
  }
 
  .dropdown-menu > li > .active-link {

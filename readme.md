@@ -259,6 +259,7 @@ Add donor pages:
 		http://sewainternational.org//Encyc/2014/9/10/Jammu-Kashmir-Appeal.aspx
 	-	http://www.thealternative.in/society/useful-resources-to-help-donate-to-the-kashmir-floods-relief-programs/
 		-	Helpline numbers including NRDF control room
+	-	iYogi sponsored BridgeToKashmir (Donate Supplies and Volunteer)
 
 ---------
 Updates:
