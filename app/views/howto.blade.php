@@ -75,7 +75,7 @@
 							<li>
 								<div>
 									<p>As you can imagine, there are a LOT of uploaded pictures and we alone CANNOT transcribe them all</p>
-									<p>YOU CAN help by simply donating <span class="fa fa-clock-o fa-fw fa-lg"></span>30 minutes of your time <span class="fa fa-arrow-right fa-fw fa-lg"></span> Simply choose any one ARMY uploaded picture, type it out in <span class="fa fa-file-excel-o fa-fw fa-lg"></span>Excel and sent to us in .csv format. <a href={{ route('contributor.add.form') }}}>Contribute NOW!</a>. See everyone else who has already contributed <a href={{ route('contributors') }}>here</a><span class="fa fa-thumbs-o-up fa-fw fa-lg"></span></p>
+									<p>YOU CAN help by simply donating <span class="fa fa-clock-o fa-fw fa-lg"></span>30 minutes of your time <span class="fa fa-arrow-right fa-fw fa-lg"></span> Simply choose any one ARMY uploaded picture, type it out in <span class="fa fa-file-excel-o fa-fw fa-lg"></span>Excel and sent to us in .csv format. <a href={{ route('contributor.add.form') }}>Contribute NOW!</a>. See everyone else who has already contributed <a href={{ route('contributors') }}>here</a><span class="fa fa-thumbs-o-up fa-fw fa-lg"></span></p>
 								</div>
 							</li>
 						</ul>
