@@ -18,8 +18,8 @@
           })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
           ga('create', 'UA-55044304-2', 'auto');
-          ga('require', 'displayfeatures');
-          ga('require', 'linkid', 'linkid.js');
+          //ga('require', 'displayfeatures');
+          //ga('require', 'linkid', 'linkid.js');
           ga('send', 'pageview');
 
         </script>
