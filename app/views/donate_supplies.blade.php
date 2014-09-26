@@ -11,6 +11,11 @@
 .about {
 	background-color: rgb(235,235,235);
 }
+
+.donate-option .row {
+	border: 1px solid grey;
+}
+
 </style>
 @stop
 
