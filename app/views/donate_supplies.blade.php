@@ -1,5 +1,6 @@
 @extends('layouts/navhome')
 
+@section('head')
 <style>
 
 .donate-option {
@@ -11,6 +12,7 @@
 	background-color: rgb(235,235,235);
 }
 </style>
+@stop
 
 @section('content')
 <div id="wrap">
@@ -227,32 +229,6 @@
 @stop
 
 @section('jsinclude')
-<script>
-	$(document).ready(function() {
 
-		$('#contact-me-btn').click(function(){
-			// now POST to server
-			$.ajax({
-				type:"post",
-				url:$("#contact-me-form").prop('action'),
-				data:$("#contact-me-form").serialize(),
-				success: function(json) {
-					alert('Thank you for submitting the Contact me form.');
-					
-					$('#purpose').val('feedback');
-					$('#comments').val('Enter your text here');
-					$('#guest-first-name').val('Enter your first name');
-					$('#guest-last-name').val('Enter your last name');
-					$('#guest-mobile').val('Enter your mobile number');
-
-				},
-				error:function() {
-					alert("Error");
-				}
-			});
-		});
-
-	});
-</script>
         
 @stop

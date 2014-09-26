@@ -1,5 +1,6 @@
 @extends('layouts/navhome')
 
+@section('head')
 <style>
 
 .push-down {
@@ -44,6 +45,7 @@
 }
 
 </style>
+@stop
 
 @section('content')
 <div id="wrap">
