@@ -57,14 +57,6 @@
                     <li><a href={{ route('found.person.report') }} data-parent="updates"><span class="fa fa-smile-o fa-fw fa-lg"></span>Post Found Person Report</a></li>
                   </ul>
                 </li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle navbar-link" id="vol" data-toggle="dropdown"><span class="fa fa-clock-o fa-fw fa-lg"></span>Volunteer<span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href={{ route('contributor.add.form') }} data-parent="vol"><span class="fa fa-thumbs-o-up fa-fw fa-lg"></span>Contribute Now!</a></li>
-                    <li class="divider"></li>
-                    <li><a href={{ route('contributors') }} data-parent="vol"><span class="fa fa-eye fa-fw fa-lg"></span>View Contributors</a></li>
-                  </ul>
-                </li>
                 <li><a class="navbar-link" href={{ route('siteimpact') }}><span class="fa fa-bar-chart fa-fw fa-lg"></span>Our Impact</a></li>
               </ul>
 
@@ -86,9 +78,9 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle navbar-link" id="about" data-toggle="dropdown">Contact<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
-                    <li><a href={{ route('about') }} data-parent="about"><span class="fa fa-female fa-fw fa-lg"></span>About Me</a></li>
+                    <li><a href={{ route('about') }} data-parent="about"><span class="fa fa-users fa-fw fa-lg"></span>About Us</a></li>
                     <li class="divider"></li>
-                    <li><a href={{ route('contact.me') }} data-parent="about"><span class="fa fa-pencil fa-fw fa-lg"></span>Contact Me</a></li>
+                    <li><a href={{ route('contact.me') }} data-parent="about"><span class="fa fa-pencil fa-fw fa-lg"></span>Contact Us</a></li>
                   </ul>
                 </li>
               </ul>

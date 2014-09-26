@@ -31,7 +31,7 @@ class CreateUsersTable extends Migration {
 			$table->boolean('donationcause_adder')->default(false);
 
 			$table->integer('upload_number')->default(0);
-			$table->enum('affiliation', array('army', 'nrdf', 'media', 'medical', 'person', 'ngo', 'other', 'unspecified'))->default('unspecified');
+			$table->enum('affiliation', array('army', 'ndrf', 'media', 'medical', 'person', 'ngo', 'other', 'unspecified'))->default('unspecified');
 
 
 			$table->string('password'); // hash of mobile for now

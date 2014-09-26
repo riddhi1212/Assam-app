@@ -5,17 +5,15 @@
 
 	<div class="stripe">
 		<div class="container">
-			<span>You can reach me here:</span>
-			<a target="_blank" href="http://www.linkedin.com/in/riddhimittal"><span class="fa fa-linkedin fa-fw fa-2x"></span></a>
-			<a target="_blank" href="http://twitter.com/riddhi_mittal"><span class="fa fa-twitter fa-fw fa-2x"></span></a>
-			<a target="_blank" href="http://www.facebook.com/riddhi.mittal"><span class="fa fa-facebook fa-fw fa-2x"></span></a>
+			<span>You can also email us at : <strong>cdrf.india@gmail.com</strong></span>
 		</div>
 	</div>
 
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8">
-				<h2>Contact Me :</h2>
+				<h2>Contact #CDRF : </h2>
+				<h4>(Citizens Disaster Response Force)</h4>
 
 				{{ Form::open(array('action' => 'UsersController@contactMe',
 									'method' => 'post',
@@ -72,7 +70,7 @@
 					</div>
 					@endif
 
-					{{ Form::button('Contact Me', array('class' => 'btn btn-primary btn-block',
+					{{ Form::button('Contact #CDRF', array('class' => 'btn btn-primary btn-block',
 														   'id' => 'contact-me-btn' )); }}
 
 				{{ Form::close() }}

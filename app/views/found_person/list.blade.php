@@ -44,7 +44,7 @@
 						<div class="col-sm-9">
 							{{ Form::select('found-by', array(
 														   'army' => 'ARMY',
-														   'nrdf' => 'NRDF',
+														   'ndrf' => 'NDRF',
 														   'media' => 'Media',
 														   'medical' => 'Medical team',
 														   'ngo' => 'NGO',

@@ -1,6 +1,15 @@
 @extends('layouts/navhome')
 
 <style>
+
+.middle {
+	text-align: center;
+}
+
+.left {
+	text-align: left;
+}
+
 .about {
 	background-color: rgb(235,235,235);
 }
@@ -8,37 +17,32 @@
 
 @section('content')
 <div id="wrap">
-
-	<div class="stripe">
-		<div class="container">
-			<span>You can reach me here:</span>
-			<a target="_blank" href="http://www.linkedin.com/in/riddhimittal"><span class="fa fa-linkedin fa-fw fa-2x"></span></a>
-			<a target="_blank" href="http://twitter.com/riddhi_mittal"><span class="fa fa-twitter fa-fw fa-2x"></span></a>
-			<a target="_blank" href="http://www.facebook.com/riddhi.mittal"><span class="fa fa-facebook fa-fw fa-2x"></span></a>
-		</div>
-	</div>
-	<br>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-8 about">
-				<h1>About Me</h1>
-				<p>I graduated with a B.S. and M.S. in Computer Science from Stanford University.</p>
-				<p>After a bunch of amazing work experiences (Engineer, Product Manager, Venture Capitalist) in the U.S. I decided working for someone else was not for me.</p>
-				<p>I'm passionate about solving problems, and love building things to solve real needs. I always think about how to improve things further.</p>
-				<p>I like meeting like-minded people, so if you're so inclined, drop me a message via the Contact Me form and I'd love to chat further.</p>
-				<p>I built this web-platform in 7 days time, and have barely slept. I will continue to add more features over the next 2 weeks or so. If you want some feature added, please write to me using the Contact Us form with the Purpose field set to Feature Request.</p>
-				<p>This platform also happens to be my very first <u>completely solo</u> adventure into the world of web-development, encompassing everything e.g. Design, CSS, Front-end scripting, Server side programming, Database design, Product management, analytics, testing, deployment and production.
-				It has been an amazing experience so far and I've learnt a lot. I've taught myself around 10-15 new technologies over the last week while trying to implement various kinds of functionality for this platform.
-				</p>
+			<div class="col-md-8 middle">
+				<img src="images/cdrf.jpg" />
+				<div class="about left">
+					<h3>About #CDRF</h3>
+					<p>The Citizens Disaster Response Force movement in India has been started by a couple of youth volunteers after noticing the lack of information prevalent during times of crisis.</p>
+					<p>It is NOT ACCEPTABLE to us, that lack of information be the reason that helpful people cannot donate supplies to those affected by disasters and in desperate need to supplies.</p>
+				</div>
+				<div class="about left">
+					<h3>Get Involved with #CDRF</h3>
+					<p>1) Follow <a target="_blank" href="http://twitter.com/IndiaCdrf">@IndiaCDRF</a> on <span class="fa fa-twitter fa-fw fa-2x"></span>Twitter</p>
+					<p>2) Tweet <strong>"I want to #GetInvolved with @IndiaCDRF"</strong></p>
+				</div>
+				<div class="about left">
+					<h3>About Me</h3>
+					<p>My name is Riddhi Mittal, and I'm the founder of the Citizens Disaster Response Force movement.</p>
+					<p>You can reach me here :
+						<a target="_blank" href="http://www.linkedin.com/in/riddhimittal"><span class="fa fa-linkedin fa-fw fa-lg"></span></a>
+						<a target="_blank" href="http://twitter.com/riddhi_mittal"><span class="fa fa-twitter fa-fw fa-lg"></span></a>
+						<a target="_blank" href="http://www.facebook.com/riddhi.mittal"><span class="fa fa-facebook fa-fw fa-lg"></span></a>
+					</p>
+				</div>
 			</div>
 		</div> <!-- row -->
 	</div> <!-- container -->
-	<br>
-	<div class="stripe">
-		<div class="container">
-			<p>This site was created using jQuery, Bootstrap, Laravel, Homestead (nginx with php-fpm), Vagrant and Forge, and is hosted on Digital Ocean.</p>
-		</div>
-	</div>
 
 </div>
 

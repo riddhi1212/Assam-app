@@ -16,8 +16,11 @@
 <div id="wrap">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-8 what-to-donate">
+			<div class="col-md-10 what-to-donate">
 				<h2>Options:</h2>
+				<p><span class="fa fa-caret-right fa-fw fa-lg"></span>There are currently 3 options available for donating supplies to flood affected areas in <strong>Assam</strong></p>
+				<p><span class="fa fa-caret-right fa-fw fa-lg"></span>To Add Another Option that you know of, please <span class="fa fa-pencil-square-o fa-fw fa-lg"></span>Contact Us <a href={{ route('contact.me') }}>here</a></p>
+				<p><span class="fa fa-caret-right fa-fw fa-lg"></span>Also Contact Us if you know of ways to donate supplies to flood affected areas in <strong>Meghalaya</strong></p>
 				<div class="row">
 					<div class="col-sm-2">
 						<h4>Option 1 : </h4>
@@ -218,12 +221,6 @@
 			</div>
 		</div> <!-- row -->
 	</div> <!-- container -->
-	<br>
-	<div class="stripe">
-		<div class="container">
-			<p>This site was created using jQuery, Bootstrap, Laravel, Homestead (nginx with php-fpm), Vagrant and Forge, and is hosted on Digital Ocean.</p>
-		</div>
-	</div>
 
 </div>
 
