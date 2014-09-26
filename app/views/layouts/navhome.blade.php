@@ -3,9 +3,9 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="Riddhi Mittal">
-        <meta name="description" content="This website makes the Indian ARMY Updates of Rescued people, as posted on their Facebook and Twitter accounts, searchable. It also lets people add Missing Person Reports and Found Person Reports.">
-        <meta name="keywords" content="kashmir floods, kashmir floods 2014, Indian army, kashmir rescued people, help kashmir">
-        <title>Kashmiri Floods 2014 Missing Person Finder</title>
+        <meta name="description" content="This website provides information on donation centers for Assam and Meghalaya flood victims.">
+        <meta name="keywords" content="assam floods, assam floods 2014, donate to assam, donate to meghalaya">
+        <title>Assam and Meghalaya Floods 2014</title>
         {{ HTML::style('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'); }}
         {{ HTML::style('//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'); }}
         {{ HTML::style("//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.1/css/bootstrapValidator.min.css"); }}
@@ -41,7 +41,14 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav navbar-left">
-                <li><a class="navbar-link" href={{ route('updates') }}><span class="fa fa-search fa-fw fa-lg"></span>ARMY Updates</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle navbar-link" id="donate" data-toggle="dropdown"><span class="fa fa-heart-o fa-fw fa-lg"></span>Donate<span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href={{ route('donate.supplies') }} data-parent="donate"><span class="fa fa-list-ul fa-fw fa-lg"></span>Supplies</a></li>
+                    <li class="divider"></li>
+                    <li><a href={{ route('donate') }} data-parent="donate"><span class="fa fa-rupee fa-fw fa-lg"></span>Money</a></li>
+                  </ul>
+                </li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle navbar-link" id="updates" data-toggle="dropdown"><span class="fa fa-search fa-fw fa-lg"></span>Find & Found<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
@@ -58,7 +65,6 @@
                     <li><a href={{ route('contributors') }} data-parent="vol"><span class="fa fa-eye fa-fw fa-lg"></span>View Contributors</a></li>
                   </ul>
                 </li>
-                <li><a class="navbar-link" href={{ route('donate') }}><span class="fa fa-rupee fa-fw fa-lg"></span>Donate</a></li>
                 <li><a class="navbar-link" href={{ route('siteimpact') }}><span class="fa fa-bar-chart fa-fw fa-lg"></span>Our Impact</a></li>
               </ul>
 

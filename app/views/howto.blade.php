@@ -63,7 +63,7 @@
 	<div class="row push-down">
 		<div class="col-sm-8 col-sm-offset-2 info-bg">
 			<div class="info">
-				<h1>For those affected by the Jammu and Kashmir Floods in 2014</h1>
+				<h1>For those affected by the Assam and Meghalaya Floods in September 2014</h1>
 				<ul>
 					<li>
 						<div>

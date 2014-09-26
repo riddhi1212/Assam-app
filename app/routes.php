@@ -40,6 +40,14 @@ Route::get('/howto', array(
 				}
 ) );
 
+Route::get('/donate/supplies', array(
+    'as' => 'donate.supplies',
+    'uses' => function()
+				{
+					return View::make('donate_supplies');
+				}
+) );
+
 Route::get('/about', array(
     'as' => 'about',
     'uses' => function()
