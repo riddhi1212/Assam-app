@@ -16,6 +16,10 @@
 	border: 1px solid grey;
 }
 
+.imp {
+	color: red;
+}
+
 </style>
 @stop
 
@@ -28,6 +32,7 @@
 				<p><span class="fa fa-caret-right fa-fw fa-lg"></span>There are currently 3 options available for donating supplies to flood affected areas in <strong>Assam</strong></p>
 				<p><span class="fa fa-caret-right fa-fw fa-lg"></span>To Add Another Option that you know of, please <span class="fa fa-pencil-square-o fa-fw fa-lg"></span>Contact Us <a href={{ route('contact.me') }}>here</a></p>
 				<p><span class="fa fa-caret-right fa-fw fa-lg"></span>Also Contact Us if you know of ways to donate supplies to flood affected areas in <strong>Meghalaya</strong></p>
+				<h3 class="imp">Please Register Your Donation <a href={{ route('donated.supplies.add') }}>here</a></h3>
 				<div class="row">
 					<div class="col-sm-2">
 						<h4>Option 1 : </h4>

@@ -448,6 +448,18 @@ class Helper {
         }
         return $dc_img_url;
     }
+
+    public static function moveImgFileAndGetURLFor($prefix, $img_file, $id) {
+        $img_url = NULL;
+        if ($img_file) {
+            Log::info("inside if statement. So some file was uploaded");
+            $image_file_name = $prefix . '_id_' . $id . '.' . $img_file->guessClientExtension();
+            $image_file_location = 'images/' . $prefix . '_photos/';
+            $img_file->move($image_file_location, $image_file_name);
+            $img_url = '/' . $image_file_location . $image_file_name;
+        }
+        return $img_url;
+    }
  
 
 }

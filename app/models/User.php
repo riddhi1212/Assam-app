@@ -289,6 +289,24 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return $user;
     }
 
+    // Returns the user object
+    public static function createAndSave($fname, $lname, $mobile) {
+        Log::info("===Creating User " . $fname);
+
+        Log::info($lname);
+        Log::info($mobile);
+
+        $user = new User;
+        $user->fname = $fname;
+        $user->lname = $lname;
+        $user->mobile = $mobile;
+        // $mobile is str
+        $user->password = Hash::make($mobile);  //TODO : add mix of first name and mob num
+        $user->save();
+
+        return $user;
+    }
+
     public static function createContributorIfNotExists($fname, $lname, $mob) {
         $user_obj = User::where('mobile', '=', $mob)->first();
         $contributor_obj = NULL;

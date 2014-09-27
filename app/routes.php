@@ -48,6 +48,19 @@ Route::get('/donate/supplies', array(
 				}
 ) );
 
+Route::get('/donated/supplies/add', array(
+    'as' => 'donated.supplies.add',
+    'uses' => function()
+				{
+					return View::make('donated/supplies/add');
+				}
+) );
+
+Route::post('/donated/supplies/add', array(
+    'as' => 'donated.supplies.add',
+    'uses' => 'RegisterDonatedSupplyController@create'
+) );
+
 Route::get('/about', array(
     'as' => 'about',
     'uses' => function()
